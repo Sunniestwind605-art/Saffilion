@@ -29,6 +29,26 @@ test('submitted typo offers correction but does not auto-score', async ({ page }
   await expect(page.getByText('0 pts')).toBeVisible();
 });
 
+test('a correct answer visibly travels through depth instead of jumping', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('saffilion-save-v1', JSON.stringify({
+    version:1, selectedCat:'pebble', expeditions:[], questionBag:[], recentQuestions:[], missingAnswers:[], crystals:0, unlocked:[], settings:{sound:false,reducedMotion:false,batterySaver:false},
+    active:{questionIds:['science-01','geo-01','geo-02','geo-03','geo-04','geo-05','geo-06'],round:0,results:[],deadline:Date.now()+30000,category:'All'}
+  })));
+  await page.goto('.');
+  const startCamera = Number(await page.locator('.mine-scene canvas').getAttribute('data-camera'));
+  await page.getByLabel('Your answer').fill('Jupiter');
+  await page.getByRole('button', { name: 'Dig!' }).click();
+  await expect(page.locator('.mine-scene')).toHaveClass(/traveling/);
+  await expect(page.getByText('+100 m')).toBeVisible();
+  await page.waitForTimeout(350);
+  const movingDepth = Number((await page.locator('.mine-hud strong').innerText()).replace(/\D/g, ''));
+  expect(movingDepth).toBeGreaterThan(0);
+  expect(movingDepth).toBeLessThan(100);
+  const movingCamera = Number(await page.locator('.mine-scene canvas').getAttribute('data-camera'));
+  expect(movingCamera).toBeGreaterThan(startCamera);
+  await expect(page.locator('.mine-hud strong')).toHaveText('100 m', { timeout: 1600 });
+});
+
 for (const width of [320, 375, 390, 430, 768]) {
   test(`layout has no horizontal overflow at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: width < 500 ? 740 : 1024 });

@@ -12,6 +12,9 @@ const cats: { id: CatId; name: string; mood: string; color: string; accent: stri
 ];
 const cheers = ['You’ve got this!', 'Keep digging!', 'Little steps count.', 'Every gem starts somewhere.', 'A little deeper, a little brighter.', 'Look how far you’ve come!'];
 type Screen = 'intro'|'select'|'ready'|'game'|'results'|'journal'|'shop'|'help';
+const zoneForDepth = (depth: number) => depth < 1000 ? 0 : depth < 2500 ? 1 : depth < 4000 ? 2 : depth < 5500 ? 3 : 4;
+const zoneNames = ['Soft Earth', 'Copper Caverns', 'Crystal Caves', 'Mushroom Hollow', 'Stardust Depths'];
+const digDuration = (points: number, reducedMotion: boolean) => reducedMotion ? 250 : Math.min(1900, 900 + points * 10);
 
 function PixelCat({ id, action = 'idle', label }: { id: CatId; action?: string; label?: string }) {
   const cat = cats.find(c => c.id === id)!;
@@ -24,32 +27,92 @@ function PixelCat({ id, action = 'idle', label }: { id: CatId; action?: string; 
 
 function MineScene({ cat, depth, action, lowPower }: { cat: CatId; depth: number; action: string; lowPower: boolean }) {
   const canvas = useRef<HTMLCanvasElement>(null);
+  const shownDepth = useRef(depth);
+  const camera = useRef(depth * .42);
+  const animation = useRef<{ from: number; to: number; cameraFrom: number; cameraTo: number; started: number; duration: number } | null>(null);
+  const [hudDepth, setHudDepth] = useState(depth);
+  const [gain, setGain] = useState(0);
+
+  useEffect(() => {
+    const from = shownDepth.current;
+    if (depth <= from) { shownDepth.current = depth; setHudDepth(depth); return; }
+    const delta = depth - from;
+    setGain(delta);
+    animation.current = {
+      from, to: depth, cameraFrom: camera.current,
+      cameraTo: camera.current + Math.max(220, Math.min(520, 175 + delta * .36)),
+      started: performance.now(), duration: digDuration(delta / 10, false),
+    };
+  }, [depth]);
+
+  useEffect(() => {
+    if (action === 'dig' || !animation.current) return;
+    shownDepth.current = animation.current.to; camera.current = animation.current.cameraTo;
+    setHudDepth(animation.current.to); animation.current = null;
+  }, [action]);
+
   useEffect(() => {
     const el = canvas.current; if (!el) return;
     const ctx = el.getContext('2d'); if (!ctx) return;
-    let raf = 0, visible = !document.hidden, last = 0;
+    let raf = 0, visible = !document.hidden, last = 0, lastHud = 0;
     const resize = () => { const dpr = Math.min(devicePixelRatio, 2); el.width = el.clientWidth * dpr; el.height = el.clientHeight * dpr; ctx.setTransform(dpr,0,0,dpr,0,0); };
     const draw = (t: number) => {
       if (!visible) return;
       if (!lowPower || t - last > 65) {
         last = t; const w = el.clientWidth, h = el.clientHeight;
-        const zone = depth < 1000 ? 0 : depth < 2500 ? 1 : depth < 4000 ? 2 : depth < 5500 ? 3 : 4;
+        const move = animation.current;
+        if (move) {
+          const progress = Math.min(1, (t - move.started) / move.duration);
+          const eased = progress < .5 ? 4 * progress * progress * progress : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+          shownDepth.current = move.from + (move.to - move.from) * eased;
+          camera.current = move.cameraFrom + (move.cameraTo - move.cameraFrom) * eased;
+          if (t - lastHud > 60 || progress === 1) { lastHud = t; setHudDepth(Math.round(shownDepth.current / 10) * 10); }
+          if (progress === 1) { shownDepth.current = move.to; camera.current = move.cameraTo; animation.current = null; }
+        }
+        el.dataset.camera = camera.current.toFixed(1);
+        const zone = zoneForDepth(shownDepth.current);
         const bg = ['#8a5c50','#70453c','#49365f','#294f51','#211f43'][zone]; ctx.fillStyle = bg; ctx.fillRect(0,0,w,h);
         const colors = [['#b77a5d','#6e453d'],['#c0764e','#e7a54d'],['#7c65a9','#74c3c6'],['#63a87c','#b9e27a'],['#7657ae','#efc9ff']][zone];
-        const offset = Math.round((depth / 6) % 48);
-        for(let y=-48+offset;y<h+48;y+=48) for(let x=12+(y%96);x<w;x+=92){ ctx.fillStyle=colors[(x+y)%2?0:1]; ctx.fillRect(x,y,6,6); ctx.fillRect(x+6,y+6,4,4); }
-        ctx.fillStyle='rgba(255,242,182,.65)'; for(let i=0;i<5;i++){ const x=(i*83+depth*.07)%w; const y=(i*67+t*.006)%h; ctx.fillRect(x,y,3,3); }
+        const wrap = (value: number, size: number) => ((value % size) + size) % size;
+
+        // Three independently moving layers make the cat feel fixed while the cave travels upward.
+        for (let i = 0; i < 18; i++) {
+          const x = (i * 83 + 29) % Math.max(w, 1), y = wrap(i * 61 - camera.current * .28, h + 80) - 40;
+          ctx.fillStyle = `${colors[i % 2]}88`; ctx.fillRect(x, y, 3, 3);
+        }
+        for (let row = -1; row < Math.ceil(h / 56) + 2; row++) {
+          const worldRow = Math.floor(camera.current / 56) + row;
+          const y = row * 56 - wrap(camera.current, 56);
+          for (let col = 0; col < Math.ceil(w / 82) + 1; col++) {
+            const x = col * 82 + (worldRow % 2 ? 21 : 9);
+            ctx.fillStyle = colors[Math.abs(worldRow + col) % 2];
+            ctx.fillRect(x, y, 8, 8); ctx.fillRect(x + 8, y + 7, 5, 5);
+          }
+        }
+        for (let i = 0; i < 9; i++) {
+          const x = (i * 107 + 41) % Math.max(w, 1), y = wrap(i * 89 - camera.current * 1.08, h + 140) - 70;
+          ctx.fillStyle = colors[(i + 1) % 2];
+          if (zone === 0) { ctx.fillRect(x, y, 4, 34); ctx.fillRect(x - 7, y + 26, 11, 4); }
+          if (zone === 1) { ctx.fillRect(x, y, 13, 13); ctx.fillStyle='#f2bd58'; ctx.fillRect(x+4,y+3,5,5); }
+          if (zone === 2) { ctx.beginPath(); ctx.moveTo(x,y+22); ctx.lineTo(x+8,y); ctx.lineTo(x+16,y+22); ctx.fill(); }
+          if (zone === 3) { ctx.fillRect(x+6,y+10,4,17); ctx.fillStyle='#d7ef91'; ctx.fillRect(x,y+5,16,8); }
+          if (zone === 4) { ctx.fillRect(x,y,5,5); ctx.fillRect(x+10,y+10,3,3); }
+        }
+        ctx.fillStyle='rgba(255,242,182,.72)'; for(let i=0;i<7;i++){ const x=(i*83+t*.012)%Math.max(w,1); const y=wrap(i*67-camera.current*1.35,h+30)-15; ctx.fillRect(x,y,3,3); }
+        ctx.fillStyle='rgba(35,25,44,.23)'; ctx.fillRect(0,0,18,h); ctx.fillRect(w-18,0,18,h);
       }
       raf=requestAnimationFrame(draw);
     };
     const onVis=()=>{ visible=!document.hidden; if(visible) raf=requestAnimationFrame(draw); else cancelAnimationFrame(raf); };
     resize(); addEventListener('resize',resize); document.addEventListener('visibilitychange',onVis); raf=requestAnimationFrame(draw);
     return()=>{ cancelAnimationFrame(raf); removeEventListener('resize',resize); document.removeEventListener('visibilitychange',onVis); };
-  },[depth,lowPower]);
-  const zone = depth < 1000 ? 'Soft Earth' : depth < 2500 ? 'Copper Caverns' : depth < 4000 ? 'Crystal Caves' : depth < 5500 ? 'Mushroom Hollow' : 'Stardust Depths';
-  return <section className="mine-scene" aria-label={`Mining at ${depth.toLocaleString()} metres in ${zone}`}>
-    <canvas ref={canvas}/><div className="mine-hud"><span>{zone}</span><strong>{depth.toLocaleString()} m</strong></div>
-    <div className="cave-message">{cheers[Math.floor(depth/250)%cheers.length]}</div><PixelCat id={cat} action={action}/>
+  },[lowPower]);
+  const zone = zoneNames[zoneForDepth(hudDepth)];
+  return <section className={`mine-scene ${action === 'dig' ? 'traveling' : ''}`} aria-label={`Mining at ${hudDepth.toLocaleString()} metres in ${zone}`}>
+    <canvas ref={canvas}/><div className="mine-hud"><span>{zone}</span><strong>{hudDepth.toLocaleString()} m</strong></div>
+    <div className="descent-lines" aria-hidden="true"><i/><i/><i/><i/><i/></div>
+    {gain > 0 && <div className="depth-gain" key={depth}>+{gain.toLocaleString()} m</div>}
+    <div className="cave-message">{cheers[Math.floor(hudDepth/250)%cheers.length]}</div><PixelCat id={cat} action={action}/>
     <div className="ground"><i/><i/><i/><i/></div>
   </section>;
 }
@@ -97,7 +160,7 @@ function App() {
   const nextRound=useCallback((result:RoundResult)=>{
     if(!game)return; const results=[...game.results,result];
     setLocked(true); setPendingPoints(result.points); setAction(result.points?'dig':'sad'); beep(result.points?'dig':'bad');
-    setTimeout(()=>{ if(game.round>=6){setPendingPoints(0);finishGame(results);return;} setSave(s=>({...s,active:s.active?{...s.active,round:s.active.round+1,results,deadline:Date.now()+30000}:null})); setAnswer('');setNotice('');setSuggestion(undefined);setLocked(false);setPendingPoints(0);setAction('idle');setTimeout(()=>inputRef.current?.focus(),50); }, save.settings.reducedMotion?250:1250);
+    setTimeout(()=>{ if(game.round>=6){setPendingPoints(0);finishGame(results);return;} setSave(s=>({...s,active:s.active?{...s.active,round:s.active.round+1,results,deadline:Date.now()+30000}:null})); setAnswer('');setNotice('');setSuggestion(undefined);setLocked(false);setPendingPoints(0);setAction('idle');setTimeout(()=>inputRef.current?.focus(),50); }, digDuration(result.points, save.settings.reducedMotion));
   },[game,beep,finishGame,save.settings.reducedMotion]);
 
   const expire=useCallback(()=>{ if(!question||locked)return; nextRound({questionId:question.id,prompt:question.prompt,answer:answer.trim(),points:0,timedOut:true});setNotice('Time’s up — let’s see what waits below.'); },[question,locked,nextRound,answer]);
