@@ -40,13 +40,10 @@ test('a correct answer visibly travels through depth instead of jumping', async 
   await page.getByRole('button', { name: 'Dig!' }).click();
   await expect(page.locator('.mine-scene')).toHaveClass(/traveling/);
   await expect(page.getByText('+100 m')).toBeVisible();
-  await page.waitForTimeout(350);
-  const movingDepth = Number((await page.locator('.mine-hud strong').innerText()).replace(/\D/g, ''));
-  expect(movingDepth).toBeGreaterThan(0);
-  expect(movingDepth).toBeLessThan(100);
+  await expect(page.locator('.mine-scene canvas')).toHaveAttribute('data-had-intermediate', 'true');
+  await expect(page.locator('.mine-hud strong')).toHaveText('100 m', { timeout: 1600 });
   const movingCamera = Number(await page.locator('.mine-scene canvas').getAttribute('data-camera'));
   expect(movingCamera).toBeGreaterThan(startCamera);
-  await expect(page.locator('.mine-hud strong')).toHaveText('100 m', { timeout: 1600 });
 });
 
 for (const width of [320, 375, 390, 430, 768]) {

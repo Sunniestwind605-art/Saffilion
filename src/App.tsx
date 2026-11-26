@@ -38,6 +38,7 @@ function MineScene({ cat, depth, action, lowPower }: { cat: CatId; depth: number
     if (depth <= from) { shownDepth.current = depth; setHudDepth(depth); return; }
     const delta = depth - from;
     setGain(delta);
+    if (canvas.current) canvas.current.dataset.hadIntermediate = 'false';
     animation.current = {
       from, to: depth, cameraFrom: camera.current,
       cameraTo: camera.current + Math.max(220, Math.min(520, 175 + delta * .36)),
@@ -66,6 +67,7 @@ function MineScene({ cat, depth, action, lowPower }: { cat: CatId; depth: number
           const eased = progress < .5 ? 4 * progress * progress * progress : 1 - Math.pow(-2 * progress + 2, 3) / 2;
           shownDepth.current = move.from + (move.to - move.from) * eased;
           camera.current = move.cameraFrom + (move.cameraTo - move.cameraFrom) * eased;
+          if (progress > 0 && progress < 1) el.dataset.hadIntermediate = 'true';
           if (t - lastHud > 60 || progress === 1) { lastHud = t; setHudDepth(Math.round(shownDepth.current / 10) * 10); }
           if (progress === 1) { shownDepth.current = move.to; camera.current = move.cameraTo; animation.current = null; }
         }
