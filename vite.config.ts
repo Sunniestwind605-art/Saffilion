@@ -8,7 +8,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png'],
+      includeAssets: ['icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'fonts/*.ttf', 'fonts/OFL.txt'],
       manifest: {
         name: 'Saffilion — Cozy Rarity Mining',
         short_name: 'Saffilion',
@@ -26,7 +26,7 @@ export default defineConfig({
         ]
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,svg,json}'],
+        globPatterns: ['**/*.{js,css,html,svg,json,ttf,txt}'],
         navigateFallback: 'index.html',
         cleanupOutdatedCaches: true
       }

@@ -16,12 +16,90 @@ const zoneForDepth = (depth: number) => depth < 1000 ? 0 : depth < 2500 ? 1 : de
 const zoneNames = ['Soft Earth', 'Copper Caverns', 'Crystal Caves', 'Mushroom Hollow', 'Stardust Depths'];
 const digDuration = (points: number, reducedMotion: boolean) => reducedMotion ? 250 : Math.min(1900, 900 + points * 10);
 
+const spritePalettes: Record<CatId, { fur: string; light: string; dark: string; detail: string }> = {
+  pebble: { fur: '#b8b7bd', light: '#dddce0', dark: '#77747f', detail: '#5f5c68' },
+  mochi: { fur: '#f5dfc8', light: '#fff3df', dark: '#c9938d', detail: '#e990a4' },
+  midnight: { fur: '#302d3b', light: '#575164', dark: '#171522', detail: '#e48aa6' },
+  nova: { fur: '#24212f', light: '#494353', dark: '#12101a', detail: '#efbd4f' },
+  marmalade: { fur: '#df9250', light: '#f6bd72', dark: '#a95738', detail: '#8d4935' },
+};
+
+function drawPixelCat(ctx: CanvasRenderingContext2D, id: CatId, action: string, frame: number) {
+  const p = spritePalettes[id];
+  const px = (color: string, x: number, y: number, w = 1, h = 1) => { ctx.fillStyle = color; ctx.fillRect(x, y, w, h); };
+  const outline = '#362735';
+  const bob = action === 'walk' || action === 'celebrate' ? frame % 2 : action === 'dig' ? frame % 2 : 0;
+  const y = action === 'celebrate' && frame % 2 ? -2 : bob;
+  ctx.clearRect(0, 0, 48, 48);
+
+  // Tail sits behind the body and changes pose to make each two-frame animation readable.
+  px(outline, 35, 29 + y, 7, 3); px(outline, 39, 25 + y - (frame % 2), 4, 7);
+  px(p.fur, 35, 30 + y, 5, 1); px(p.fur, 40, 26 + y - (frame % 2), 1, 5);
+  if (id === 'midnight') px(p.detail, 40, 26 + y - (frame % 2), 1, 2);
+
+  // Body, feet and chest are deliberately chunky 1-3px clusters.
+  px(outline, 13, 25 + y, 25, 17); px(p.fur, 15, 26 + y, 21, 14);
+  px(p.light, 21, 30 + y, 9, 9);
+  px(outline, 12, 39 + y, 11, 5); px(outline, 28, 39 + y, 11, 5);
+  const step = action === 'walk' ? frame % 2 : 0;
+  px(p.fur, 14 + step, 39 + y, 7, 3); px(p.fur, 30 - step, 39 + y, 7, 3);
+
+  // Pointed ears and square head.
+  px(outline, 10, 12 + y, 7, 9); px(outline, 33, 12 + y, 7, 9);
+  px(p.fur, 12, 14 + y, 4, 6); px(p.fur, 34, 14 + y, 4, 6);
+  px(p.detail, 13, 15 + y, 2, 3); px(p.detail, 35, 15 + y, 2, 3);
+  px(outline, 9, 17 + y, 32, 18); px(p.fur, 11, 19 + y, 28, 14);
+  px(p.light, 14, 20 + y, 7, 6); px(p.light, 29, 20 + y, 7, 6);
+
+  // Helmet, headlamp and warm lamp glow made only from hard-edged pixels.
+  px(outline, 9, 12 + y, 32, 5); px('#d57842', 11, 12 + y, 28, 4); px('#f1b94f', 14, 9 + y, 22, 5);
+  px(outline, 21, 4 + y, 9, 7); px('#fff0a0', 23, 5 + y, 5, 4); px('#fff9cf', 24, 5 + y, 3, 2);
+
+  // Faces and character-specific markings.
+  const closed = action === 'sad';
+  if (closed) { px(outline, 16, 25 + y, 5, 1); px(outline, 30, 25 + y, 5, 1); }
+  else {
+    px('#fff9df', 16, 23 + y, id === 'nova' ? 5 : 4, id === 'nova' ? 5 : 4);
+    px('#fff9df', 30, 23 + y, id === 'nova' ? 5 : 4, id === 'nova' ? 5 : 4);
+    px('#211925', 18, 24 + y, 2, 3); px('#211925', 30, 24 + y, 2, 3);
+  }
+  px(id === 'pebble' ? '#6c6572' : '#dc7f91', 24, 28 + y, 3, 2);
+  px(outline, 23, 31 + y, 2, 1); px(outline, 27, 31 + y, 2, 1); px(outline, 25, 30 + y, 2, 2);
+  if (id === 'pebble') { px(p.dark, 11, 22 + y, 3, 2); px(p.dark, 36, 22 + y, 3, 2); }
+  if (id === 'mochi') { px(p.detail, 13, 28 + y, 3, 2); px(p.detail, 34, 28 + y, 3, 2); }
+  if (id === 'midnight') { px('#e8d8e7', 11, 19 + y, 8, 3); px('#e8d8e7', 31, 30 + y, 7, 2); }
+  if (id === 'nova') { px(p.detail, 12, 20 + y, 3, 2); px(p.detail, 35, 20 + y, 3, 2); }
+  if (id === 'marmalade') { px(p.dark, 17, 19 + y, 3, 3); px(p.dark, 24, 19 + y, 3, 3); px(p.dark, 31, 19 + y, 3, 3); px(p.dark, 15, 32 + y, 3, 2); px(p.dark, 33, 32 + y, 3, 2); }
+
+  // Pickaxe is part of the sprite frame, not a smooth rotated DOM shape.
+  if (action === 'dig' && frame % 2) {
+    px(outline, 4, 29, 5, 3); px('#b6adb3', 3, 27, 9, 3); px(outline, 8, 29, 3, 16); px('#80543d', 9, 30, 1, 13);
+  } else {
+    px(outline, 38, 8 + y, 3, 31); px('#80543d', 39, 10 + y, 1, 27);
+    px(outline, 34, 7 + y, 11, 4); px('#b6adb3', 35, 8 + y, 9, 2);
+  }
+}
+
 function PixelCat({ id, action = 'idle', label }: { id: CatId; action?: string; label?: string }) {
   const cat = cats.find(c => c.id === id)!;
-  return <div className={`pixel-cat ${action}`} style={{ '--fur': cat.color, '--accent': cat.accent } as React.CSSProperties} role="img" aria-label={label || `${cat.name} the mining cat`}>
-    <div className="lamp"/><div className="helmet"/><div className="ear left"/><div className="ear right"/>
-    <div className="head"><i className="eye left"/><i className="eye right"/><i className="nose"/><i className="mouth"/></div>
-    <div className="body"/><div className="paw left"/><div className="paw right"/><div className="tail"/><div className="shovel"><i/></div>
+  const canvas = useRef<HTMLCanvasElement>(null);
+  useEffect(() => {
+    const el = canvas.current; const ctx = el?.getContext('2d');
+    if (!el || !ctx) return;
+    ctx.imageSmoothingEnabled = false;
+    let raf = 0, frame = 0, last = 0;
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const loop = (time: number) => {
+      if (!last || time - last > (action === 'dig' ? 180 : 420)) { last = time; drawPixelCat(ctx, id, action, frame++); }
+      if (!reduce && !document.hidden) raf = requestAnimationFrame(loop);
+    };
+    loop(0);
+    const onVisibility = () => { if (!document.hidden && !reduce) { last = 0; cancelAnimationFrame(raf); raf = requestAnimationFrame(loop); } };
+    document.addEventListener('visibilitychange', onVisibility);
+    return () => { cancelAnimationFrame(raf); document.removeEventListener('visibilitychange', onVisibility); };
+  }, [id, action]);
+  return <div className={`pixel-cat ${action}`} role="img" aria-label={label || `${cat.name} the mining cat`}>
+    <canvas ref={canvas} width="48" height="48" aria-hidden="true" />
   </div>;
 }
 

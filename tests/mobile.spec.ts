@@ -14,6 +14,16 @@ test('new player can select a cat and begin an expedition by touch', async ({ pa
   await expect(page.getByRole('button', { name: 'Dig!' })).toBeVisible();
 });
 
+test('characters use true low-resolution pixel sprites', async ({ page }) => {
+  await page.goto('.');
+  const sprite = page.locator('.pixel-cat canvas').first();
+  await expect(sprite).toBeVisible();
+  await expect(sprite).toHaveAttribute('width', '48');
+  await expect(sprite).toHaveAttribute('height', '48');
+  const rendering = await sprite.evaluate(element => getComputedStyle(element).imageRendering);
+  expect(rendering).toMatch(/pixelated|crisp-edges/);
+});
+
 test('submitted typo offers correction but does not auto-score', async ({ page }) => {
   await page.addInitScript(() => localStorage.setItem('saffilion-save-v1', JSON.stringify({
     version:1, selectedCat:'pebble', expeditions:[], questionBag:[], recentQuestions:[], missingAnswers:[], crystals:0, unlocked:[], settings:{sound:false,reducedMotion:true,batterySaver:true},
@@ -35,14 +45,15 @@ test('a correct answer visibly travels through depth instead of jumping', async 
     active:{questionIds:['science-01','geo-01','geo-02','geo-03','geo-04','geo-05','geo-06'],round:0,results:[],deadline:Date.now()+30000,category:'All'}
   })));
   await page.goto('.');
-  const startCamera = Number(await page.locator('.mine-scene canvas').getAttribute('data-camera'));
+  const caveCanvas = page.locator('.mine-scene > canvas');
+  const startCamera = Number(await caveCanvas.getAttribute('data-camera'));
   await page.getByLabel('Your answer').fill('Jupiter');
   await page.getByRole('button', { name: 'Dig!' }).click();
   await expect(page.locator('.mine-scene')).toHaveClass(/traveling/);
   await expect(page.getByText('+100 m')).toBeVisible();
-  await expect(page.locator('.mine-scene canvas')).toHaveAttribute('data-had-intermediate', 'true');
+  await expect(caveCanvas).toHaveAttribute('data-had-intermediate', 'true');
   await expect(page.locator('.mine-hud strong')).toHaveText('100 m', { timeout: 1600 });
-  const movingCamera = Number(await page.locator('.mine-scene canvas').getAttribute('data-camera'));
+  const movingCamera = Number(await caveCanvas.getAttribute('data-camera'));
   expect(movingCamera).toBeGreaterThan(startCamera);
 });
 

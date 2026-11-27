@@ -27,3 +27,83 @@ html,body,#root{overflow-x:hidden}
 .cat-card .pixel-cat{margin:-12px -10px 0}
 .descent-lines i{top:110%}
 @keyframes cave-rush{from{transform:translateY(0)}to{transform:translateY(-120vh)}}
+
+/* Pixel-world visual system: every edge lands on a hard grid. */
+@font-face{font-family:Silkscreen;src:url('/Saffilion/fonts/Silkscreen-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
+@font-face{font-family:Silkscreen;src:url('/Saffilion/fonts/Silkscreen-Bold.ttf') format('truetype');font-weight:700 900;font-display:swap}
+:root{font-family:Silkscreen,"Courier New",monospace;--ink:#382735;--paper:#fff0d2;--paper-dark:#e6c9a2;--pixel-shadow:#382735}
+body,button,input,select{font-family:Silkscreen,"Courier New",monospace}
+body{image-rendering:pixelated}
+button,.title-card,.ready>section,.cat-card,.stats div,.expeditions article,.help>section,.crystal-balance,.shopkeeper blockquote{border-radius:0;box-shadow:4px 4px 0 var(--pixel-shadow)}
+button{border-width:3px;background:#fff0d2;letter-spacing:-.035em}
+button:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--pixel-shadow)}
+.primary{background:#f0b35d;box-shadow:4px 4px 0 #563b49;text-shadow:1px 1px 0 #ffe1a1}
+.paper{background-color:#f6dfbc;background-image:linear-gradient(90deg,#d3aa7b33 2px,transparent 2px),linear-gradient(#d3aa7b33 2px,transparent 2px);background-size:16px 16px}
+.eyebrow,.round-row{letter-spacing:.03em}
+.top-actions button{border-radius:0;background:#fff0d2;backdrop-filter:none}
+
+/* Actual 48px sprites, enlarged with nearest-neighbour scaling. */
+.pixel-cat{position:relative;width:128px;height:128px;filter:drop-shadow(5px 5px 0 #21172588);image-rendering:pixelated;transform-origin:50% 100%}
+.pixel-cat>canvas{position:absolute;inset:0;width:100%;height:100%;display:block;image-rendering:pixelated;image-rendering:crisp-edges}
+.cat-card .pixel-cat{transform:scale(.76);margin:-16px -12px -8px}
+.mine-scene .pixel-cat{bottom:20px}
+.expeditions .pixel-cat{transform:scale(.48);margin:-31px 0 -31px 3px}
+
+/* Blocky overworld instead of rounded web illustration. */
+.intro{background:linear-gradient(#83cbd2 0 55%,#72ae72 55% 70%,#72453c 70%)}
+.sky i{height:16px;border-radius:0;border-width:4px;box-shadow:12px -8px 0 #fff8df,16px -8px 0 4px #6c8690,32px -16px 0 #fff8df,36px -16px 0 4px #6c8690}
+.sky i:before,.sky i:after{display:none}
+.intro-land{border-top:8px solid #4f3434;background:repeating-linear-gradient(0deg,#664039 0 16px,#74493f 16px 32px)}
+.intro-land:after{content:"";position:absolute;inset:8px 0 auto;height:8px;background:repeating-linear-gradient(90deg,#a3694e 0 16px,#754339 16px 32px)}
+.mine-door{border-radius:0;width:104px;height:72px;background:#251c2e;box-shadow:0 -8px 0 #a76e4e,8px 0 0 #a76e4e,-8px 0 0 #a76e4e}
+.title-card{background:#fff0d2;border-width:4px;box-shadow:8px 8px 0 #513844;padding:22px 18px}
+.title-card h1{color:#754a70;font-size:clamp(2.15rem,11vw,4rem);letter-spacing:-.09em;text-shadow:4px 0 0 #f3c26b,0 4px 0 #f3c26b}
+.title-card p{font-family:Silkscreen,"Courier New",monospace;font-style:normal;font-size:.72rem;line-height:1.6}
+
+/* Menus use game-window frames and tiled fills. */
+.cat-grid{gap:14px}
+.cat-card{min-height:194px;background:#fff0d2;border:3px solid #70505c;box-shadow:4px 4px 0 #70505c}
+.cat-card.selected{background:#ffd7b7;box-shadow:5px 5px 0 #8c4e6a,inset 0 0 0 4px #fff0a3}
+.cat-card span,.cat-card>i{line-height:1.4}
+.ready{background:#253647;background-image:linear-gradient(45deg,#315466 25%,transparent 25%),linear-gradient(-45deg,#315466 25%,transparent 25%);background-size:24px 24px}
+.ready>section{background:#fff0d2;border:4px solid #513844;box-shadow:8px 8px 0 #1b1725}
+.ready select,.answer-row input{border-radius:0;border-width:3px;box-shadow:inset 3px 3px 0 #d5b998;background:#fffaf0}
+.rules span{border-radius:0;border:2px solid #a87b69;background:#e8c8a5}
+
+/* Gameplay HUD is now a pixel game screen, not a rounded web card. */
+.game-shell{background:#1c1728}
+.mine-scene{border-color:#17131f;border-width:6px}
+.mine-scene canvas{image-rendering:pixelated;image-rendering:crisp-edges}
+.ground{height:28px;border-top:6px solid #bd8059;background:repeating-linear-gradient(90deg,#5e3937 0 18px,#6e423b 18px 36px)}
+.ground i{border-radius:0}
+.mine-hud{border-radius:0;border:3px solid #d4a45f;background:#21172e;box-shadow:4px 4px 0 #17111d;font-size:.6rem}
+.mine-hud strong{color:#ffe08a}
+.cave-message{border-radius:0;background:#f5d69f;box-shadow:4px 4px 0 #342a34;transform:none;line-height:1.35}
+.question-panel{background-color:#f8e2bd;background-image:linear-gradient(90deg,#caa17422 2px,transparent 2px),linear-gradient(#caa17422 2px,transparent 2px);background-size:16px 16px;border-left:4px solid #382735}
+.progress{height:10px;border-radius:0;border:2px solid #604450;background:#c8a988}
+.progress i{background:repeating-linear-gradient(90deg,#d87894 0 10px,#9566a6 10px 20px);transition:width .2s steps(6,end)}
+.timer{width:56px;height:56px;border-radius:0;background:#fff7df;box-shadow:4px 4px 0 #5b3e49}
+.timer i{background:#edb84f;transition:height .1s steps(3,end)}
+.timer.urgent{animation:pixel-pulse .55s steps(2,end) infinite alternate}
+@keyframes pixel-pulse{to{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #8d3043}}
+.answer-row input{font-family:Silkscreen,"Courier New",monospace;font-size:16px}
+.feedback{line-height:1.45}
+.feedback button{border-radius:0}
+.depth-gain{border-radius:0;background:#21172e;box-shadow:4px 4px 0 #17111d;animation:pixel-depth-pop 1s steps(6,end) both}
+@keyframes pixel-depth-pop{0%{opacity:0;transform:translate(-50%,16px)}20%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,-32px)}}
+.descent-lines i{background:#ffe8a1}
+
+/* Results, journal, shop, and help share the same cartridge-era language. */
+.results{background:#241b35;background-image:linear-gradient(45deg,#342447 25%,transparent 25%),linear-gradient(-45deg,#342447 25%,transparent 25%);background-size:20px 20px}
+.results h1{text-shadow:4px 4px 0 #5a3755}
+.round-summary{background:#1d172b;border:3px solid #775a86;box-shadow:5px 5px 0 #15101f}
+.round-summary>div{border-bottom:2px dashed #775a86}
+.round-summary span{border-radius:0}
+.stats div,.expeditions article,.help>section{background:#fff0d2;border-color:#70505c}
+.expeditions article>button{box-shadow:none}
+.crystal-balance,.shopkeeper blockquote{border-radius:0;background:#fff0d2}
+.tiers div{border-radius:0;border:2px solid #c7a583;background:#efd2ae}
+.gem{box-shadow:2px 2px 0 #4e3549}
+
+@media(max-width:370px){.pixel-cat{width:112px;height:112px}.cat-card{min-height:178px}.cat-card .pixel-cat{transform:scale(.72);margin:-13px -16px -9px}.title-card{padding:18px 14px}.title-card h1{font-size:2.1rem}.prompt-row h1{font-size:.94rem;line-height:1.3}}
+@media(max-height:620px) and (orientation:portrait){.mine-scene .pixel-cat{transform:translateX(-50%) scale(.7)}.mine-scene .pixel-cat.dig{animation:digcat-small .35s steps(2,end) infinite}@keyframes digcat-small{50%{transform:translateX(-50%) translateY(3px) scale(.7)}}}
