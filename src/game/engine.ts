@@ -23,6 +23,16 @@ export function findAnswer(question: Question, raw: string): Answer | undefined 
   return question.answers.find(a => [a.canonical, ...a.aliases].some(v => normalize(v) === needle));
 }
 
+export function depthForPoints(points: number) { return Math.max(0, points) * 10; }
+
+// Movement is deliberately close to proportional: a Stardust answer must feel
+// dramatically heavier than a Pebble answer, while still fitting on a phone.
+export function travelPixelsForPoints(points: number) { return points > 0 ? 60 + points * 6 : 0; }
+
+export function digDurationForPoints(points: number, reducedMotion = false) {
+  return reducedMotion ? 250 : points > 0 ? Math.min(1800, 600 + points * 12) : 500;
+}
+
 export function suggestAnswer(question: Question, raw: string): Answer | undefined {
   const needle = normalize(raw);
   if (needle.length < 3) return undefined;

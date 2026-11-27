@@ -50,11 +50,27 @@ test('a correct answer visibly travels through depth instead of jumping', async 
   await page.getByLabel('Your answer').fill('Jupiter');
   await page.getByRole('button', { name: 'Dig!' }).click();
   await expect(page.locator('.mine-scene')).toHaveClass(/traveling/);
-  await expect(page.getByText('+100 m')).toBeVisible();
+  await expect(page.locator('.depth-gain')).toHaveText('+100 m');
   await expect(caveCanvas).toHaveAttribute('data-had-intermediate', 'true');
   await expect(page.locator('.mine-hud strong')).toHaveText('100 m', { timeout: 1600 });
   const movingCamera = Number(await caveCanvas.getAttribute('data-camera'));
   expect(movingCamera).toBeGreaterThan(startCamera);
+});
+
+test('a rare answer reveals its full rarity, score, and depth weight', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('saffilion-save-v1', JSON.stringify({
+    version:1, selectedCat:'pebble', expeditions:[], questionBag:[], recentQuestions:[], missingAnswers:[], crystals:0, unlocked:[], settings:{sound:false,reducedMotion:false,batterySaver:false},
+    active:{questionIds:['geo-01','geo-02','geo-03','geo-04','geo-05','geo-06','geo-07'],round:0,results:[],deadline:Date.now()+30000,category:'All'}
+  })));
+  await page.goto('.');
+  await page.getByLabel('Your answer').fill('Comoros');
+  await page.getByRole('button', { name: 'Dig!' }).click();
+  const reveal = page.locator('.rarity-reveal');
+  await expect(reveal).toContainText('Stardust');
+  await expect(reveal).toContainText('+100 pts');
+  await expect(reveal).toContainText('+1,000 m');
+  await expect(page.locator('.mine-scene')).toHaveClass(/powerful-dig/);
+  await expect(page.locator('.depth-gain')).toHaveText('+1,000 m');
 });
 
 for (const width of [320, 375, 390, 430, 768]) {

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { categories, questions } from './data/questions';
-import { findAnswer, freshSave, loadSave, persist, pickQuestions, rankFor, suggestAnswer } from './game/engine';
-import type { ActiveGame, CatId, Expedition, RoundResult, SaveData, Tier } from './game/types';
+import { depthForPoints, digDurationForPoints, findAnswer, freshSave, loadSave, persist, pickQuestions, rankFor, suggestAnswer, travelPixelsForPoints } from './game/engine';
+import type { ActiveGame, Answer, CatId, Expedition, RoundResult, SaveData, Tier } from './game/types';
 
 const cats: { id: CatId; name: string; mood: string; color: string; accent: string }[] = [
   { id: 'pebble', name: 'Pebble', mood: 'calm & determined', color: '#c9c8c9', accent: '#8f8d95' },
@@ -14,7 +14,6 @@ const cheers = ['You’ve got this!', 'Keep digging!', 'Little steps count.', 'E
 type Screen = 'intro'|'select'|'ready'|'game'|'results'|'journal'|'shop'|'help';
 const zoneForDepth = (depth: number) => depth < 1000 ? 0 : depth < 2500 ? 1 : depth < 4000 ? 2 : depth < 5500 ? 3 : 4;
 const zoneNames = ['Soft Earth', 'Copper Caverns', 'Crystal Caves', 'Mushroom Hollow', 'Stardust Depths'];
-const digDuration = (points: number, reducedMotion: boolean) => reducedMotion ? 250 : Math.min(1900, 900 + points * 10);
 
 const spritePalettes: Record<CatId, { fur: string; light: string; dark: string; detail: string }> = {
   pebble: { fur: '#b8b7bd', light: '#dddce0', dark: '#77747f', detail: '#5f5c68' },
@@ -119,8 +118,8 @@ function MineScene({ cat, depth, action, lowPower }: { cat: CatId; depth: number
     if (canvas.current) canvas.current.dataset.hadIntermediate = 'false';
     animation.current = {
       from, to: depth, cameraFrom: camera.current,
-      cameraTo: camera.current + Math.max(220, Math.min(520, 175 + delta * .36)),
-      started: performance.now(), duration: digDuration(delta / 10, false),
+      cameraTo: camera.current + travelPixelsForPoints(delta / 10),
+      started: performance.now(), duration: digDurationForPoints(delta / 10, false),
     };
   }, [depth]);
 
@@ -188,7 +187,8 @@ function MineScene({ cat, depth, action, lowPower }: { cat: CatId; depth: number
     return()=>{ cancelAnimationFrame(raf); removeEventListener('resize',resize); document.removeEventListener('visibilitychange',onVis); };
   },[lowPower]);
   const zone = zoneNames[zoneForDepth(hudDepth)];
-  return <section className={`mine-scene ${action === 'dig' ? 'traveling' : ''}`} aria-label={`Mining at ${hudDepth.toLocaleString()} metres in ${zone}`}>
+  const digPower = Math.max(.1, Math.min(1, gain / 1000));
+  return <section className={`mine-scene ${action === 'dig' ? 'traveling' : ''} ${gain >= 650 ? 'powerful-dig' : ''}`} style={{ '--dig-power': digPower, '--dig-time': `${digDurationForPoints(gain / 10)}ms` } as React.CSSProperties} aria-label={`Mining at ${hudDepth.toLocaleString()} metres in ${zone}`}>
     <canvas ref={canvas}/><div className="mine-hud"><span>{zone}</span><strong>{hudDepth.toLocaleString()} m</strong></div>
     <div className="descent-lines" aria-hidden="true"><i/><i/><i/><i/><i/></div>
     {gain > 0 && <div className="depth-gain" key={depth}>+{gain.toLocaleString()} m</div>}
@@ -214,6 +214,7 @@ function App() {
   const [locked,setLocked] = useState(false);
   const [action,setAction] = useState('idle');
   const [pendingPoints,setPendingPoints] = useState(0);
+  const [lastFind,setLastFind] = useState<Answer|null>(null);
   const [lastExpedition,setLastExpedition] = useState<Expedition|null>(null);
   const [journalOpen,setJournalOpen] = useState<string|null>(null);
   const fileInput=useRef<HTMLInputElement>(null);
@@ -225,27 +226,27 @@ function App() {
   const game = save.active;
   const question = game ? questions.find(q=>q.id===game.questionIds[game.round]) : undefined;
   const score = game?.results.reduce((n,r)=>n+r.points,0)||0;
-  const depth = (score+pendingPoints)*10;
+  const depth = depthForPoints(score+pendingPoints);
 
   const beep=useCallback((kind:'good'|'bad'|'dig')=>{ if(!save.settings.sound) return; const A=window.AudioContext; if(!A)return; const c=new A(),o=c.createOscillator(),g=c.createGain(); o.connect(g).connect(c.destination); o.frequency.value=kind==='good'?660:kind==='dig'?150:220; g.gain.setValueAtTime(.035,c.currentTime); g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.18); o.start();o.stop(c.currentTime+.2); },[save.settings.sound]);
 
   const chooseCat=(id:CatId)=>setSave(s=>({...s,selectedCat:id}));
-  const begin=()=>{ const picked=pickQuestions(questions,save,category); const active:ActiveGame={questionIds:picked.chosen,round:0,results:[],deadline:Date.now()+30000,category}; setSave(s=>({...s,active,questionBag:picked.bag,recentQuestions:picked.recent})); setScreen('game'); setAnswer(''); setNotice(''); setTimeout(()=>inputRef.current?.focus(),100); };
+  const begin=()=>{ const picked=pickQuestions(questions,save,category); const active:ActiveGame={questionIds:picked.chosen,round:0,results:[],deadline:Date.now()+30000,category}; setSave(s=>({...s,active,questionBag:picked.bag,recentQuestions:picked.recent})); setScreen('game'); setAnswer(''); setNotice(''); setLastFind(null); setTimeout(()=>inputRef.current?.focus(),100); };
 
   const finishGame=useCallback((resultList:RoundResult[])=>{
-    const total=resultList.reduce((n,r)=>n+r.points,0); const expedition:Expedition={id:crypto.randomUUID(),date:new Date().toISOString(),cat,score:total,depth:total*10,rounds:resultList};
+    const total=resultList.reduce((n,r)=>n+r.points,0); const expedition:Expedition={id:crypto.randomUUID(),date:new Date().toISOString(),cat,score:total,depth:depthForPoints(total),rounds:resultList};
     setLastExpedition(expedition); setSave(s=>({...s,active:null,expeditions:[expedition,...s.expeditions].slice(0,100),crystals:s.crystals+Math.max(5,Math.round(total/25))})); setScreen('results'); setAction('celebrate');
   },[cat]);
 
   const nextRound=useCallback((result:RoundResult)=>{
     if(!game)return; const results=[...game.results,result];
     setLocked(true); setPendingPoints(result.points); setAction(result.points?'dig':'sad'); beep(result.points?'dig':'bad');
-    setTimeout(()=>{ if(game.round>=6){setPendingPoints(0);finishGame(results);return;} setSave(s=>({...s,active:s.active?{...s.active,round:s.active.round+1,results,deadline:Date.now()+30000}:null})); setAnswer('');setNotice('');setSuggestion(undefined);setLocked(false);setPendingPoints(0);setAction('idle');setTimeout(()=>inputRef.current?.focus(),50); }, digDuration(result.points, save.settings.reducedMotion));
+    setTimeout(()=>{ if(game.round>=6){setPendingPoints(0);finishGame(results);return;} setSave(s=>({...s,active:s.active?{...s.active,round:s.active.round+1,results,deadline:Date.now()+30000}:null})); setAnswer('');setNotice('');setSuggestion(undefined);setLastFind(null);setLocked(false);setPendingPoints(0);setAction('idle');setTimeout(()=>inputRef.current?.focus(),50); }, digDurationForPoints(result.points, save.settings.reducedMotion));
   },[game,beep,finishGame,save.settings.reducedMotion]);
 
-  const expire=useCallback(()=>{ if(!question||locked)return; nextRound({questionId:question.id,prompt:question.prompt,answer:answer.trim(),points:0,timedOut:true});setNotice('Time’s up — let’s see what waits below.'); },[question,locked,nextRound,answer]);
+  const expire=useCallback(()=>{ if(!question||locked)return; setLastFind(null); nextRound({questionId:question.id,prompt:question.prompt,answer:answer.trim(),points:0,timedOut:true});setNotice('Time’s up — let’s see what waits below.'); },[question,locked,nextRound,answer]);
 
-  const submit=(e?:React.FormEvent)=>{ e?.preventDefault(); if(!question||locked||Date.now()>=game!.deadline)return; const raw=answer.trim(); if(!raw){setNotice('Type an answer first, little miner!');return;} const match=findAnswer(question,raw); if(match){beep('good');setNotice(`${match.tier}! +${match.points} points`);nextRound({questionId:question.id,prompt:question.prompt,answer:raw,canonical:match.canonical,points:match.points,tier:match.tier,timedOut:false});return;} const maybe=suggestAnswer(question,raw);setSuggestion(maybe?.canonical);setNotice(maybe?`That isn’t an exact match. Did you mean ${maybe.canonical}?`:'That answer isn’t in our answer book yet. Try another!');beep('bad'); };
+  const submit=(e?:React.FormEvent)=>{ e?.preventDefault(); if(!question||locked||Date.now()>=game!.deadline)return; const raw=answer.trim(); if(!raw){setLastFind(null);setNotice('Type an answer first, little miner!');return;} const match=findAnswer(question,raw); if(match){beep('good');setLastFind(match);setNotice('');nextRound({questionId:question.id,prompt:question.prompt,answer:raw,canonical:match.canonical,points:match.points,tier:match.tier,timedOut:false});return;} setLastFind(null);const maybe=suggestAnswer(question,raw);setSuggestion(maybe?.canonical);setNotice(maybe?`That isn’t an exact match. Did you mean ${maybe.canonical}?`:'That answer isn’t in our answer book yet. Try another!');beep('bad'); };
 
   const recordMissing=()=>{ if(!question||!answer.trim())return; setSave(s=>({...s,missingAnswers:[...s.missingAnswers,{questionId:question.id,answer:answer.trim()}]}));setNotice('Saved locally for future review. You can keep trying!'); };
   const updateSettings=(patch:Partial<SaveData['settings']>)=>setSave(s=>({...s,settings:{...s.settings,...patch}}));
@@ -262,7 +263,7 @@ function App() {
 
   if(screen==='ready') return <main className="screen ready">{menu}<section><span className="eyebrow">Expedition board</span><h1>Where shall we dig?</h1><PixelCat id={cat}/><label>Question mix<select value={category} onChange={e=>setCategory(e.target.value)}>{categories.map(c=><option key={c}>{c}</option>)}</select></label><div className="rules"><span>7 questions</span><span>30 seconds each</span><span>rarer = deeper</span></div><button className="primary" onClick={begin}>Start Digging</button><button className="text-button" onClick={()=>setScreen('select')}>Change cat</button></section></main>;
 
-  if(screen==='game'&&game&&question) return <main className={`game-shell ${locked?'is-locked':''}`}>{menu}<MineScene cat={cat} depth={depth} action={action} lowPower={save.settings.batterySaver}/><section className="question-panel"><div className="round-row"><span>Question {game.round+1} / 7</span><span>{question.category}</span><strong>{score} pts</strong></div><div className="progress"><i style={{width:`${(game.round/7)*100}%`}}/></div><div className="prompt-row"><h1>{question.prompt}</h1><Timer deadline={game.deadline} onExpire={expire}/></div><form onSubmit={submit}><label htmlFor="answer">Your answer</label><div className="answer-row"><input ref={inputRef} id="answer" value={answer} onChange={e=>{setAnswer(e.target.value);setSuggestion(undefined);setNotice('');}} autoComplete="off" autoCorrect="off" enterKeyHint="go" placeholder="Type something clever…" disabled={locked}/><button className="primary" disabled={locked}>Dig!</button></div></form><div className="feedback" aria-live="polite">{notice}{suggestion&&<button onClick={()=>{setAnswer(suggestion);setSuggestion(undefined);setNotice('Correction filled in — submit it to score.');inputRef.current?.focus();}}>Use “{suggestion}”</button>}{notice.includes('answer book')&&<button className="text-button" onClick={recordMissing}>Save suggestion</button>}</div></section></main>;
+  if(screen==='game'&&game&&question) return <main className={`game-shell ${locked?'is-locked':''}`}>{menu}<MineScene cat={cat} depth={depth} action={action} lowPower={save.settings.batterySaver}/><section className="question-panel"><div className="round-row"><span>Question {game.round+1} / 7</span><span>{question.category}</span><strong>{score} pts</strong></div><div className="progress"><i style={{width:`${(game.round/7)*100}%`}}/></div><div className="prompt-row"><h1>{question.prompt}</h1><Timer deadline={game.deadline} onExpire={expire}/></div><form onSubmit={submit}><label htmlFor="answer">Your answer</label><div className="answer-row"><input ref={inputRef} id="answer" value={answer} onChange={e=>{setAnswer(e.target.value);setSuggestion(undefined);setNotice('');setLastFind(null);}} autoComplete="off" autoCorrect="off" enterKeyHint="go" placeholder="Type something clever…" disabled={locked}/><button className="primary" disabled={locked}>Dig!</button></div></form><div className="feedback" aria-live="polite">{lastFind?<div className={`rarity-reveal tier-${lastFind.tier.toLowerCase()}`}><i className="rarity-gem"/><span><strong>{lastFind.tier}</strong><small>{lastFind.canonical}</small></span><b>+{lastFind.points} pts<small>+{depthForPoints(lastFind.points).toLocaleString()} m</small></b></div>:notice}{suggestion&&<button onClick={()=>{setAnswer(suggestion);setSuggestion(undefined);setNotice('Correction filled in — submit it to score.');inputRef.current?.focus();}}>Use “{suggestion}”</button>}{notice.includes('answer book')&&<button className="text-button" onClick={recordMissing}>Save suggestion</button>}</div></section></main>;
 
   if(screen==='results'&&lastExpedition) { const exp=lastExpedition,best=[...exp.rounds].sort((a,b)=>b.points-a.points)[0]; return <main className="screen results"><div className="confetti">✦ · ✧ · ✦ · ✧ · ✦</div><PixelCat id={cat} action="celebrate"/><span className="eyebrow">Expedition complete</span><h1>{rankFor(exp.score)}</h1><p className="big-score">{exp.score}<small> / 700 points</small></p><p>{exp.depth.toLocaleString()} metres deep · {exp.rounds.filter(r=>r.points).length}/7 correct</p><p>Best find: <strong>{best?.canonical||'A brave try'} {best?.tier?`· ${best.tier}`:''}</strong></p><div className="round-summary">{exp.rounds.map((r,i)=><div key={i}><span>{i+1}</span><p>{r.answer||'No answer'}<small>{r.canonical&&r.canonical!==r.answer?` → ${r.canonical}`:''}</small></p><strong>{r.points}</strong></div>)}</div><div className="result-actions"><button className="primary" onClick={()=>setScreen('ready')}>Dig Again!</button><button onClick={()=>setScreen('journal')}>My Digging Journal</button><button onClick={()=>setScreen('select')}>Change Cat</button><button onClick={()=>navigator.clipboard?.writeText(`Saffilion ✦ ${rankFor(exp.score)}\n${exp.score}/700 points · ${exp.depth.toLocaleString()}m deep\n${exp.rounds.map(r=>r.points?['🟫','🟠','◇','💎','🔮','✦'][[10,25,45,65,85,100].indexOf(r.points)]:'·').join(' ')}`)}>Copy Results</button></div></main>; }
 

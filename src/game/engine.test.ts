@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { distance, findAnswer, normalize, pickQuestions, rankFor, suggestAnswer, validateQuestions, freshSave } from './engine';
+import { depthForPoints, digDurationForPoints, distance, findAnswer, normalize, pickQuestions, rankFor, suggestAnswer, travelPixelsForPoints, validateQuestions, freshSave } from './engine';
 import { questions } from '../data/questions';
 
 describe('answer engine', () => {
@@ -30,5 +30,15 @@ describe('game rules', () => {
   it('keeps ranking thresholds stable', () => {
     expect(rankFor(0)).toBe('Curious Kitten');
     expect(rankFor(700)).toBe('Stardust Legend');
+  });
+  it('keeps curated answer weights meaningfully different', () => {
+    const africa = questions.find(q => q.id === 'geo-01')!;
+    expect(findAnswer(africa, 'South Africa')).toMatchObject({ tier: 'Pebble', points: 10 });
+    expect(findAnswer(africa, 'Comoros')).toMatchObject({ tier: 'Stardust', points: 100 });
+    expect(depthForPoints(10)).toBe(100);
+    expect(depthForPoints(100)).toBe(1000);
+    expect(travelPixelsForPoints(100)).toBeGreaterThan(travelPixelsForPoints(10) * 5);
+    expect(digDurationForPoints(100)).toBeGreaterThan(digDurationForPoints(10) * 2);
+    expect(new Set(questions.flatMap(q => q.answers.map(a => a.tier)))).toEqual(new Set(['Pebble','Copper','Quartz','Sapphire','Amethyst','Stardust']));
   });
 });
