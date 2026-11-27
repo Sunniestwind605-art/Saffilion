@@ -4,11 +4,11 @@ import { depthForPoints, digDurationForPoints, findAnswer, freshSave, loadSave, 
 import { TIERS, type ActiveGame, type Answer, type CatId, type Expedition, type RoundResult, type SaveData, type Tier } from './game/types';
 
 const cats: { id: CatId; name: string; mood: string; color: string; accent: string }[] = [
-  { id: 'pebble', name: 'Pebble', mood: 'calm & determined', color: '#c9c8c9', accent: '#8f8d95' },
-  { id: 'mochi', name: 'Mochi', mood: 'sweet & playful', color: '#fff1df', accent: '#ed9fac' },
-  { id: 'midnight', name: 'Midnight', mood: 'curious & adventurous', color: '#34303e', accent: '#d68aa5' },
-  { id: 'nova', name: 'Nova', mood: 'energetic & mischievous', color: '#272432', accent: '#f2bd4f' },
-  { id: 'marmalade', name: 'Marmalade', mood: 'sleepy & hardworking', color: '#e9a15b', accent: '#bd6b42' },
+  { id: 'pebble', name: 'Safia', mood: 'calm & determined', color: '#c9c8c9', accent: '#8f8d95' },
+  { id: 'mochi', name: 'Kairo', mood: 'sweet & playful', color: '#fff1df', accent: '#ed9fac' },
+  { id: 'midnight', name: 'Joseph', mood: 'curious & adventurous', color: '#34303e', accent: '#d68aa5' },
+  { id: 'nova', name: 'Warona', mood: 'energetic & mischievous', color: '#272432', accent: '#f2bd4f' },
+  { id: 'marmalade', name: 'Sharon', mood: 'sleepy & hardworking', color: '#e9a15b', accent: '#bd6b42' },
 ];
 const cheers = ['You’ve got this!', 'Keep digging!', 'Little steps count.', 'Every gem starts somewhere.', 'A little deeper, a little brighter.', 'Look how far you’ve come!'];
 type Screen = 'intro'|'select'|'ready'|'game'|'results'|'journal'|'shop'|'help';

@@ -4,12 +4,12 @@ test('new player can select a cat and begin an expedition by touch', async ({ pa
   await page.goto('.');
   await expect(page.getByText('Made with love for Safia')).toBeVisible();
   await page.getByRole('button', { name: 'Let’s Dig!' }).click();
-  await expect(page.getByRole('button', { name: /Mochi/ })).toBeVisible();
+  await expect(page.getByRole('button', { name: /Kairo/ })).toBeVisible();
   await page.locator('.cat-card').nth(1).click();
-  await page.getByRole('button', { name: /Adventure with Mochi/ }).click();
+  await page.getByRole('button', { name: /Adventure with Kairo/ }).click();
   await page.getByRole('button', { name: 'Start Digging' }).click();
   await expect(page.getByText('Question 1 / 7')).toBeVisible();
-  await expect(page.getByRole('img', { name: /Mochi/ })).toBeVisible();
+  await expect(page.getByRole('img', { name: /Kairo/ })).toBeVisible();
   await expect(page.getByLabel('Your answer')).toBeVisible();
   await expect(page.getByRole('button', { name: 'Dig!' })).toBeVisible();
 });
@@ -64,7 +64,7 @@ test('a rare answer reveals its full rarity, score, and depth weight', async ({ 
   await page.goto('.');
   await page.getByLabel('Your answer').fill('Comoros');
   await page.getByRole('button', { name: 'Dig!' }).click();
-  await expect(page.getByRole('img', { name: /Pebble/ })).toHaveClass(/happy/, { timeout: 1000 });
+  await expect(page.getByRole('img', { name: /Safia/ })).toHaveClass(/happy/, { timeout: 1000 });
   const reveal = page.locator('.rarity-reveal');
   await expect(reveal).toContainText('Stardust');
   await expect(reveal).toContainText('100 points');
@@ -86,7 +86,7 @@ test('all seven rounds finish, save, show gems, and Dig Again skips menus', asyn
     if (index < 6) await expect(page.getByText(`Question ${index+2} / 7`)).toBeVisible();
   }
   await expect(page.getByText('Expedition complete')).toBeVisible();
-  await expect(page.getByText(/Mochi reached/)).toBeVisible();
+  await expect(page.getByText(/Kairo reached/)).toBeVisible();
   await expect(page.locator('.round-summary > div')).toHaveCount(7);
   await expect(page.locator('.rarity-distribution')).toBeVisible();
   await page.getByRole('button', { name: 'Dig Again!' }).click();
@@ -109,7 +109,7 @@ test('Treasure Burrow sells and equips deterministic cosmetics', async ({ page }
   })));
   await page.goto('.');
   await page.getByRole('button', { name: 'Let’s Dig!' }).click();
-  await page.getByRole('button', { name: /Adventure with Marmalade/ }).click();
+  await page.getByRole('button', { name: /Adventure with Sharon/ }).click();
   await page.getByRole('button', { name: 'Burrow' }).click();
   await page.getByRole('button', { name: /Pink Shovel/ }).click();
   await expect(page.getByRole('button', { name: /Pink Shovel/ })).toContainText('Equipped');
@@ -125,7 +125,7 @@ for (const viewport of [{width:320,height:500},{width:844,height:390}]) {
     })));
     await page.goto('.');
     await page.getByLabel('Your answer').focus();
-    await expect(page.getByRole('img', { name: /Pebble/ })).toBeVisible();
+    await expect(page.getByRole('img', { name: /Safia/ })).toBeVisible();
     await expect(page.locator('.timer')).toBeVisible();
     await expect(page.getByLabel('Your answer')).toBeVisible();
     await expect(page.getByRole('button', { name: 'Dig!' })).toBeVisible();
