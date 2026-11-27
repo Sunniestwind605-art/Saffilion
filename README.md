@@ -18,7 +18,9 @@ Saffilion is a cozy, mobile-first rarity-mining game made with love for Safia. A
 
 ## Rarity scoring
 
-Rarity is a curated, versioned estimate of how familiar an answer is in the context of its question. It is not live popularity data. Pebble, Copper, Quartz, Sapphire, Amethyst, and Stardust answers are worth 10, 25, 45, 65, 85, and 100 points. Every point equals 10 metres. Aliases inherit their canonical answer's score.
+Rarity is a curated, versioned estimate of how familiar an answer is in the context of its question. It is not live popularity data. Pebble, Copper, Quartz, Sapphire, Amethyst, and Stardust answers are worth 5, 12, 25, 45, 70, and 100 points. That makes a Stardust answer worth 20× a Pebble answer while preserving the 700-point perfect expedition. Every point equals 10 metres. Aliases inherit their canonical answer's score.
+
+The database currently contains 102 questions and 2,223 canonical answers. Open-ended prompts received additions across the rarity curve. Complete finite sets are intentionally not padded with false entries. See [DATA_SOURCES.md](./DATA_SOURCES.md) for the research and curation trail.
 
 ## Run locally
 

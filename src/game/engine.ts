@@ -57,10 +57,11 @@ export function suggestAnswer(question: Question, raw: string): Answer | undefin
 
 export function validateQuestions(questions: Question[]) {
   const errors: string[] = [], ids = new Set<string>();
+  const finiteMinimums: Record<string, number> = { 'sport-02': 4 };
   for (const q of questions) {
     if (ids.has(q.id)) errors.push(`Duplicate id: ${q.id}`); ids.add(q.id);
     if (!q.prompt.trim()) errors.push(`${q.id}: empty prompt`);
-    if (q.answers.length < 6) errors.push(`${q.id}: only ${q.answers.length} answers`);
+    if (q.answers.length < (finiteMinimums[q.id] ?? 6)) errors.push(`${q.id}: only ${q.answers.length} answers`);
     const names = new Map<string, number>();
     for (const a of q.answers) {
       if (!(a.tier in TIERS) || a.points !== TIERS[a.tier]) errors.push(`${q.id}: invalid score for ${a.canonical}`);
@@ -95,6 +96,6 @@ export function pickQuestions(all: Question[], save: SaveData, category = 'All')
 }
 
 export function rankFor(score: number) {
-  if (score >= 600) return 'Stardust Legend'; if (score >= 475) return 'Master Miner'; if (score >= 350) return 'Cave Adventurer';
-  if (score >= 225) return 'Crystal Explorer'; if (score >= 100) return 'Little Digger'; return 'Curious Kitten';
+  if (score >= 525) return 'Stardust Legend'; if (score >= 350) return 'Master Miner'; if (score >= 200) return 'Cave Adventurer';
+  if (score >= 100) return 'Crystal Explorer'; if (score >= 35) return 'Little Digger'; return 'Curious Kitten';
 }

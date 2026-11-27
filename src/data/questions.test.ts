@@ -6,7 +6,7 @@ describe('question database integrity', () => {
   it('has no schema, score, ID, or alias conflicts', () => expect(validateQuestions(questions)).toEqual([]));
   it('has substantial answer coverage', () => {
     const records = questions.reduce((n, q) => n + q.answers.length, 0);
-    expect(records).toBeGreaterThanOrEqual(1400);
+    expect(records).toBeGreaterThanOrEqual(2200);
     expect(new Set(questions.map(q => q.category)).size).toBeGreaterThanOrEqual(10);
   });
   it('keeps broad international and South African coverage', () => {
@@ -14,5 +14,13 @@ describe('question database integrity', () => {
     expect(questions.find(q => q.id === 'geo-01')!.answers.length).toBeGreaterThanOrEqual(24);
     expect(questions.find(q => q.id === 'nature-01')!.answers.some(a => a.canonical === 'Fish')).toBe(true);
     expect(questions.find(q => q.id === 'sa-02')!.answers.some(a => a.canonical === 'Soweto')).toBe(true);
+    expect(questions.find(q => q.id === 'geo-08')!.answers.some(a => a.canonical === 'Bulgaria')).toBe(true);
+    expect(questions.find(q => q.id === 'words-04')!.answers.some(a => a.canonical === 'South African Sign Language')).toBe(true);
+  });
+  it('keeps finite factual sets exact instead of padding them with wrong answers', () => {
+    expect(questions.find(q => q.id === 'science-01')!.answers).toHaveLength(8);
+    expect(questions.find(q => q.id === 'games-02')!.answers).toHaveLength(6);
+    expect(questions.find(q => q.id === 'sa-01')!.answers).toHaveLength(9);
+    expect(questions.find(q => q.id === 'sport-02')!.answers).toHaveLength(4);
   });
 });

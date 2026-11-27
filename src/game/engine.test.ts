@@ -6,7 +6,7 @@ describe('answer engine', () => {
   const planets = questions.find(q => q.id === 'science-01')!;
   it('normalises case, accents, whitespace and punctuation', () => expect(normalize('  São--Tomé! ')).toBe('sao tome'));
   it('accepts canonical answers and curated aliases', () => {
-    expect(findAnswer(planets, '  JUPITER ')?.points).toBe(10);
+    expect(findAnswer(planets, '  JUPITER ')?.points).toBe(5);
     expect(findAnswer(questions.find(q => q.id === 'geo-01')!, 'RSA')?.canonical).toBe('South Africa');
   });
   it('accepts safe plural variants without turning fuzzy matching into autocomplete', () => {
@@ -39,12 +39,13 @@ describe('game rules', () => {
   });
   it('keeps curated answer weights meaningfully different', () => {
     const africa = questions.find(q => q.id === 'geo-01')!;
-    expect(findAnswer(africa, 'South Africa')).toMatchObject({ tier: 'Pebble', points: 10 });
+    expect(findAnswer(africa, 'South Africa')).toMatchObject({ tier: 'Pebble', points: 5 });
     expect(findAnswer(africa, 'Comoros')).toMatchObject({ tier: 'Stardust', points: 100 });
-    expect(depthForPoints(10)).toBe(100);
+    expect(depthForPoints(5)).toBe(50);
     expect(depthForPoints(100)).toBe(1000);
-    expect(travelPixelsForPoints(100)).toBeGreaterThan(travelPixelsForPoints(10) * 5);
-    expect(digDurationForPoints(100)).toBeGreaterThan(digDurationForPoints(10) * 2);
+    expect(travelPixelsForPoints(100)).toBeGreaterThan(travelPixelsForPoints(5) * 7);
+    expect(digDurationForPoints(100)).toBeGreaterThan(digDurationForPoints(5) * 2);
+    expect(findAnswer(africa, 'Comoros')!.points / findAnswer(africa, 'South Africa')!.points).toBe(20);
     expect(new Set(questions.flatMap(q => q.answers.map(a => a.tier)))).toEqual(new Set(['Pebble','Copper','Quartz','Sapphire','Amethyst','Stardust']));
   });
 });

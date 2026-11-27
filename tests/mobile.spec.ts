@@ -50,8 +50,8 @@ test('a correct answer visibly travels through depth instead of jumping', async 
   await page.getByLabel('Your answer').fill('Jupiter');
   await page.getByRole('button', { name: 'Dig!' }).click();
   await expect(page.locator('.mine-scene')).toHaveClass(/traveling/);
-  await expect(page.locator('.depth-gain')).toHaveText('+100 m');
-  await expect(page.locator('.mine-hud strong')).toHaveText('100 m', { timeout: 1600 });
+  await expect(page.locator('.depth-gain')).toHaveText('+50 m');
+  await expect(page.locator('.mine-hud strong')).toHaveText('50 m', { timeout: 1600 });
   const movingCamera = Number(await caveCanvas.getAttribute('data-camera'));
   expect(movingCamera).toBeGreaterThan(startCamera);
 });

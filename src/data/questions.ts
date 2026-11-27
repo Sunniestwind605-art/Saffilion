@@ -1,8 +1,11 @@
 import { TIERS, type Difficulty, type Question, type Tier } from '../game/types';
+import { questionAdditions } from './questionAdditions';
 
 const tierNames = Object.keys(TIERS) as Tier[];
 function make(id: string, category: string, prompt: string, raw: string, difficulty: Difficulty = 'medium'): Question {
-  const groups = raw.split(';');
+  const baseGroups = raw.split(';');
+  const extraGroups = (questionAdditions[id] ?? '').split(';');
+  const groups = tierNames.map((_, index) => [baseGroups[index], extraGroups[index]].filter(Boolean).join('|'));
   return {
     id, category, prompt, difficulty,
     answers: groups.flatMap((group, groupIndex) => group.split('|').map(item => item.trim()).filter(Boolean).map(item => {
@@ -15,7 +18,7 @@ function make(id: string, category: string, prompt: string, raw: string, difficu
 
 export const questions: Question[] = [
   make('geo-01','Geography','Name a country in Africa.','South Africa~RSA|Egypt|Nigeria|Kenya;Morocco|Ghana|Ethiopia|Algeria|Senegal;Tanzania|Uganda|Cameroon|Angola|Zimbabwe;Botswana|Namibia|Zambia|Mozambique;Lesotho|Eswatini~Swaziland|Malawi|Rwanda;Comoros|São Tomé and Príncipe'),
-  make('geo-02','Geography','Name a country in South America.','Brazil|Argentina|Chile|Peru;Colombia|Venezuela|Ecuador;Bolivia|Uruguay|Paraguay;Guyana|Suriname;French Guiana;Falkland Islands', 'easy'),
+  make('geo-02','Geography','Name a country in South America.','Brazil|Argentina|Chile|Peru;Colombia|Venezuela~Venezuela Bolivarian Republic|Ecuador;Bolivia~Bolivia Plurinational State|Uruguay|Paraguay;Guyana|Suriname;French Guiana;Falkland Islands~Malvinas', 'easy'),
   make('geo-03','Geography','Name a country whose name starts with B.','Brazil|Belgium|Bangladesh|Bulgaria;Bahamas|Bahrain|Belarus;Bolivia|Botswana|Belize;Barbados|Benin;Bhutan|Burundi;Brunei'),
   make('geo-04','Geography','Name a European capital city.','London|Paris|Rome|Berlin;Madrid|Lisbon|Athens;Vienna|Prague|Dublin;Tallinn|Riga;Ljubljana|Bratislava;Podgorica'),
   make('geo-05','Geography','Name an island country.','Japan|Iceland|New Zealand|Madagascar;Sri Lanka|Cuba|Jamaica;Malta|Fiji|Bahamas;Mauritius|Samoa;Vanuatu|Nauru;Kiribati'),
@@ -36,7 +39,7 @@ export const questions: Question[] = [
   make('nature-09','Animals & Nature','Name a species of bear.','Brown bear|Polar bear|American black bear|Giant panda;Asiatic black bear|Sun bear|Sloth bear;Spectacled bear|Grizzly bear|Kodiak bear;European brown bear|Syrian brown bear;Tibetan blue bear|Kermode bear;Gobi bear'),
   make('nature-10','Animals & Nature','Name a flower commonly grown in gardens.','Rose|Tulip|Daisy|Sunflower;Lily|Daffodil|Lavender;Marigold|Petunia|Pansy;Zinnia|Dahlia;Snapdragon|Cosmos;Hellebore'),
 
-  make('science-01','Science & Space','Name a planet in our solar system.','Earth|Mars|Jupiter|Venus;Saturn|Mercury|Neptune;Uranus; ; ;', 'easy'),
+  make('science-01','Science & Space','Name a planet in our solar system.','Earth~the Earth|Mars|Jupiter|Venus;Saturn|Mercury|Neptune;Uranus; ; ;', 'easy'),
   make('science-02','Science & Space','Name a moon in our solar system.','Moon~Luna|Europa|Titan|Ganymede;Io|Callisto|Triton;Phobos|Deimos|Enceladus;Rhea|Iapetus;Miranda|Charon;Nereid'),
   make('science-03','Science & Space','Name a chemical element.','Oxygen|Hydrogen|Carbon|Iron;Gold|Silver|Copper;Helium|Nitrogen|Calcium;Tungsten|Cobalt;Bismuth|Xenon;Hafnium'),
   make('science-04','Science & Space','Name a renewable energy source.','Solar energy|Wind energy|Hydroelectric power|Geothermal energy;Tidal power|Wave power|Biomass;Biogas|Ocean thermal energy|Solar thermal energy;Run-of-river power|Landfill gas;Salinity gradient power|Airborne wind energy;Enhanced geothermal systems'),
@@ -75,7 +78,7 @@ export const questions: Question[] = [
   make('screen-08','Film & TV','Name something shown in film credits.','Actors|Director|Producer|Writers;Composer|Editor|Cinematographer;Costume designer|Casting director|Stunt performers;Visual effects team|Foley artists;Location manager|Colorist;Animal wrangler'),
 
   make('games-01','Video Games','Name a video game genre.','Action|Adventure|Puzzle|Role-playing game~RPG;Strategy|Simulation|Sports;Racing|Platformer|Fighting;Rhythm|Survival;Visual novel|Roguelike;Metroidvania'),
-  make('games-02','Video Games','Name a chess piece.','King|Queen|Pawn|Knight;Bishop|Rook~castle; ; ; ;', 'easy'),
+  make('games-02','Video Games','Name a chess piece.','King|Queen|Pawn|Knight~horse;Bishop|Rook~castle; ; ; ;', 'easy'),
   make('games-03','Video Games','Name something commonly collected in a video game.','Coins|Points|Gems|Keys;Stars|Hearts|Weapons;Power-ups|Experience points~XP|Health potions;Cards|Badges;Artifacts|Crafting materials;Korok seeds'),
   make('games-04','Video Games','Name a classic board game.','Chess|Checkers~draughts|Monopoly|Scrabble;Cluedo~Clue|Risk|Backgammon;Go|Battleship|Othello~Reversi;Ludo|Mancala;Senet|Nine Men’s Morris;Hnefatafl'),
   make('games-05','Video Games','Name a playing card rank.','Ace|King|Queen|Jack;Ten|Nine|Eight;Seven|Six|Five;Four|Three;Two|Joker;Knight'),
@@ -93,7 +96,7 @@ export const questions: Question[] = [
   make('history-08','History','Name a source historians use.','Letters|Photographs|Diaries|Newspapers;Maps|Official records|Artefacts;Oral histories|Coins|Buildings;Census records|Gravestones;Ship logs|Court records;Tree rings'),
 
   make('sport-01','Sports','Name a sport played with a ball.','Football~soccer|Basketball|Tennis|Rugby;Cricket|Volleyball|Baseball;Golf|Hockey|Handball;Water polo|Squash;Lacrosse|Netball;Sepak takraw'),
-  make('sport-02','Sports','Name an Olympic swimming stroke.','Freestyle|Backstroke|Breaststroke|Butterfly;Front crawl|Individual medley|Dog paddle;Sidestroke|Elementary backstroke|Trudgen;Combat sidestroke|Total immersion;Inverted breaststroke|Double trudgen;Sculling'),
+  make('sport-02','Sports','Name an Olympic swimming stroke.','Freestyle~front crawl|Backstroke|Breaststroke|Butterfly; ; ; ; ;', 'easy'),
   make('sport-03','Sports','Name a track and field event.','100 metres|Long jump|High jump|Marathon;Shot put|Javelin throw|Discus throw;Pole vault|Hurdles|Relay race;Triple jump|Hammer throw;Steeplechase|Decathlon;Race walking'),
   make('sport-04','Sports','Name a winter sport.','Skiing|Snowboarding|Ice hockey|Figure skating;Curling|Bobsleigh|Speed skating;Luge|Skeleton|Biathlon;Ski jumping|Nordic combined;Short track speed skating|Freestyle skiing;Ski mountaineering'),
   make('sport-05','Sports','Name a piece of sports protective equipment.','Helmet|Mouthguard|Shin guards|Knee pads;Elbow pads|Goggles|Gloves;Chest protector|Shoulder pads|Wrist guards;Boxing headgear|Cricket pads;Athletic cup|Fencing mask;Neck guard'),
@@ -119,7 +122,7 @@ export const questions: Question[] = [
   make('everyday-07','Everyday Life','Name something used to tell time.','Clock|Watch|Phone|Sundial;Hourglass|Stopwatch|Timer;Alarm clock|Calendar|Water clock;Pendulum clock|Cuckoo clock;Chronometer|Candle clock;Astrolabe'),
   make('everyday-08','Everyday Life','Name a room commonly found in a home.','Bedroom|Kitchen|Bathroom|Living room;Dining room|Study|Garage;Laundry room|Attic|Basement;Pantry|Conservatory;Mudroom|Games room;Butler’s pantry'),
 
-  make('sa-01','South Africa','Name a province of South Africa.','Gauteng|Western Cape|KwaZulu-Natal|Eastern Cape;Limpopo|Mpumalanga|Free State;North West|Northern Cape; ; ;', 'easy'),
+  make('sa-01','South Africa','Name a province of South Africa.','Gauteng|Western Cape~WC|KwaZulu-Natal~KZN|Eastern Cape~EC;Limpopo|Mpumalanga~MP|Free State~FS;North West~NW|Northern Cape~NC; ; ;', 'easy'),
   make('sa-02','South Africa','Name a South African city or major town.','Johannesburg|Cape Town|Durban|Pretoria|Soweto;Gqeberha~Port Elizabeth|Bloemfontein|Polokwane|East London;Mbombela~Nelspruit|Kimberley|Mahikeng|Pietermaritzburg;George|Mthatha|Rustenburg;Stellenbosch|Paarl|Welkom;Upington|Makhanda~Grahamstown'),
   make('sa-03','South Africa','Name an animal found in Kruger National Park.','Lion|Elephant|Leopard|Buffalo;Rhinoceros|Giraffe|Zebra;Hippopotamus|Cheetah|Hyena;Wild dog|Kudu;Sable antelope|Honey badger;Pangolin'),
   make('sa-04','South Africa','Name a South African food or dish.','Braai|Biltong|Boerewors|Bobotie;Bunny chow|Melktert|Koeksister;Chakalaka|Potjiekos|Malva pudding;Vetkoek|Pap;Waterblommetjiebredie|Umngqusho;Denningvleis'),

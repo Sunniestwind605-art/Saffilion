@@ -1,5 +1,7 @@
 export const TIERS = {
-  Pebble: 10, Copper: 25, Quartz: 45, Sapphire: 65, Amethyst: 85, Stardust: 100,
+  // A deliberately steep curve: the rarest answer is worth twenty common ones.
+  // Stardust stays at 100 so a perfect seven-round expedition remains 700 points.
+  Pebble: 5, Copper: 12, Quartz: 25, Sapphire: 45, Amethyst: 70, Stardust: 100,
 } as const;
 export type Tier = keyof typeof TIERS;
 export type CatId = 'pebble' | 'mochi' | 'midnight' | 'nova' | 'marmalade';
