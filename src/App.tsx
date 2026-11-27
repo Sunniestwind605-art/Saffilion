@@ -253,7 +253,32 @@ function App() {
   const inputRef=useRef<HTMLInputElement>(null);
 
   useEffect(()=>persist(save),[save]);
-  useEffect(()=>{ const update=()=>{const h=visualViewport?.height||innerHeight;document.documentElement.style.setProperty('--vvh',`${h}px`);document.documentElement.classList.toggle('keyboard-open',innerHeight-h>120);}; update(); visualViewport?.addEventListener('resize',update); return()=>{visualViewport?.removeEventListener('resize',update);document.documentElement.classList.remove('keyboard-open');}; },[]);
+  useEffect(()=>{
+    const root=document.documentElement;
+    let inputFocused=document.activeElement instanceof HTMLInputElement;
+    let maxViewportHeight=Math.max(innerHeight,visualViewport?.height||0);
+    let wasOpen=false;
+    let blurTimer=0;
+    const update=()=>{
+      const viewport=visualViewport;
+      const height=Math.round(viewport?.height||innerHeight);
+      if(!inputFocused)maxViewportHeight=Math.max(maxViewportHeight,innerHeight,height);
+      const shrunkFromLayout=innerHeight-height>80;
+      const shrunkFromRest=maxViewportHeight-height>100;
+      const shortFocusedViewport=inputFocused&&innerWidth<1024&&height<650;
+      const open=inputFocused&&(shrunkFromLayout||shrunkFromRest||shortFocusedViewport);
+      root.style.setProperty('--vvh',`${height}px`);
+      root.style.setProperty('--vv-top',`${Math.round(viewport?.offsetTop||0)}px`);
+      root.classList.toggle('keyboard-open',open);
+      if(open&&!wasOpen){const panel=document.querySelector<HTMLElement>('.question-panel');if(panel)panel.scrollTop=0;}
+      wasOpen=open;
+    };
+    const onFocusIn=(event:FocusEvent)=>{clearTimeout(blurTimer);inputFocused=event.target instanceof HTMLInputElement||event.target instanceof HTMLTextAreaElement;update();};
+    const onFocusOut=()=>{clearTimeout(blurTimer);blurTimer=window.setTimeout(()=>{inputFocused=document.activeElement instanceof HTMLInputElement||document.activeElement instanceof HTMLTextAreaElement;update();},80);};
+    update();
+    visualViewport?.addEventListener('resize',update);visualViewport?.addEventListener('scroll',update);window.addEventListener('resize',update);document.addEventListener('focusin',onFocusIn);document.addEventListener('focusout',onFocusOut);
+    return()=>{clearTimeout(blurTimer);visualViewport?.removeEventListener('resize',update);visualViewport?.removeEventListener('scroll',update);window.removeEventListener('resize',update);document.removeEventListener('focusin',onFocusIn);document.removeEventListener('focusout',onFocusOut);root.classList.remove('keyboard-open');};
+  },[]);
   const cat = save.selectedCat;
   const game = save.active;
   const question = game ? questions.find(q=>q.id===game.questionIds[game.round]) : undefined;

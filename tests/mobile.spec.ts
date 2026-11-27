@@ -134,6 +134,31 @@ for (const viewport of [{width:320,height:500},{width:844,height:390}]) {
   });
 }
 
+test('focused answer stays in a compact portrait layout above a mobile keyboard', async ({ page }) => {
+  await page.setViewportSize({width:390,height:360});
+  await page.addInitScript(() => localStorage.setItem('saffilion-save-v1', JSON.stringify({
+    version:1, selectedCat:'pebble', expeditions:[], questionBag:[], recentQuestions:[], missingAnswers:[], crystals:0, unlocked:[], settings:{sound:false,haptics:false,reducedMotion:true,batterySaver:true},
+    active:{questionIds:['geo-01','science-01','geo-02','geo-03','geo-04','geo-05','geo-06'],round:0,results:[],deadline:Date.now()+30000,category:'All'}
+  })));
+  await page.goto('.');
+  await page.getByLabel('Your answer').focus();
+  await expect(page.locator('html')).toHaveClass(/keyboard-open/);
+  const layout=await page.evaluate(()=>{
+    const rect=(selector:string)=>{const value=document.querySelector(selector)!.getBoundingClientRect();return {top:value.top,bottom:value.bottom,left:value.left,right:value.right,width:value.width,height:value.height};};
+    return {height:innerHeight,width:innerWidth,scene:rect('.mine-scene'),panel:rect('.question-panel'),prompt:rect('.prompt-row'),timer:rect('.timer'),input:rect('#answer'),submit:rect('.answer-row button'),cat:rect('.mine-scene .pixel-cat')};
+  });
+  expect(layout.scene.width).toBeGreaterThanOrEqual(layout.width-1);
+  expect(layout.panel.left).toBeLessThanOrEqual(1);
+  expect(layout.panel.top).toBeGreaterThanOrEqual(layout.scene.bottom-1);
+  for (const item of [layout.prompt,layout.timer,layout.input,layout.submit,layout.cat]) {
+    expect(item.top).toBeGreaterThanOrEqual(-1);
+    expect(item.bottom).toBeLessThanOrEqual(layout.height+1);
+  }
+  expect(layout.prompt.bottom).toBeLessThanOrEqual(layout.input.top+1);
+  expect(layout.input.height).toBeGreaterThanOrEqual(44);
+  expect(layout.submit.height).toBeGreaterThanOrEqual(44);
+});
+
 for (const width of [320, 375, 390, 430, 768]) {
   test(`layout has no horizontal overflow at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: width < 500 ? 740 : 1024 });
