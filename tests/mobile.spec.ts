@@ -91,6 +91,12 @@ test('all seven rounds finish, save, show gems, and Dig Again skips menus', asyn
   await expect(page.locator('.rarity-distribution')).toBeVisible();
   await page.getByRole('button', { name: 'Dig Again!' }).click();
   await expect(page.getByText('Question 1 / 7')).toBeVisible();
+  const replayInput=page.getByLabel('Your answer');
+  await expect(replayInput).toBeEnabled();
+  await replayInput.focus();
+  await expect(replayInput).toBeFocused();
+  await replayInput.fill('Jupiter');
+  await expect(replayInput).toHaveValue('Jupiter');
 });
 
 test('timeout advances accurately with zero points', async ({ page }) => {

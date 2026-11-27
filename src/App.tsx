@@ -289,7 +289,7 @@ function App() {
   const haptic=useCallback((pattern:number|number[])=>{if(save.settings.haptics&&navigator.vibrate)navigator.vibrate(pattern);},[save.settings.haptics]);
 
   const chooseCat=(id:CatId)=>setSave(s=>({...s,selectedCat:id}));
-  const begin=()=>{ const picked=pickQuestions(questions,save,category); const active:ActiveGame={questionIds:picked.chosen,round:0,results:[],deadline:Date.now()+30000,category}; setSave(s=>({...s,active,questionBag:picked.bag,recentQuestions:picked.recent})); setScreen('game'); setAnswer(''); setNotice(''); setLastFind(null); setTimeout(()=>inputRef.current?.focus(),100); };
+  const begin=()=>{ const picked=pickQuestions(questions,save,category); const active:ActiveGame={questionIds:picked.chosen,round:0,results:[],deadline:Date.now()+30000,category}; setSave(s=>({...s,active,questionBag:picked.bag,recentQuestions:picked.recent})); setLocked(false); setPendingPoints(0); setAction('idle'); setScreen('game'); setAnswer(''); setNotice(''); setSuggestion(undefined); setLastFind(null); setTimeout(()=>inputRef.current?.focus(),100); };
 
   const finishGame=useCallback((resultList:RoundResult[])=>{
     const total=resultList.reduce((n,r)=>n+r.points,0); const expedition:Expedition={id:crypto.randomUUID(),date:new Date().toISOString(),cat,score:total,depth:depthForPoints(total),rounds:resultList};
