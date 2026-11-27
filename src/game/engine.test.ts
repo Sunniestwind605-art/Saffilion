@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { depthForPoints, digDurationForPoints, distance, findAnswer, normalize, pickQuestions, rankFor, suggestAnswer, travelPixelsForPoints, validateQuestions, freshSave } from './engine';
+import { depthForPoints, digDurationForPoints, distance, equivalentAnswer, findAnswer, normalize, pickQuestions, rankFor, suggestAnswer, travelPixelsForPoints, validateQuestions, freshSave } from './engine';
 import { questions } from '../data/questions';
 
 describe('answer engine', () => {
@@ -8,6 +8,12 @@ describe('answer engine', () => {
   it('accepts canonical answers and curated aliases', () => {
     expect(findAnswer(planets, '  JUPITER ')?.points).toBe(10);
     expect(findAnswer(questions.find(q => q.id === 'geo-01')!, 'RSA')?.canonical).toBe('South Africa');
+  });
+  it('accepts safe plural variants without turning fuzzy matching into autocomplete', () => {
+    expect(equivalentAnswer('lion', 'lions')).toBe(true);
+    expect(equivalentAnswer('country', 'countries')).toBe(true);
+    expect(equivalentAnswer('glass', 'glas')).toBe(false);
+    expect(findAnswer(questions.find(q => q.id === 'nature-04')!, 'Lions')?.canonical).toBe('Lion');
   });
   it('uses Damerau-Levenshtein transpositions', () => expect(distance('Jupietr', 'Jupiter')).toBe(1));
   it('suggests only confident submitted near-matches', () => {

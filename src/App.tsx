@@ -14,6 +14,13 @@ const cheers = ['You’ve got this!', 'Keep digging!', 'Little steps count.', 'E
 type Screen = 'intro'|'select'|'ready'|'game'|'results'|'journal'|'shop'|'help';
 const zoneForDepth = (depth: number) => depth < 1000 ? 0 : depth < 2500 ? 1 : depth < 4000 ? 2 : depth < 5500 ? 3 : 4;
 const zoneNames = ['Soft Earth', 'Copper Caverns', 'Crystal Caves', 'Mushroom Hollow', 'Stardust Depths'];
+const tierOrder: Tier[] = ['Pebble','Copper','Quartz','Sapphire','Amethyst','Stardust'];
+const cosmetics = [
+  { id:'pink-shovel', name:'Pink Shovel', price:12, icon:'⚒' },
+  { id:'flower-helmet', name:'Flower Helmet', price:18, icon:'✿' },
+  { id:'star-lamp', name:'Star Lamp', price:25, icon:'✦' },
+  { id:'crystal-pack', name:'Crystal Pack', price:35, icon:'◇' },
+];
 
 const spritePalettes: Record<CatId, { fur: string; light: string; dark: string; detail: string }> = {
   pebble: { fur: '#b8b7bd', light: '#dddce0', dark: '#77747f', detail: '#5f5c68' },
@@ -23,12 +30,14 @@ const spritePalettes: Record<CatId, { fur: string; light: string; dark: string; 
   marmalade: { fur: '#df9250', light: '#f6bd72', dark: '#a95738', detail: '#8d4935' },
 };
 
-function drawPixelCat(ctx: CanvasRenderingContext2D, id: CatId, action: string, frame: number) {
+function drawPixelCat(ctx: CanvasRenderingContext2D, id: CatId, action: string, frame: number, cosmetic?: string | null) {
   const p = spritePalettes[id];
   const px = (color: string, x: number, y: number, w = 1, h = 1) => { ctx.fillStyle = color; ctx.fillRect(x, y, w, h); };
   const outline = '#362735';
-  const bob = action === 'walk' || action === 'celebrate' ? frame % 2 : action === 'dig' ? frame % 2 : 0;
-  const y = action === 'celebrate' && frame % 2 ? -2 : bob;
+  const isDig = action.startsWith('dig');
+  const idleBob = action === 'idle' ? (id === 'nova' ? frame % 2 : id === 'mochi' && frame % 4 === 0 ? -1 : id === 'marmalade' && frame % 6 === 0 ? 1 : 0) : 0;
+  const bob = action === 'walk' || action === 'celebrate' || action === 'happy' ? frame % 2 : isDig ? frame % 2 : idleBob;
+  const y = (action === 'celebrate' || action === 'happy') && frame % 2 ? -2 : bob;
   ctx.clearRect(0, 0, 48, 48);
 
   // Tail sits behind the body and changes pose to make each two-frame animation readable.
@@ -55,7 +64,7 @@ function drawPixelCat(ctx: CanvasRenderingContext2D, id: CatId, action: string, 
   px(outline, 21, 4 + y, 9, 7); px('#fff0a0', 23, 5 + y, 5, 4); px('#fff9cf', 24, 5 + y, 3, 2);
 
   // Faces and character-specific markings.
-  const closed = action === 'sad';
+  const closed = action === 'sad' || (action === 'idle' && ((id === 'midnight' && frame % 7 === 0) || (id === 'marmalade' && frame % 4 < 2)));
   if (closed) { px(outline, 16, 25 + y, 5, 1); px(outline, 30, 25 + y, 5, 1); }
   else {
     px('#fff9df', 16, 23 + y, id === 'nova' ? 5 : 4, id === 'nova' ? 5 : 4);
@@ -64,6 +73,7 @@ function drawPixelCat(ctx: CanvasRenderingContext2D, id: CatId, action: string, 
   }
   px(id === 'pebble' ? '#6c6572' : '#dc7f91', 24, 28 + y, 3, 2);
   px(outline, 23, 31 + y, 2, 1); px(outline, 27, 31 + y, 2, 1); px(outline, 25, 30 + y, 2, 2);
+  if (action === 'happy' || action === 'celebrate') { px(p.detail, 22, 32 + y, 2, 1); px(p.detail, 28, 32 + y, 2, 1); }
   if (id === 'pebble') { px(p.dark, 11, 22 + y, 3, 2); px(p.dark, 36, 22 + y, 3, 2); }
   if (id === 'mochi') { px(p.detail, 13, 28 + y, 3, 2); px(p.detail, 34, 28 + y, 3, 2); }
   if (id === 'midnight') { px('#e8d8e7', 11, 19 + y, 8, 3); px('#e8d8e7', 31, 30 + y, 7, 2); }
@@ -71,15 +81,19 @@ function drawPixelCat(ctx: CanvasRenderingContext2D, id: CatId, action: string, 
   if (id === 'marmalade') { px(p.dark, 17, 19 + y, 3, 3); px(p.dark, 24, 19 + y, 3, 3); px(p.dark, 31, 19 + y, 3, 3); px(p.dark, 15, 32 + y, 3, 2); px(p.dark, 33, 32 + y, 3, 2); }
 
   // Pickaxe is part of the sprite frame, not a smooth rotated DOM shape.
-  if (action === 'dig' && frame % 2) {
-    px(outline, 4, 29, 5, 3); px('#b6adb3', 3, 27, 9, 3); px(outline, 8, 29, 3, 16); px('#80543d', 9, 30, 1, 13);
+  const shovel = cosmetic === 'pink-shovel' ? '#ef8cac' : '#b6adb3';
+  if (isDig && frame % 2) {
+    px(outline, 4, 29, 5, 3); px(shovel, 3, 27, 9, 3); px(outline, 8, 29, 3, 16); px(cosmetic === 'pink-shovel' ? '#c35d84' : '#80543d', 9, 30, 1, 13);
   } else {
     px(outline, 38, 8 + y, 3, 31); px('#80543d', 39, 10 + y, 1, 27);
-    px(outline, 34, 7 + y, 11, 4); px('#b6adb3', 35, 8 + y, 9, 2);
+    px(outline, 34, 7 + y, 11, 4); px(shovel, 35, 8 + y, 9, 2);
   }
+  if (cosmetic === 'flower-helmet') { px('#fff2a1', 11, 7+y, 3,3); px('#ee86a0', 9,8+y,2,2); px('#ee86a0', 13,8+y,2,2); px('#ee86a0', 11,5+y,2,2); }
+  if (cosmetic === 'star-lamp') { px('#fff6a6', 20,6+y,11,2); px('#fff6a6', 24,2+y,3,10); }
+  if (cosmetic === 'crystal-pack') { px(outline, 8,29+y,5,10); px('#75c6d1',9,28+y,3,8); px('#b7eff0',10,26+y,2,4); }
 }
 
-function PixelCat({ id, action = 'idle', label }: { id: CatId; action?: string; label?: string }) {
+function PixelCat({ id, action = 'idle', label, cosmetic }: { id: CatId; action?: string; label?: string; cosmetic?: string | null }) {
   const cat = cats.find(c => c.id === id)!;
   const canvas = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
@@ -89,20 +103,21 @@ function PixelCat({ id, action = 'idle', label }: { id: CatId; action?: string; 
     let raf = 0, frame = 0, last = 0;
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const loop = (time: number) => {
-      if (!last || time - last > (action === 'dig' ? 180 : 420)) { last = time; drawPixelCat(ctx, id, action, frame++); }
+      const pace = action.startsWith('dig') ? action.includes('stardust') ? 105 : action.includes('amethyst') ? 125 : action.includes('sapphire') ? 145 : action.includes('quartz') ? 170 : action.includes('copper') ? 220 : 285 : id === 'nova' ? 280 : id === 'marmalade' ? 560 : 420;
+      if (!last || time - last > pace) { last = time; drawPixelCat(ctx, id, action, frame++, cosmetic); }
       if (!reduce && !document.hidden) raf = requestAnimationFrame(loop);
     };
     loop(0);
     const onVisibility = () => { if (!document.hidden && !reduce) { last = 0; cancelAnimationFrame(raf); raf = requestAnimationFrame(loop); } };
     document.addEventListener('visibilitychange', onVisibility);
     return () => { cancelAnimationFrame(raf); document.removeEventListener('visibilitychange', onVisibility); };
-  }, [id, action]);
-  return <div className={`pixel-cat ${action}`} role="img" aria-label={label || `${cat.name} the mining cat`}>
+  }, [id, action, cosmetic]);
+  return <div className={`pixel-cat cat-${id} ${action}`} role="img" aria-label={label || `${cat.name} the mining cat`}>
     <canvas ref={canvas} width="48" height="48" aria-hidden="true" />
   </div>;
 }
 
-function MineScene({ cat, depth, action, lowPower }: { cat: CatId; depth: number; action: string; lowPower: boolean }) {
+function MineScene({ cat, depth, action, lowPower, tier, cosmetic }: { cat: CatId; depth: number; action: string; lowPower: boolean; tier?: Tier; cosmetic?: string | null }) {
   const canvas = useRef<HTMLCanvasElement>(null);
   const shownDepth = useRef(depth);
   const camera = useRef(depth * .42);
@@ -124,7 +139,7 @@ function MineScene({ cat, depth, action, lowPower }: { cat: CatId; depth: number
   }, [depth]);
 
   useEffect(() => {
-    if (action === 'dig' || !animation.current) return;
+    if (action.startsWith('dig') || !animation.current) return;
     shownDepth.current = animation.current.to; camera.current = animation.current.cameraTo;
     setHudDepth(animation.current.to); animation.current = null;
   }, [action]);
@@ -177,6 +192,19 @@ function MineScene({ cat, depth, action, lowPower }: { cat: CatId; depth: number
           if (zone === 3) { ctx.fillRect(x+6,y+10,4,17); ctx.fillStyle='#d7ef91'; ctx.fillRect(x,y+5,16,8); }
           if (zone === 4) { ctx.fillRect(x,y,5,5); ctx.fillRect(x+10,y+10,3,3); }
         }
+        // Deterministic little finds make the shaft feel inhabited without adding DOM cost.
+        for (let i=0;i<4;i++) {
+          const world=Math.floor(camera.current/210)+i, x=28+((world*137)%Math.max(40,w-60)), y=wrap(world*210-camera.current*1.02,h+210)-30;
+          const find=((world%8)+8)%8; ctx.fillStyle='#342637';
+          if(find===0){ctx.fillRect(x,y+5,18,3);ctx.fillRect(x+4,y,3,8);ctx.fillStyle='#e3c697';ctx.fillRect(x+7,y+2,9,3);}// fossil
+          if(find===1){ctx.fillStyle='#d58f75';ctx.fillRect(x,y+5,14,3);ctx.fillRect(x+3,y+2,3,3);ctx.fillRect(x+9,y+3,3,2);}// worm
+          if(find===2){ctx.fillStyle='#f5d7bd';ctx.fillRect(x,y,10,9);ctx.fillStyle='#8b6078';ctx.fillRect(x+10,y+2,4,5);ctx.fillStyle='#4b3345';ctx.fillRect(x+2,y+2,6,2);}// teacup
+          if(find===3){ctx.fillStyle='#715044';ctx.fillRect(x+6,y,4,17);ctx.fillStyle='#bf8559';ctx.fillRect(x,y,16,9);ctx.fillStyle='#f0c56c';ctx.fillRect(x+3,y+3,3,3);}// mailbox
+          if(find===4&&zone>=2){ctx.fillStyle=colors[0];ctx.fillRect(x,y+7,18,5);ctx.fillStyle='#c7e8ea';ctx.fillRect(x+4,y,4,9);ctx.fillRect(x+11,y+2,4,10);}// cluster
+          if(find===5&&zone>=3){ctx.fillStyle='#d8ef92';ctx.fillRect(x,y,16,6);ctx.fillStyle='#694d65';ctx.fillRect(x+6,y+6,4,12);ctx.fillStyle='#ffe7a2';ctx.fillRect(x+3,y+2,2,2);}// mushroom house
+          if(find===6){ctx.fillStyle='#5b4350';ctx.fillRect(x,y+5,18,9);ctx.fillStyle='#d9bf9b';ctx.fillRect(x+5,y+3,3,3);ctx.fillRect(x+11,y+3,3,3);}// mole
+          if(find===7){ctx.fillStyle='#7eaa6e';ctx.fillRect(x+7,y,3,14);ctx.fillRect(x+2,y+2,6,3);ctx.fillRect(x+9,y+5,7,3);}// root flower
+        }
         ctx.fillStyle='rgba(255,242,182,.72)'; for(let i=0;i<7;i++){ const x=(i*83+t*.012)%Math.max(w,1); const y=wrap(i*67-camera.current*1.35,h+30)-15; ctx.fillRect(x,y,3,3); }
         ctx.fillStyle='rgba(35,25,44,.23)'; ctx.fillRect(0,0,18,h); ctx.fillRect(w-18,0,18,h);
       }
@@ -188,11 +216,13 @@ function MineScene({ cat, depth, action, lowPower }: { cat: CatId; depth: number
   },[lowPower]);
   const zone = zoneNames[zoneForDepth(hudDepth)];
   const digPower = Math.max(.1, Math.min(1, gain / 1000));
-  return <section className={`mine-scene ${action === 'dig' ? 'traveling' : ''} ${gain >= 650 ? 'powerful-dig' : ''}`} style={{ '--dig-power': digPower, '--dig-time': `${digDurationForPoints(gain / 10)}ms` } as React.CSSProperties} aria-label={`Mining at ${hudDepth.toLocaleString()} metres in ${zone}`}>
+  const isDig=action.startsWith('dig'), tierClass=tier?`tier-${tier.toLowerCase()}`:'';
+  return <section className={`mine-scene zone-${zoneForDepth(hudDepth)} ${isDig ? 'traveling' : ''} ${tierClass} ${tier&&tierOrder.indexOf(tier)>=3 ? 'powerful-dig' : ''}`} style={{ '--dig-power': digPower, '--dig-time': `${digDurationForPoints(gain / 10)}ms` } as React.CSSProperties} aria-label={`Mining at ${hudDepth.toLocaleString()} metres in ${zone}`}>
     <canvas ref={canvas}/><div className="mine-hud"><span>{zone}</span><strong>{hudDepth.toLocaleString()} m</strong></div>
     <div className="descent-lines" aria-hidden="true"><i/><i/><i/><i/><i/></div>
+    {isDig&&<div className="dig-particles" aria-hidden="true">{Array.from({length:12},(_,i)=><i key={i}/>)}</div>}
     {gain > 0 && <div className="depth-gain" key={depth}>+{gain.toLocaleString()} m</div>}
-    <div className="cave-message">{cheers[Math.floor(hudDepth/250)%cheers.length]}</div><PixelCat id={cat} action={action}/>
+    <div className="cave-message">{cheers[Math.floor(hudDepth/250)%cheers.length]}</div><PixelCat id={cat} action={action} cosmetic={cosmetic}/>
     <div className="ground"><i/><i/><i/><i/></div>
   </section>;
 }
@@ -216,12 +246,13 @@ function App() {
   const [pendingPoints,setPendingPoints] = useState(0);
   const [lastFind,setLastFind] = useState<Answer|null>(null);
   const [lastExpedition,setLastExpedition] = useState<Expedition|null>(null);
+  const [isRecord,setIsRecord] = useState(false);
   const [journalOpen,setJournalOpen] = useState<string|null>(null);
   const fileInput=useRef<HTMLInputElement>(null);
   const inputRef=useRef<HTMLInputElement>(null);
 
   useEffect(()=>persist(save),[save]);
-  useEffect(()=>{ const update=()=>document.documentElement.style.setProperty('--vvh',`${visualViewport?.height||innerHeight}px`); update(); visualViewport?.addEventListener('resize',update); return()=>visualViewport?.removeEventListener('resize',update); },[]);
+  useEffect(()=>{ const update=()=>{const h=visualViewport?.height||innerHeight;document.documentElement.style.setProperty('--vvh',`${h}px`);document.documentElement.classList.toggle('keyboard-open',innerHeight-h>120);}; update(); visualViewport?.addEventListener('resize',update); return()=>{visualViewport?.removeEventListener('resize',update);document.documentElement.classList.remove('keyboard-open');}; },[]);
   const cat = save.selectedCat;
   const game = save.active;
   const question = game ? questions.find(q=>q.id===game.questionIds[game.round]) : undefined;
@@ -229,20 +260,23 @@ function App() {
   const depth = depthForPoints(score+pendingPoints);
 
   const beep=useCallback((kind:'good'|'bad'|'dig')=>{ if(!save.settings.sound) return; const A=window.AudioContext; if(!A)return; const c=new A(),o=c.createOscillator(),g=c.createGain(); o.connect(g).connect(c.destination); o.frequency.value=kind==='good'?660:kind==='dig'?150:220; g.gain.setValueAtTime(.035,c.currentTime); g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.18); o.start();o.stop(c.currentTime+.2); },[save.settings.sound]);
+  const haptic=useCallback((pattern:number|number[])=>{if(save.settings.haptics&&navigator.vibrate)navigator.vibrate(pattern);},[save.settings.haptics]);
 
   const chooseCat=(id:CatId)=>setSave(s=>({...s,selectedCat:id}));
   const begin=()=>{ const picked=pickQuestions(questions,save,category); const active:ActiveGame={questionIds:picked.chosen,round:0,results:[],deadline:Date.now()+30000,category}; setSave(s=>({...s,active,questionBag:picked.bag,recentQuestions:picked.recent})); setScreen('game'); setAnswer(''); setNotice(''); setLastFind(null); setTimeout(()=>inputRef.current?.focus(),100); };
 
   const finishGame=useCallback((resultList:RoundResult[])=>{
     const total=resultList.reduce((n,r)=>n+r.points,0); const expedition:Expedition={id:crypto.randomUUID(),date:new Date().toISOString(),cat,score:total,depth:depthForPoints(total),rounds:resultList};
-    setLastExpedition(expedition); setSave(s=>({...s,active:null,expeditions:[expedition,...s.expeditions].slice(0,100),crystals:s.crystals+Math.max(5,Math.round(total/25))})); setScreen('results'); setAction('celebrate');
-  },[cat]);
+    setIsRecord(total>Math.max(0,...save.expeditions.map(e=>e.score))); setLastExpedition(expedition); setSave(s=>({...s,active:null,expeditions:[expedition,...s.expeditions].slice(0,100),crystals:s.crystals+Math.max(5,Math.round(total/25))})); setScreen('results'); setAction('celebrate'); haptic([25,45,25]);
+  },[cat,save.expeditions,haptic]);
 
   const nextRound=useCallback((result:RoundResult)=>{
     if(!game)return; const results=[...game.results,result];
-    setLocked(true); setPendingPoints(result.points); setAction(result.points?'dig':'sad'); beep(result.points?'dig':'bad');
-    setTimeout(()=>{ if(game.round>=6){setPendingPoints(0);finishGame(results);return;} setSave(s=>({...s,active:s.active?{...s.active,round:s.active.round+1,results,deadline:Date.now()+30000}:null})); setAnswer('');setNotice('');setSuggestion(undefined);setLastFind(null);setLocked(false);setPendingPoints(0);setAction('idle');setTimeout(()=>inputRef.current?.focus(),50); }, digDurationForPoints(result.points, save.settings.reducedMotion));
-  },[game,beep,finishGame,save.settings.reducedMotion]);
+    const finalize=()=>{if(game.round>=6){setPendingPoints(0);finishGame(results);return;}setSave(s=>({...s,active:s.active?{...s.active,round:s.active.round+1,results,deadline:Date.now()+30000}:null}));setAnswer('');setNotice('');setSuggestion(undefined);setLastFind(null);setLocked(false);setPendingPoints(0);setAction('idle');setTimeout(()=>inputRef.current?.focus(),50);};
+    setLocked(true);
+    if(result.points){const reveal=save.settings.reducedMotion?60:360,dig=digDurationForPoints(result.points,save.settings.reducedMotion);setAction('happy');haptic(result.points>=85?[20,35,20]:20);setTimeout(()=>{setPendingPoints(result.points);setAction(`dig-${result.tier?.toLowerCase()||'pebble'}`);beep('dig');haptic(result.points===100?[18,25,18,25,35]:result.points>=65?[20,35,25]:18);},reveal);setTimeout(finalize,reveal+dig);}
+    else{setAction('sad');setTimeout(finalize,save.settings.reducedMotion?120:520);}
+  },[game,beep,finishGame,haptic,save.settings.reducedMotion]);
 
   const expire=useCallback(()=>{ if(!question||locked)return; setLastFind(null); nextRound({questionId:question.id,prompt:question.prompt,answer:answer.trim(),points:0,timedOut:true});setNotice('Time’s up — let’s see what waits below.'); },[question,locked,nextRound,answer]);
 
@@ -251,27 +285,28 @@ function App() {
   const recordMissing=()=>{ if(!question||!answer.trim())return; setSave(s=>({...s,missingAnswers:[...s.missingAnswers,{questionId:question.id,answer:answer.trim()}]}));setNotice('Saved locally for future review. You can keep trying!'); };
   const updateSettings=(patch:Partial<SaveData['settings']>)=>setSave(s=>({...s,settings:{...s.settings,...patch}}));
   const exportSave=()=>{ const blob=new Blob([JSON.stringify(save,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='saffilion-save.json';a.click();URL.revokeObjectURL(a.href); };
-  const importSave=async(e:React.ChangeEvent<HTMLInputElement>)=>{ const file=e.target.files?.[0];if(!file)return;try{const data=JSON.parse(await file.text());if(data?.version!==1||!Array.isArray(data.expeditions))throw Error();setSave({...freshSave(),...data,active:null});setNotice('Save imported safely.');}catch{setNotice('That file is not a valid Saffilion save.');}e.target.value=''; };
+  const importSave=async(e:React.ChangeEvent<HTMLInputElement>)=>{ const file=e.target.files?.[0];if(!file)return;try{const data=JSON.parse(await file.text());if(data?.version!==1||!Array.isArray(data.expeditions))throw Error();const clean=freshSave();setSave({...clean,...data,settings:{...clean.settings,...data.settings},active:null});setNotice('Save imported safely.');}catch{setNotice('That file is not a valid Saffilion save.');}e.target.value=''; };
   const reset=()=>{ if(confirm('Reset all Saffilion progress? This cannot be undone unless you exported a save.')){setSave(freshSave());setScreen('intro');} };
 
-  const stats=useMemo(()=>({ best:Math.max(0,...save.expeditions.map(e=>e.score)),deepest:Math.max(0,...save.expeditions.map(e=>e.depth)),lifetime:save.expeditions.reduce((n,e)=>n+e.depth,0),correct:save.expeditions.flatMap(e=>e.rounds).filter(r=>r.points>0).length }),[save.expeditions]);
+  const buyCosmetic=(id:string,price:number)=>{if(save.unlocked.includes(id)){setSave(s=>({...s,equipped:s.equipped===id?null:id}));setNotice(save.equipped===id?'Cosmetic put away.':'Cosmetic equipped!');return;}if(save.crystals<price){setNotice(`You need ${price-save.crystals} more crystals.`);return;}setSave(s=>({...s,crystals:s.crystals-price,unlocked:[...s.unlocked,id],equipped:id}));setNotice('Cosmetic unlocked and equipped!');};
+  const stats=useMemo(()=>({ best:Math.max(0,...save.expeditions.map(e=>e.score)),deepest:Math.max(0,...save.expeditions.map(e=>e.depth)),lifetime:save.expeditions.reduce((n,e)=>n+e.depth,0),correct:save.expeditions.flatMap(e=>e.rounds).filter(r=>r.points>0).length,rare:save.expeditions.flatMap(e=>e.rounds).filter(r=>r.points>=65).length }),[save.expeditions]);
   const menu=<nav className="top-actions"><button onClick={()=>setScreen('journal')} aria-label="Open My Digging Journal">Journal</button><button onClick={()=>setScreen('shop')}>Burrow</button><button onClick={()=>setScreen('help')}>Help</button><button onClick={()=>updateSettings({sound:!save.settings.sound})} aria-label={save.settings.sound?'Mute sound':'Enable sound'}>{save.settings.sound?'♪':'×'}</button></nav>;
 
-  if(screen==='intro') return <main className="intro screen"><div className="sky"><i/><i/><i/></div><div className="intro-land"><div className="flowers">✦ · ✿ · ✦</div><PixelCat id={cat} action="walk"/><div className="mine-door"/></div><section className="title-card"><p>Made with love for Safia</p><h1>SAFFILION</h1><span>A cozy rarity-mining adventure</span><button className="primary" onClick={()=>setScreen('select')}>Let’s Dig!</button></section></main>;
+  if(screen==='intro') return <main className="intro screen"><div className="sky"><i/><i/><i/></div><div className="intro-sparkles" aria-hidden="true"><i/><i/><i/><i/><i/></div><div className="intro-land"><div className="flowers">✦ · ✿ · ✦</div><PixelCat id={cat} action="walk" cosmetic={save.equipped}/><div className="mine-door"><i/></div></div><section className="title-card"><p>Made with love for Safia</p><h1>SAFFILION</h1><span>A cozy rarity-mining adventure</span><button className="primary" onClick={()=>setScreen('select')}>Let’s Dig!</button></section></main>;
 
-  if(screen==='select') return <main className="screen paper"><header><button className="back" onClick={()=>setScreen('intro')}>← Back</button><div><small>Choose your digging buddy</small><h1>Meet the miners</h1></div></header><div className="cat-grid">{cats.map(c=><button key={c.id} className={`cat-card ${cat===c.id?'selected':''}`} onClick={()=>chooseCat(c.id)} aria-pressed={cat===c.id}><PixelCat id={c.id}/><strong>{c.name}</strong><span>{c.mood}</span><i>{cat===c.id?'Ready to dig!':'Choose'}</i></button>)}</div><button className="primary sticky-cta" onClick={()=>setScreen('ready')}>Adventure with {cats.find(c=>c.id===cat)!.name}</button></main>;
+  if(screen==='select') return <main className="screen paper"><header><button className="back" onClick={()=>setScreen('intro')}>← Back</button><div><small>Choose your digging buddy</small><h1>Meet the miners</h1></div></header><div className="cat-grid">{cats.map(c=><button key={c.id} className={`cat-card ${cat===c.id?'selected':''}`} onClick={()=>chooseCat(c.id)} aria-pressed={cat===c.id}><PixelCat id={c.id} cosmetic={save.equipped}/><strong>{c.name}</strong><span>{c.mood}</span><i>{cat===c.id?'✓ Ready to dig!':'Choose'}</i></button>)}</div><button className="primary sticky-cta" onClick={()=>setScreen('ready')}>Adventure with {cats.find(c=>c.id===cat)!.name}</button></main>;
 
-  if(screen==='ready') return <main className="screen ready">{menu}<section><span className="eyebrow">Expedition board</span><h1>Where shall we dig?</h1><PixelCat id={cat}/><label>Question mix<select value={category} onChange={e=>setCategory(e.target.value)}>{categories.map(c=><option key={c}>{c}</option>)}</select></label><div className="rules"><span>7 questions</span><span>30 seconds each</span><span>rarer = deeper</span></div><button className="primary" onClick={begin}>Start Digging</button><button className="text-button" onClick={()=>setScreen('select')}>Change cat</button></section></main>;
+  if(screen==='ready') return <main className="screen ready">{menu}<section><span className="eyebrow">Expedition board</span><h1>Where shall we dig?</h1><PixelCat id={cat} cosmetic={save.equipped}/><p className="tutorial-tip">Think of a correct answer. The rarer it is, the deeper your cat digs! You have 30 seconds.</p><label>Question mix<select value={category} onChange={e=>setCategory(e.target.value)}>{categories.map(c=><option key={c}>{c}</option>)}</select></label><div className="rules"><span>7 questions</span><span>30 seconds each</span><span>rarer = deeper</span></div><button className="primary" onClick={begin}>Start Digging</button><button className="text-button" onClick={()=>setScreen('select')}>Change cat</button></section></main>;
 
-  if(screen==='game'&&game&&question) return <main className={`game-shell ${locked?'is-locked':''}`}>{menu}<MineScene cat={cat} depth={depth} action={action} lowPower={save.settings.batterySaver}/><section className="question-panel"><div className="round-row"><span>Question {game.round+1} / 7</span><span>{question.category}</span><strong>{score} pts</strong></div><div className="progress"><i style={{width:`${(game.round/7)*100}%`}}/></div><div className="prompt-row"><h1>{question.prompt}</h1><Timer deadline={game.deadline} onExpire={expire}/></div><form onSubmit={submit}><label htmlFor="answer">Your answer</label><div className="answer-row"><input ref={inputRef} id="answer" value={answer} onChange={e=>{setAnswer(e.target.value);setSuggestion(undefined);setNotice('');setLastFind(null);}} autoComplete="off" autoCorrect="off" enterKeyHint="go" placeholder="Type something clever…" disabled={locked}/><button className="primary" disabled={locked}>Dig!</button></div></form><div className="feedback" aria-live="polite">{lastFind?<div className={`rarity-reveal tier-${lastFind.tier.toLowerCase()}`}><i className="rarity-gem"/><span><strong>{lastFind.tier}</strong><small>{lastFind.canonical}</small></span><b>+{lastFind.points} pts<small>+{depthForPoints(lastFind.points).toLocaleString()} m</small></b></div>:notice}{suggestion&&<button onClick={()=>{setAnswer(suggestion);setSuggestion(undefined);setNotice('Correction filled in — submit it to score.');inputRef.current?.focus();}}>Use “{suggestion}”</button>}{notice.includes('answer book')&&<button className="text-button" onClick={recordMissing}>Save suggestion</button>}</div></section></main>;
+  if(screen==='game'&&game&&question) return <main className={`game-shell ${locked?'is-locked':''}`}>{menu}<MineScene cat={cat} depth={depth} action={action} lowPower={save.settings.batterySaver} tier={lastFind?.tier} cosmetic={save.equipped}/><section className="question-panel"><div className="round-row"><span>Question {game.round+1} / 7</span><span>{question.category}</span><strong>{score} pts</strong></div><div className="progress"><i style={{width:`${(game.round/7)*100}%`}}/></div><div className="prompt-row"><h1>{question.prompt}</h1><Timer deadline={game.deadline} onExpire={expire}/></div><form onSubmit={submit}><label htmlFor="answer">Your answer</label><div className="answer-row"><input ref={inputRef} id="answer" value={answer} onChange={e=>{setAnswer(e.target.value);setSuggestion(undefined);setNotice('');setLastFind(null);}} autoComplete="off" autoCorrect="off" enterKeyHint="go" placeholder="Type something clever…" disabled={locked}/><button className="primary" disabled={locked}>Dig!</button></div></form><div className="feedback" aria-live="polite">{lastFind?<div className={`rarity-reveal tier-${lastFind.tier.toLowerCase()}`}><i className="rarity-gem"/><span><strong>{lastFind.tier}</strong><small>{lastFind.canonical}</small></span><b>{lastFind.points} points<small>+{depthForPoints(lastFind.points).toLocaleString()} m</small></b></div>:notice}{suggestion&&<button onClick={()=>{setAnswer(suggestion);setSuggestion(undefined);setNotice('Correction filled in — submit it to score.');inputRef.current?.focus();}}>Use “{suggestion}”</button>}{notice.includes('answer book')&&<button className="text-button" onClick={recordMissing}>Save suggestion</button>}</div></section></main>;
 
-  if(screen==='results'&&lastExpedition) { const exp=lastExpedition,best=[...exp.rounds].sort((a,b)=>b.points-a.points)[0]; return <main className="screen results"><div className="confetti">✦ · ✧ · ✦ · ✧ · ✦</div><PixelCat id={cat} action="celebrate"/><span className="eyebrow">Expedition complete</span><h1>{rankFor(exp.score)}</h1><p className="big-score">{exp.score}<small> / 700 points</small></p><p>{exp.depth.toLocaleString()} metres deep · {exp.rounds.filter(r=>r.points).length}/7 correct</p><p>Best find: <strong>{best?.canonical||'A brave try'} {best?.tier?`· ${best.tier}`:''}</strong></p><div className="round-summary">{exp.rounds.map((r,i)=><div key={i}><span>{i+1}</span><p>{r.answer||'No answer'}<small>{r.canonical&&r.canonical!==r.answer?` → ${r.canonical}`:''}</small></p><strong>{r.points}</strong></div>)}</div><div className="result-actions"><button className="primary" onClick={()=>setScreen('ready')}>Dig Again!</button><button onClick={()=>setScreen('journal')}>My Digging Journal</button><button onClick={()=>setScreen('select')}>Change Cat</button><button onClick={()=>navigator.clipboard?.writeText(`Saffilion ✦ ${rankFor(exp.score)}\n${exp.score}/700 points · ${exp.depth.toLocaleString()}m deep\n${exp.rounds.map(r=>r.points?['🟫','🟠','◇','💎','🔮','✦'][[10,25,45,65,85,100].indexOf(r.points)]:'·').join(' ')}`)}>Copy Results</button></div></main>; }
+  if(screen==='results'&&lastExpedition) { const exp=lastExpedition,best=[...exp.rounds].sort((a,b)=>b.points-a.points)[0],name=cats.find(c=>c.id===exp.cat)!.name,reached=zoneNames[zoneForDepth(exp.depth)]; const distribution=tierOrder.map(t=>({tier:t,count:exp.rounds.filter(r=>r.tier===t).length})); return <main className="screen results"><div className="confetti">✦ · ✧ · ✦ · ✧ · ✦</div><PixelCat id={cat} action="celebrate" cosmetic={save.equipped}/><span className="eyebrow">Expedition complete</span><h1>{name} reached {reached}!</h1><div className="rank-badge">{rankFor(exp.score)}{isRecord&&<small>★ New personal record!</small>}</div><p className="big-depth">{exp.depth.toLocaleString()} m</p><p className="result-facts"><b>{exp.score}</b> / 700 points <span>·</span> <b>{exp.rounds.filter(r=>r.points).length}</b> / 7 correct</p><div className="rarity-distribution" aria-label="Rarity distribution">{distribution.map(({tier,count})=><div key={tier} className={`tier-${tier.toLowerCase()} ${count?'earned':''}`}><i/><span>{tier}</span><b>×{count}</b></div>)}</div><p>Best find: <strong>{best?.canonical||'A brave try'} {best?.tier?`· ${best.tier}`:''}</strong></p><div className="round-summary">{exp.rounds.map((r,i)=><div key={i} className={r.tier?`tier-${r.tier.toLowerCase()}`:''}><i className="result-gem"/><p><b>Round {i+1}</b> · {r.answer||'No answer'}<small>{r.canonical&&r.canonical!==r.answer?` → ${r.canonical}`:r.tier||'No find'}</small></p><strong>{r.points}</strong></div>)}</div><div className="result-actions"><button className="primary" onClick={begin}>Dig Again!</button><button onClick={()=>setScreen('journal')}>My Digging Journal</button><button onClick={()=>setScreen('select')}>Change Cat</button><button onClick={()=>navigator.clipboard?.writeText(`Saffilion ✦ ${rankFor(exp.score)}\n${exp.score}/700 points · ${exp.depth.toLocaleString()}m deep\n${exp.rounds.map(r=>r.points?['🟫','🟠','◇','💎','🔮','✦'][[10,25,45,65,85,100].indexOf(r.points)]:'·').join(' ')}`)}>Copy Results</button></div></main>; }
 
-  if(screen==='journal') return <main className="screen paper journal"><header><button className="back" onClick={()=>setScreen(save.active?'game':'ready')}>← Back</button><div><small>Personal records, stored on this device</small><h1>My Digging Journal</h1></div></header><div className="stats"><div><strong>{stats.best}</strong><span>Best score</span></div><div><strong>{stats.deepest.toLocaleString()}m</strong><span>Deepest dig</span></div><div><strong>{save.expeditions.length}</strong><span>Expeditions</span></div><div><strong>{stats.lifetime.toLocaleString()}m</strong><span>Lifetime depth</span></div></div><h2>Recent expeditions</h2><div className="expeditions">{save.expeditions.length===0?<p>Your first adventure will appear here.</p>:save.expeditions.map(e=><article key={e.id}><button onClick={()=>setJournalOpen(journalOpen===e.id?null:e.id)}><PixelCat id={e.cat}/><span><strong>{rankFor(e.score)}</strong><small>{new Date(e.date).toLocaleDateString()}</small></span><b>{e.score} pts</b></button>{journalOpen===e.id&&<div className="expedition-detail">{e.rounds.map((r,i)=><p key={i}>{i+1}. {r.answer||'No answer'} <b>+{r.points}</b></p>)}</div>}</article>)}</div><div className="data-actions"><button onClick={exportSave}>Export save</button><button onClick={()=>fileInput.current?.click()}>Import save</button><button className="danger" onClick={reset}>Reset progress</button><input ref={fileInput} hidden type="file" accept="application/json" onChange={importSave}/></div><p className="feedback">{notice}</p></main>;
+  if(screen==='journal') return <main className="screen paper journal"><header><button className="back" onClick={()=>setScreen(save.active?'game':'ready')}>← Back</button><div><small>Personal records, stored on this device</small><h1>My Digging Journal</h1></div></header><div className="stats"><div><strong>{stats.best}</strong><span>Best score</span></div><div><strong>{stats.deepest.toLocaleString()}m</strong><span>Deepest dig</span></div><div><strong>{save.expeditions.length}</strong><span>Expeditions</span></div><div><strong>{stats.rare}</strong><span>Rare finds</span></div></div><h2>Recent mine shafts</h2><div className="expeditions">{save.expeditions.length===0?<p>Your first adventure will appear here.</p>:save.expeditions.map(e=><article key={e.id} className={`shaft zone-${zoneForDepth(e.depth)}`}><button onClick={()=>setJournalOpen(journalOpen===e.id?null:e.id)}><PixelCat id={e.cat} cosmetic={save.equipped}/><span><strong>{rankFor(e.score)}</strong><small>{new Date(e.date).toLocaleDateString()} · {e.depth.toLocaleString()}m</small><i className="journal-gems">{e.rounds.map((r,i)=><b key={i} className={r.tier?`tier-${r.tier.toLowerCase()}`:'empty'} aria-label={r.tier||'No find'}/>)}</i></span><b>{e.score} pts</b></button>{journalOpen===e.id&&<div className="expedition-detail">{e.rounds.map((r,i)=><div key={i} className={r.tier?`tier-${r.tier.toLowerCase()}`:''}><i/><span><b>{i+1}. {r.prompt}</b><small>{r.answer||'No answer'}{r.tier?` · ${r.tier}`:''}</small></span><strong>+{r.points}<small>{depthForPoints(r.points)}m</small></strong></div>)}</div>}</article>)}</div><div className="data-actions"><button onClick={exportSave}>Export save</button><button onClick={()=>fileInput.current?.click()}>Import save</button><button className="danger" onClick={reset}>Reset progress</button><input ref={fileInput} hidden type="file" accept="application/json" onChange={importSave}/></div><p className="feedback">{notice}</p></main>;
 
-  if(screen==='shop') return <main className="screen paper shop"><header><button className="back" onClick={()=>setScreen(save.active?'game':'ready')}>← Back</button><div><small>Spend only crystals earned by playing</small><h1>The Treasure Burrow</h1></div></header><div className="crystal-balance">◇ {save.crystals} crystals</div><p>Cosmetics are coming from the deepest tunnels. Every current cat and core game feature is already free.</p><div className="shopkeeper"><PixelCat id="marmalade"/><blockquote>“No loot boxes here. I nap on those.”</blockquote></div></main>;
+  if(screen==='shop') return <main className="screen paper shop"><header><button className="back" onClick={()=>setScreen(save.active?'game':'ready')}>← Back</button><div><small>Purely cosmetic · no advantages</small><h1>The Treasure Burrow</h1></div></header><div className="crystal-balance">◇ {save.crystals} crystals</div><div className="shopkeeper"><PixelCat id="marmalade" cosmetic={save.equipped}/><blockquote>“No loot boxes here. I nap on those.”</blockquote></div><div className="cosmetic-grid">{cosmetics.map(item=>{const owned=save.unlocked.includes(item.id),equipped=save.equipped===item.id;return <button key={item.id} className={equipped?'equipped':''} onClick={()=>buyCosmetic(item.id,item.price)}><i>{item.icon}</i><strong>{item.name}</strong><span>{equipped?'Equipped':owned?'Owned · tap to equip':`◇ ${item.price}`}</span></button>;})}</div><p className="feedback" aria-live="polite">{notice}</p></main>;
 
-  return <main className="screen paper help"><header><button className="back" onClick={()=>setScreen(save.active?'game':'ready')}>← Back</button><div><small>Field guide</small><h1>How to Saffilion</h1></div></header><section><h2>Rarer answers dig deeper</h2><p>Every accepted answer has a locally curated rarity. It is an estimate of familiarity, not live data from other players.</p><div className="tiers">{(['Pebble','Copper','Quartz','Sapphire','Amethyst','Stardust'] as Tier[]).map((t,i)=><div key={t}><i className={`gem g${i}`}/><strong>{t}</strong><span>{[10,25,45,65,85,100][i]} pts</span></div>)}</div><h2>Spelling help, after submission</h2><p>Saffilion never reveals answers while you type. After an incorrect submission, a close spelling suggestion may appear. You still choose and submit it yourself.</p><h2>Comfort settings</h2><label className="toggle"><input type="checkbox" checked={save.settings.reducedMotion} onChange={e=>updateSettings({reducedMotion:e.target.checked})}/> Reduce motion</label><label className="toggle"><input type="checkbox" checked={save.settings.batterySaver} onChange={e=>updateSettings({batterySaver:e.target.checked})}/> Battery-conscious animation</label><label className="toggle"><input type="checkbox" checked={save.settings.sound} onChange={e=>updateSettings({sound:e.target.checked})}/> Gentle sounds</label><h2>Offline play</h2><p>After the first successful load, the installed game keeps its questions and logic on your device. iPhone installation uses Safari’s Share → Add to Home Screen; supported Android browsers can offer Install app.</p></section></main>;
+  return <main className="screen paper help"><header><button className="back" onClick={()=>setScreen(save.active?'game':'ready')}>← Back</button><div><small>Field guide</small><h1>How to Saffilion</h1></div></header><section><h2>Rarer answers dig deeper</h2><p>Every accepted answer has a locally curated rarity. It is an estimate of familiarity, not live data from other players.</p><div className="tiers">{tierOrder.map((t,i)=><div key={t}><i className={`gem g${i}`}/><strong>{t}</strong><span>{[10,25,45,65,85,100][i]} pts</span></div>)}</div><h2>Spelling help, after submission</h2><p>Saffilion never reveals answers while you type. After an incorrect submission, a close spelling suggestion may appear. Safe plurals and curated aliases are accepted. You still choose and submit corrections yourself.</p><h2>Comfort settings</h2><label className="toggle"><input type="checkbox" checked={save.settings.reducedMotion} onChange={e=>updateSettings({reducedMotion:e.target.checked})}/> Reduce motion</label><label className="toggle"><input type="checkbox" checked={save.settings.batterySaver} onChange={e=>updateSettings({batterySaver:e.target.checked})}/> Battery-conscious animation</label><label className="toggle"><input type="checkbox" checked={save.settings.sound} onChange={e=>updateSettings({sound:e.target.checked})}/> Gentle sounds</label><label className="toggle"><input type="checkbox" checked={save.settings.haptics} onChange={e=>updateSettings({haptics:e.target.checked})}/> Gentle vibration where supported</label><h2>Offline play</h2><p>After the first successful load, the installed game keeps its questions and logic on your device. iPhone installation uses Safari’s Share → Add to Home Screen; supported Android browsers can offer Install app.</p></section></main>;
 }
 
 export default App;

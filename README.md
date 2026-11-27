@@ -4,12 +4,15 @@ Saffilion is a cozy, mobile-first rarity-mining game made with love for Safia. A
 
 ## What is included
 
-- Five selectable, animated CSS pixel-art cats
+- Five selectable 48×48 canvas pixel cats with individual idle, happy, digging, and incorrect-answer reactions
 - Seven-question expeditions with reliable 30-second deadlines
 - 100+ offline questions across geography, nature, science, food, music, film, games, history, sports, books, everyday life, and South Africa
 - Local canonical answers, aliases, six fixed rarity tiers, and post-submission typo correction
 - Responsive portrait-first play, safe-area support, dynamic viewport sizing, landscape layouts, 44px controls, and a keyboard-conscious scene
-- Five depth environments, touch-friendly controls, reduced motion, battery mode, and optional Web Audio sounds
+- Staged rarity reveals, tier-scaled digging particles, five distinct depth biomes, and small underground discoveries
+- Touch-friendly controls, keyboard-aware scene compression, reduced motion, battery mode, optional sound, and optional haptics
+- Expedition results with rarity distribution, personal records, quick replay, and a thematic digging journal
+- A deterministic cosmetic shop using earned crystals only—no randomness, purchases, or gameplay advantages
 - Versioned local save data, resumable expeditions, personal journal, export/import, missing-answer notes, and reset confirmation
 - Installable PWA with an offline precache and a GitHub Pages workflow
 
@@ -42,7 +45,7 @@ npm run test:e2e
 
 ## Save data
 
-The `saffilion-save-v1` local-storage record contains the selected cat, active expedition deadline, finished rounds, journal, shuffle bag, crystals, settings, and locally suggested missing answers. The Journal can export and import validated JSON. Published question changes never rewrite completed expedition scores.
+The `saffilion-save-v1` local-storage record contains the selected cat, active expedition deadline, finished rounds, journal, shuffle bag, crystals, unlocked/equipped cosmetics, settings, and locally suggested missing answers. The Journal can export and import validated JSON. New optional save fields are deep-merged into older version-1 saves, and published question changes never rewrite completed expedition scores.
 
 ## Add questions
 
@@ -50,7 +53,7 @@ Questions live in `src/data/questions.ts`. `make()` accepts six semicolon-separa
 
 ## Add cats and cosmetics
 
-Cat metadata is in `src/App.tsx`; visual layers and animations are in `src/styles.css`. New cats need a stable `CatId`, colours with accessible contrast, and states for idle, walking, digging, celebrating, and an incorrect answer. Cosmetic save IDs belong in `unlocked`; never gate core play behind crystals.
+Cat metadata, sprite drawing, and cosmetic definitions are in `src/App.tsx`; presentation animations are in `src/styles.css`. New cats need a stable `CatId`, colours with accessible contrast, and states for idle, walking, happy, tiered digging, celebrating, and an incorrect answer. Cosmetic save IDs belong in `unlocked` and `equipped`; never gate core play behind crystals.
 
 ## GitHub Pages deployment
 
@@ -65,5 +68,4 @@ Game code, writing, and artwork are original and released under the repository l
 - Rarity is necessarily subjective and should be reviewed as players record missing answers.
 - Browser storage can be cleared by the operating system; exports are the portable backup.
 - iOS does not expose the same install prompt or storage lifecycle as Android.
-- The current Treasure Burrow explains the crystal economy but does not yet sell cosmetics; crystals are saved for a future asset pack.
 - Physical-device testing is still required before claiming hardware certification; automated mobile browser emulation is included.

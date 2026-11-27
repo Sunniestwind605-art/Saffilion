@@ -20,7 +20,20 @@ export function distance(a: string, b: string) {
 
 export function findAnswer(question: Question, raw: string): Answer | undefined {
   const needle = normalize(raw);
-  return question.answers.find(a => [a.canonical, ...a.aliases].some(v => normalize(v) === needle));
+  return question.answers.find(a => [a.canonical, ...a.aliases].some(v => equivalentAnswer(normalize(v), needle)));
+}
+
+function singular(value: string) {
+  const words = value.split(' '), last = words.at(-1) || '';
+  if (last.length < 5 || /(ss|us|is)$/.test(last)) return value;
+  if (last.endsWith('ies')) words[words.length - 1] = `${last.slice(0,-3)}y`;
+  else if (/(ches|shes|xes|zes)$/.test(last)) words[words.length - 1] = last.slice(0,-2);
+  else if (last.endsWith('s')) words[words.length - 1] = last.slice(0,-1);
+  return words.join(' ');
+}
+
+export function equivalentAnswer(a: string, b: string) {
+  return a === b || (a.length >= 4 && b.length >= 4 && singular(a) === singular(b));
 }
 
 export function depthForPoints(points: number) { return Math.max(0, points) * 10; }
@@ -52,7 +65,7 @@ export function validateQuestions(questions: Question[]) {
     for (const a of q.answers) {
       if (!(a.tier in TIERS) || a.points !== TIERS[a.tier]) errors.push(`${q.id}: invalid score for ${a.canonical}`);
       for (const name of [a.canonical, ...a.aliases].map(normalize)) {
-        const prior = names.get(name); if (prior !== undefined && prior !== a.points) errors.push(`${q.id}: conflicting alias ${name}`); names.set(name, a.points);
+        const prior = names.get(name); if (prior !== undefined) errors.push(`${q.id}: duplicate or conflicting answer ${name}`); names.set(name, a.points);
       }
     }
   }
@@ -60,11 +73,11 @@ export function validateQuestions(questions: Question[]) {
 }
 
 export function freshSave(): SaveData {
-  return { version: 1, selectedCat: 'pebble', expeditions: [], active: null, questionBag: [], recentQuestions: [], missingAnswers: [], crystals: 0, unlocked: [], settings: { sound: true, reducedMotion: false, batterySaver: false } };
+  return { version: 1, selectedCat: 'pebble', expeditions: [], active: null, questionBag: [], recentQuestions: [], missingAnswers: [], crystals: 0, unlocked: [], equipped: null, settings: { sound: true, haptics: true, reducedMotion: false, batterySaver: false } };
 }
 
 export function loadSave(): SaveData {
-  try { const value = JSON.parse(localStorage.getItem('saffilion-save-v1') || 'null'); return value?.version === 1 ? { ...freshSave(), ...value } : freshSave(); } catch { return freshSave(); }
+  try { const value = JSON.parse(localStorage.getItem('saffilion-save-v1') || 'null'); const clean=freshSave(); return value?.version === 1 ? { ...clean, ...value, settings:{...clean.settings,...value.settings} } : clean; } catch { return freshSave(); }
 }
 export function persist(save: SaveData) { localStorage.setItem('saffilion-save-v1', JSON.stringify(save)); }
 

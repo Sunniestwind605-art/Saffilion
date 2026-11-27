@@ -14,7 +14,7 @@ function make(id: string, category: string, prompt: string, raw: string, difficu
 }
 
 export const questions: Question[] = [
-  make('geo-01','Geography','Name a country in Africa.','South Africa~RSA|Egypt|Nigeria|Kenya;Morocco|Ghana|Ethiopia;Tanzania|Uganda|Algeria;Botswana|Namibia;Lesotho|Eswatini~Swaziland;Comoros'),
+  make('geo-01','Geography','Name a country in Africa.','South Africa~RSA|Egypt|Nigeria|Kenya;Morocco|Ghana|Ethiopia|Algeria|Senegal;Tanzania|Uganda|Cameroon|Angola|Zimbabwe;Botswana|Namibia|Zambia|Mozambique;Lesotho|Eswatini~Swaziland|Malawi|Rwanda;Comoros|São Tomé and Príncipe'),
   make('geo-02','Geography','Name a country in South America.','Brazil|Argentina|Chile|Peru;Colombia|Venezuela|Ecuador;Bolivia|Uruguay|Paraguay;Guyana|Suriname;French Guiana;Falkland Islands', 'easy'),
   make('geo-03','Geography','Name a country whose name starts with B.','Brazil|Belgium|Bangladesh|Bulgaria;Bahamas|Bahrain|Belarus;Bolivia|Botswana|Belize;Barbados|Benin;Bhutan|Burundi;Brunei'),
   make('geo-04','Geography','Name a European capital city.','London|Paris|Rome|Berlin;Madrid|Lisbon|Athens;Vienna|Prague|Dublin;Tallinn|Riga;Ljubljana|Bratislava;Podgorica'),
@@ -25,7 +25,7 @@ export const questions: Question[] = [
   make('geo-09','Geography','Name a major ocean or sea.','Atlantic Ocean|Pacific Ocean|Indian Ocean|Mediterranean Sea;Arctic Ocean|Caribbean Sea|Red Sea;Black Sea|Baltic Sea|North Sea;Arabian Sea|Coral Sea;Tasman Sea|Bering Sea;Sargasso Sea'),
   make('geo-10','Geography','Name a famous desert.','Sahara|Gobi|Kalahari|Mojave;Atacama|Arabian Desert|Namib;Thar|Sonoran|Great Victoria Desert;Taklamakan|Chihuahuan Desert;Karakum|Patagonian Desert;Dasht-e Lut'),
 
-  make('nature-01','Animals & Nature','Name an animal that lives in the ocean.','Dolphin|Shark|Whale|Octopus;Seal|Tuna|Jellyfish;Sea turtle|Crab|Squid;Seahorse|Manta ray;Narwhal|Nautilus;Dugong'),
+  make('nature-01','Animals & Nature','Name an animal that lives in the ocean.','Fish|Dolphin|Shark|Whale|Octopus;Seal|Tuna|Jellyfish|Sea lion|Eel;Sea turtle|Crab|Squid|Starfish~sea star;Seahorse|Manta ray|Barracuda;Narwhal|Nautilus|Coelacanth;Dugong|Goblin shark'),
   make('nature-02','Animals & Nature','Name a bird that cannot fly.','Penguin|Ostrich|Emu|Kiwi;Cassowary|Rhea|Kakapo;Takahe|Weka|Steamer duck;Flightless cormorant|Inaccessible Island rail;Campbell teal|Fuegian steamer duck;Kagu'),
   make('nature-03','Animals & Nature','Name a mammal that lays eggs.','Platypus|Short-beaked echidna|Eastern long-beaked echidna;Western long-beaked echidna|Sir David’s long-beaked echidna|Long-beaked echidna;Echidna|Spiny anteater|Monotreme;Zaglossus|Tachyglossus;Attenborough’s long-beaked echidna;Duck-billed platypus', 'challenging'),
   make('nature-04','Animals & Nature','Name a type of big cat.','Lion|Tiger|Leopard|Cheetah;Jaguar|Cougar|Snow leopard;Lynx|Clouded leopard|Serval;Caracal|Ocelot;Margay|Pallas’s cat;Andean mountain cat'),
@@ -120,7 +120,7 @@ export const questions: Question[] = [
   make('everyday-08','Everyday Life','Name a room commonly found in a home.','Bedroom|Kitchen|Bathroom|Living room;Dining room|Study|Garage;Laundry room|Attic|Basement;Pantry|Conservatory;Mudroom|Games room;Butler’s pantry'),
 
   make('sa-01','South Africa','Name a province of South Africa.','Gauteng|Western Cape|KwaZulu-Natal|Eastern Cape;Limpopo|Mpumalanga|Free State;North West|Northern Cape; ; ;', 'easy'),
-  make('sa-02','South Africa','Name a South African city or major town.','Johannesburg|Cape Town|Durban|Pretoria;Gqeberha~Port Elizabeth|Bloemfontein|Polokwane;Mbombela~Nelspruit|Kimberley|Mahikeng;East London|Pietermaritzburg;George|Mthatha;Upington'),
+  make('sa-02','South Africa','Name a South African city or major town.','Johannesburg|Cape Town|Durban|Pretoria|Soweto;Gqeberha~Port Elizabeth|Bloemfontein|Polokwane|East London;Mbombela~Nelspruit|Kimberley|Mahikeng|Pietermaritzburg;George|Mthatha|Rustenburg;Stellenbosch|Paarl|Welkom;Upington|Makhanda~Grahamstown'),
   make('sa-03','South Africa','Name an animal found in Kruger National Park.','Lion|Elephant|Leopard|Buffalo;Rhinoceros|Giraffe|Zebra;Hippopotamus|Cheetah|Hyena;Wild dog|Kudu;Sable antelope|Honey badger;Pangolin'),
   make('sa-04','South Africa','Name a South African food or dish.','Braai|Biltong|Boerewors|Bobotie;Bunny chow|Melktert|Koeksister;Chakalaka|Potjiekos|Malva pudding;Vetkoek|Pap;Waterblommetjiebredie|Umngqusho;Denningvleis'),
   make('sa-05','South Africa','Name a landmark in South Africa.','Table Mountain|Robben Island|Kruger National Park|Cape Point;Union Buildings|Voortrekker Monument|Apartheid Museum;Blyde River Canyon|Drakensberg|Cradle of Humankind;Mapungubwe|Golden Gate Highlands;Hole in the Wall|Augrabies Falls;Richtersveld'),

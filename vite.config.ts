@@ -12,11 +12,14 @@ export default defineConfig({
       manifest: {
         name: 'Saffilion — Cozy Rarity Mining',
         short_name: 'Saffilion',
+        id: '/Saffilion/',
         description: 'Dig deeper with rarer trivia answers.',
         theme_color: '#392846',
         background_color: '#f9ecd7',
         display: 'standalone',
         orientation: 'portrait-primary',
+        categories: ['games', 'education', 'entertainment'],
+        prefer_related_applications: false,
         scope: '/Saffilion/',
         start_url: '/Saffilion/',
         icons: [
