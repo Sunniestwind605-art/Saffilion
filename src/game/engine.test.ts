@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { depthForPoints, digDurationForPoints, distance, equivalentAnswer, findAnswer, isKnownOutsideQuestion, normalize, pickQuestions, rankFor, suggestAnswer, travelPixelsForPoints, validateQuestions, freshSave } from './engine';
+import { dailyQuestionIds, depthForPoints, digDurationForPoints, distance, equivalentAnswer, findAnswer, isKnownOutsideQuestion, normalize, pickQuestions, rankFor, seedFrom, suggestAnswer, travelPixelsForPoints, validateQuestions, freshSave } from './engine';
 import { questions } from '../data/questions';
+import { DAILY_SCHEDULE_VERSION } from '../data/knowledge';
 
 describe('answer engine', () => {
   const planets = questions.find(q => q.id === 'science-01')!;
@@ -45,6 +46,24 @@ describe('game rules', () => {
     const out = pickQuestions(questions, freshSave());
     expect(out.chosen).toHaveLength(7);
     expect(new Set(out.chosen).size).toBe(7);
+  });
+  it('builds a deterministic balanced daily sequence', () => {
+    const first = dailyQuestionIds(questions, '2026-11-28');
+    const second = dailyQuestionIds([...questions].reverse(), '2026-11-28');
+    expect(first).toEqual(second);
+    expect(first).toHaveLength(7);
+    const selected = first!.map(id => questions.find(question => question.id === id)!);
+    expect(selected.map(question => question.difficulty).sort()).toEqual(['challenging','challenging','easy','easy','medium','medium','medium']);
+    expect(new Set(selected.map(question => question.category)).size).toBeGreaterThanOrEqual(4);
+    expect(dailyQuestionIds(questions, '2026-11-28', DAILY_SCHEDULE_VERSION + '-other')).toBeNull();
+  });
+  it('keeps seeded unlimited selection reproducible and avoids recent questions', () => {
+    const seed = seedFrom('repeatable-selection');
+    const first = pickQuestions(questions, freshSave(), 'All', { seed });
+    const second = pickQuestions(questions, freshSave(), 'All', { seed });
+    expect(first.chosen).toEqual(second.chosen);
+    const save = freshSave(); save.recentQuestions = first.chosen;
+    expect(pickQuestions(questions, save, 'All', { seed }).chosen.some(id => first.chosen.includes(id))).toBe(false);
   });
   it('keeps ranking thresholds stable', () => {
     expect(rankFor(0)).toBe('Curious Kitten');

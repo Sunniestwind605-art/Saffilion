@@ -188,11 +188,13 @@ test('production PWA completes a seven-round expedition offline', async ({ page,
   await page.reload();
   const offlineBank = await page.evaluate(async () => {
     const manifest = await (await fetch('data/v2/manifest.json')).json();
+    const generation = await (await fetch('data/v3/generation-report.json')).json();
     const sizes = await Promise.all(manifest.shards.map(async (shard: {url:string}) => (await fetch(shard.url)).text().then(value => value.length)));
-    return { count: manifest.shards.length, allLoaded: sizes.every((size: number) => size > 100) };
+    return { count: manifest.shards.length, allLoaded: sizes.every((size: number) => size > 100), playableQuestions: generation.playableQuestions };
   });
   expect(offlineBank.count).toBeGreaterThan(10);
   expect(offlineBank.allLoaded).toBe(true);
+  expect(offlineBank.playableQuestions).toBeGreaterThanOrEqual(300);
   for (const [index, answer] of ['Jupitr','South Africa','Brazil','Brazil','London','Japan','Spain'].entries()) {
     await page.getByLabel('Your answer').fill(answer);
     await page.getByRole('button', { name: 'Dig!' }).click();
@@ -202,4 +204,56 @@ test('production PWA completes a seven-round expedition offline', async ({ page,
   await expect(page.getByText('Expedition complete')).toBeVisible();
   await expect(page.locator('.round-summary > div')).toHaveCount(7);
   await context.setOffline(false);
+});
+
+test('Daily Dig and category modes show real bank counts on mobile', async ({ page }) => {
+  await page.goto('.');
+  await page.getByRole('button', { name: 'Let’s Dig!' }).click();
+  await page.getByRole('button', { name: /Adventure with Safia/ }).click();
+  await expect(page.getByRole('heading', { name: 'Daily Dig' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Unlimited Dig' })).toBeVisible();
+  await expect(page.getByLabel('Question mix')).toContainText(/General knowledge \(\d+\)/);
+  await expect(page.getByText('2 easy · 3 medium · 2 challenging')).toBeVisible();
+});
+
+test('a missing-answer report stays local and contains versioned review data', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('saffilion-save-v1', JSON.stringify({
+    version:1, selectedCat:'pebble', expeditions:[], questionBag:[], recentQuestions:[], missingAnswers:[], dailyRecords:[], crystals:0, unlocked:[], equipped:null, settings:{sound:false,haptics:false,reducedMotion:true,batterySaver:true},
+    active:{questionIds:['science-01','geo-01','geo-02','geo-03','geo-04','geo-05','geo-06'],round:0,results:[],deadline:Date.now()+30000,category:'All',mode:'unlimited'}
+  })));
+  const publicRequests:string[]=[];
+  page.on('request', request => { if (request.url().includes('github.com/Sunniestwind605-art/Saffilion/issues')) publicRequests.push(request.url()); });
+  await page.goto('.');
+  await page.getByLabel('Your answer').fill('Pluto Prime');
+  await page.getByRole('button', { name: 'Dig!' }).click();
+  page.once('dialog', dialog => dialog.accept('A proposed alternate name.'));
+  await page.getByRole('button', { name: 'My answer should count' }).click();
+  await expect(page.getByText('Saved only on this device for review. Nothing was sent.')).toBeVisible();
+  const reports = await page.evaluate(() => JSON.parse(localStorage.getItem('saffilion-save-v1')!).missingAnswers);
+  expect(reports).toHaveLength(1);
+  expect(reports[0]).toMatchObject({ questionId:'science-01', answer:'Pluto Prime', datasetVersion:'3.0.0', explanation:'A proposed alternate name.' });
+  expect(publicRequests).toEqual([]);
+});
+
+test('practice keeps the original Daily result immutable and reveals answers only afterwards', async ({ page }) => {
+  const questionIds=['science-01','geo-01','geo-02','geo-03','geo-04','geo-05','geo-06'];
+  await page.addInitScript(ids => localStorage.setItem('saffilion-save-v1', JSON.stringify({
+    version:1, selectedCat:'pebble', expeditions:[], questionBag:[], recentQuestions:[], missingAnswers:[], crystals:0, unlocked:[], equipped:null, settings:{sound:false,haptics:false,reducedMotion:true,batterySaver:true},
+    dailyRecords:[{date:'2026-11-27',scheduleVersion:'daily-v1-bank-3.0.0',expeditionId:'original',score:123,depth:1230,cat:'pebble',questionIds:ids,rounds:[],completedAt:'2026-11-27T12:00:00.000Z'}],
+    active:{questionIds:ids,round:0,results:[],deadline:Date.now()+30000,category:'Daily Dig',mode:'practice',dailyDate:'2026-11-27',scheduleVersion:'daily-v1-bank-3.0.0'}
+  })), questionIds);
+  await page.goto('.');
+  await expect(page.getByRole('button', { name: 'Explore verified answers' })).toHaveCount(0);
+  for (const [index, answer] of ['Jupiter','South Africa','Brazil','Brazil','London','Japan','Spain'].entries()) {
+    await page.getByLabel('Your answer').fill(answer);
+    await page.getByRole('button', { name: 'Dig!' }).click();
+    if (index < 6) await expect(page.getByText(`Question ${index+2} / 7`)).toBeVisible();
+  }
+  await expect(page.getByText('Archive practice complete')).toBeVisible();
+  await page.getByRole('button', { name: 'Explore verified answers' }).first().click();
+  await expect(page.getByRole('region', { name: 'Verified alternative answers' })).toBeVisible();
+  await expect(page.getByText('What else could I have found?')).toBeVisible();
+  const records = await page.evaluate(() => JSON.parse(localStorage.getItem('saffilion-save-v1')!).dailyRecords);
+  expect(records).toHaveLength(1);
+  expect(records[0]).toMatchObject({ expeditionId:'original', score:123, depth:1230 });
 });

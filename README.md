@@ -6,21 +6,23 @@ Saffilion is a cozy, mobile-first rarity-mining game made with love for Safia. A
 
 - Five selectable 48×48 canvas pixel cats with individual idle, happy, digging, and incorrect-answer reactions
 - Seven-question expeditions with reliable 30-second deadlines
-- 102 offline prompts backed by 12,000+ shared entities across geography, nature, science, food, music, film, games, history, sports, books, everyday life, and South Africa
+- 462 offline prompts backed by 12,000+ shared entities across geography, nature, science, food, music, film, games, history, sports, books, everyday life, and South Africa
+- Deterministic Daily Digs, a 30-day practice archive, balanced 2/3/2 difficulty selection, and unlimited category play
+- A build-time template engine with quality filters, overlap detection, stable generated IDs, and a developer-only bank explorer
 - Stable entity IDs, context-aware aliases, six fixed rarity tiers, out-of-category detection, and post-submission typo correction
 - Responsive portrait-first play, safe-area support, dynamic viewport sizing, landscape layouts, 44px controls, and a keyboard-conscious scene
 - Staged rarity reveals, tier-scaled digging particles, five distinct depth biomes, and small underground discoveries
 - Touch-friendly controls, keyboard-aware scene compression, reduced motion, battery mode, optional sound, and optional haptics
 - Expedition results with rarity distribution, personal records, quick replay, and a thematic digging journal
 - A deterministic cosmetic shop using earned crystals only—no randomness, purchases, or gameplay advantages
-- Versioned local save data, resumable expeditions, personal journal, export/import, missing-answer notes, and reset confirmation
+- Versioned local save data, resumable expeditions, immutable original Daily results, personal journal, export/import, local missing-answer reports, and reset confirmation
 - Installable PWA with an offline precache and a GitHub Pages workflow
 
 ## Rarity scoring
 
 Rarity is a curated, versioned estimate of how familiar an answer is in the context of its question. It is not live popularity data. Pebble, Copper, Quartz, Sapphire, Amethyst, and Stardust answers are worth 5, 12, 25, 45, 70, and 100 points. That makes a Stardust answer worth 20× a Pebble answer while preserving the 700-point perfect expedition. Every point equals 10 metres. Aliases inherit their canonical answer's score.
 
-The Phase 2 database contains 102 prompts, 12,964 unique entities and 12,800 canonical prompt memberships. One entity can belong to several matching prompts without duplicated maintenance. Complete finite sets are intentionally not padded with false entries. See [DATA_SOURCES.md](./DATA_SOURCES.md) and `data/reports/question-validation.json` for the research, coverage and curation trail.
+The Phase 3 database contains 462 playable prompts, 12,964 unique entities and 233,777 canonical question-answer memberships. Of those, 331 standard questions have at least 100 verified answers. One entity can belong to several matching prompts without duplicated maintenance. Complete finite sets are intentionally not padded with false entries. See [DATA_SOURCES.md](./DATA_SOURCES.md), `data/reports/question-generation.json`, and `data/reports/question-validation.json` for the research, coverage and curation trail.
 
 ## Run locally
 
@@ -56,11 +58,13 @@ The production bank is compiled from explicit entities, prompt predicates, prove
 
 ```bash
 npm run data:fetch      # refresh permitted upstream snapshots
-npm run data:build      # merge, deduplicate and create offline shards
+npm run data:build      # merge, deduplicate, generate questions and create offline data
+npm run data:generate-questions # rebuild only the generated Phase 3 bank
+npm run data:report     # regenerate the bank and both quality reports
 npm run data:validate   # write the coverage/integrity report
 ```
 
-Application builds consume only checked-in local snapshots and never require a live data request. Add or edit entities in `data/curated/entities.json`, prompt definitions in `data/curated/prompts.json`, and tuned rarity in `data/overrides/rarity.json`. Keep stable IDs and source IDs, then run `npm run validate:questions`.
+Application builds consume only checked-in local snapshots and never require a live data request. Add or edit entities in `data/curated/entities.json`, launch prompt definitions in `data/curated/prompts.json`, generator templates in `scripts/generate-questions.mjs`, and tuned rarity in `data/overrides/rarity.json`. Keep stable IDs and source IDs, then run `npm run data:report`. A developer bank explorer is available at `/Saffilion/dev/bank-explorer.html` in local and deployed builds; it is intentionally not linked from the game.
 
 ## Add cats and cosmetics
 

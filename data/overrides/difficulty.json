@@ -1,0 +1,14 @@
+{
+  "gen:v1:sa-place-province:province-gauteng": {
+    "difficulty": "easy",
+    "reason": "Manual review: a broad pool of familiar Gauteng place names makes this accessible despite the province condition."
+  },
+  "gen:v1:country-continent:continent-asia": {
+    "difficulty": "easy",
+    "reason": "Manual review: many high-familiarity countries make this finite geography prompt accessible."
+  },
+  "gen:v1:element-atomic-range:end-118--start-91": {
+    "difficulty": "challenging",
+    "reason": "Manual review: most actinide and superheavy element names require specialist recall."
+  }
+}

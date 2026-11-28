@@ -1,5 +1,5 @@
 import { TIERS, type Answer, type Question, type SaveData } from './types';
-import { knownEntityIds } from '../data/knowledge';
+import { DAILY_SCHEDULE_VERSION, knownEntityIds } from '../data/knowledge';
 
 export function normalize(value: string) {
   return value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase()
@@ -87,7 +87,8 @@ export function validateQuestions(questions: Question[]) {
   for (const q of questions) {
     if (ids.has(q.id)) errors.push(`Duplicate id: ${q.id}`); ids.add(q.id);
     if (!q.prompt.trim()) errors.push(`${q.id}: empty prompt`);
-    if (q.answers.length < (finiteMinimums[q.id] ?? 6)) errors.push(`${q.id}: only ${q.answers.length} answers`);
+    const minimumAnswers = q.mode === 'specialist' ? 4 : (finiteMinimums[q.id] ?? 6);
+    if (q.answers.length < minimumAnswers) errors.push(`${q.id}: only ${q.answers.length} answers`);
     const names = new Map<string, number>();
     for (const a of q.answers) {
       if (!(a.tier in TIERS) || a.points !== TIERS[a.tier]) errors.push(`${q.id}: invalid score for ${a.canonical}`);
@@ -100,7 +101,7 @@ export function validateQuestions(questions: Question[]) {
 }
 
 export function freshSave(): SaveData {
-  return { version: 1, selectedCat: 'pebble', expeditions: [], active: null, questionBag: [], recentQuestions: [], missingAnswers: [], crystals: 0, unlocked: [], equipped: null, settings: { sound: true, haptics: true, reducedMotion: false, batterySaver: false } };
+  return { version: 1, selectedCat: 'pebble', expeditions: [], active: null, questionBag: [], recentQuestions: [], missingAnswers: [], dailyRecords: [], crystals: 0, unlocked: [], equipped: null, settings: { sound: true, haptics: true, reducedMotion: false, batterySaver: false } };
 }
 
 export function loadSave(): SaveData {
@@ -112,13 +113,69 @@ export function shuffled<T>(items: T[]) {
   const copy = [...items]; for (let i = copy.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [copy[i], copy[j]] = [copy[j], copy[i]]; } return copy;
 }
 
-export function pickQuestions(all: Question[], save: SaveData, category = 'All') {
-  const pool = category === 'All' ? all : all.filter(q => q.category === category);
-  let bag = save.questionBag.filter(id => pool.some(q => q.id === id) && !save.recentQuestions.includes(id));
-  if (bag.length < 7) bag = shuffled(pool.map(q => q.id).filter(id => !save.recentQuestions.slice(-14).includes(id)));
-  if (bag.length < 7) bag = shuffled(pool.map(q => q.id));
-  const chosen = bag.slice(0, 7);
-  return { chosen, bag: bag.slice(7), recent: [...save.recentQuestions, ...chosen].slice(-21) };
+export function seedFrom(value: string) {
+  let hash = 2166136261;
+  for (let index = 0; index < value.length; index++) { hash ^= value.charCodeAt(index); hash = Math.imul(hash, 16777619); }
+  return hash >>> 0;
+}
+
+export function mulberry32(seed: number) {
+  return () => { let value = seed += 0x6D2B79F5; value = Math.imul(value ^ value >>> 15, value | 1); value ^= value + Math.imul(value ^ value >>> 7, value | 61); return ((value ^ value >>> 14) >>> 0) / 4294967296; };
+}
+function shuffledWith<T>(items: T[], random: () => number) {
+  const copy = [...items];
+  for (let index = copy.length - 1; index > 0; index--) { const swap = Math.floor(random() * (index + 1)); [copy[index], copy[swap]] = [copy[swap], copy[index]]; }
+  return copy;
+}
+
+const answerSetCache = new WeakMap<Question, Set<string>>();
+function questionAnswerSet(question: Question) {
+  let set = answerSetCache.get(question);
+  if (!set) { set = new Set(question.answers.map(answer => answer.entityId)); answerSetCache.set(question, set); }
+  return set;
+}
+function questionOverlap(left: Question, right: Question) {
+  const a = questionAnswerSet(left), b = questionAnswerSet(right), smaller = a.size < b.size ? a : b, larger = smaller === a ? b : a;
+  let intersection = 0; for (const value of smaller) if (larger.has(value)) intersection++;
+  return intersection / Math.max(1, smaller.size);
+}
+
+export function pickQuestions(all: Question[], save: SaveData, category = 'All', options: { seed?: number; includeSpecialist?: boolean } = {}) {
+  const categoryPool = category === 'All' ? all : all.filter(question => question.category === category);
+  const standardPool = categoryPool.filter(question => question.mode === 'standard');
+  const pool = options.includeSpecialist || standardPool.length < 7 ? categoryPool : standardPool;
+  const recent = new Set(save.recentQuestions.slice(-28));
+  let available = pool.filter(question => !recent.has(question.id));
+  if (available.length < 7) available = [...pool];
+  const random = options.seed === undefined ? Math.random : mulberry32(options.seed);
+  const shuffledPool = shuffledWith(available, random);
+  const desired: Question['difficulty'][] = ['easy', 'easy', 'medium', 'medium', 'medium', 'challenging', 'challenging'];
+  const chosen: Question[] = [], categoryUse = new Map<string, number>(), templateUse = new Map<string, number>();
+  for (const difficulty of desired) {
+    const candidates = shuffledPool.filter(question => !chosen.includes(question));
+    if (!candidates.length) break;
+    const ranked = candidates.map(question => {
+      const difficultyPenalty = question.difficulty === difficulty ? 0 : 500;
+      const categoryPenalty = (categoryUse.get(question.category) ?? 0) * (category === 'All' ? 70 : 0);
+      const family = question.templateId ?? question.id.split('-')[0];
+      const templatePenalty = (templateUse.get(family) ?? 0) * 45;
+      const overlapPenalty = chosen.length ? Math.max(...chosen.map(prior => questionOverlap(question, prior))) * 220 : 0;
+      return { question, score: difficultyPenalty + categoryPenalty + templatePenalty + overlapPenalty + random() };
+    }).sort((a, b) => a.score - b.score);
+    const picked = ranked[0].question, family = picked.templateId ?? picked.id.split('-')[0];
+    chosen.push(picked); categoryUse.set(picked.category, (categoryUse.get(picked.category) ?? 0) + 1); templateUse.set(family, (templateUse.get(family) ?? 0) + 1);
+  }
+  const chosenIds = chosen.map(question => question.id);
+  const bag = pool.map(question => question.id).filter(id => !chosenIds.includes(id) && !recent.has(id));
+  return { chosen: chosenIds, bag, recent: [...save.recentQuestions, ...chosenIds].slice(-42) };
+}
+
+export function utcDateKey(date = new Date()) { return date.toISOString().slice(0, 10); }
+
+export function dailyQuestionIds(all: Question[], date: string, scheduleVersion = DAILY_SCHEDULE_VERSION) {
+  if (scheduleVersion !== DAILY_SCHEDULE_VERSION || !/^\d{4}-\d{2}-\d{2}$/.test(date)) return null;
+  const seed = seedFrom(scheduleVersion + ':' + date);
+  return pickQuestions([...all].sort((a, b) => a.id.localeCompare(b.id)), freshSave(), 'All', { seed }).chosen;
 }
 
 export function rankFor(score: number) {

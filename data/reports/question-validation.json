@@ -1,17 +1,20 @@
 {
-  "generatedAt": "2026-11-27T21:49:29.349Z",
+  "generatedAt": "2026-11-28T07:30:42.907Z",
   "entities": 12964,
-  "prompts": 102,
-  "canonicalAnswerRecords": 12800,
-  "aliasRecords": 190,
+  "prompts": 462,
+  "curatedPrompts": 102,
+  "generatedPrompts": 360,
+  "canonicalAnswerRecords": 233777,
+  "aliasRecords": 433,
   "min": 4,
-  "median": 21,
-  "average": 125.49,
+  "median": 206,
+  "average": 506.01,
   "max": 10491,
-  "broadQuestionsAtLeast100": 1,
-  "questionsAtLeast100": 2,
-  "questionsAtLeast500": 1,
-  "questionsAtLeast1000": 1,
+  "broadQuestionsAtLeast100": 331,
+  "standardQuestionsAtLeast100": 331,
+  "questionsAtLeast100": 332,
+  "questionsAtLeast500": 108,
+  "questionsAtLeast1000": 52,
   "broadBelowTarget": [
     {
       "id": "nature-01",
@@ -155,6 +158,126 @@
     {
       "id": "sa-01",
       "count": 9
+    },
+    {
+      "id": "gen:v1:country-continent:continent-asia",
+      "count": 49
+    },
+    {
+      "id": "gen:v1:country-continent:continent-europe",
+      "count": 50
+    },
+    {
+      "id": "gen:v1:country-continent:continent-north-america",
+      "count": 23
+    },
+    {
+      "id": "gen:v1:country-continent:continent-oceania",
+      "count": 12
+    },
+    {
+      "id": "gen:v1:country-initial:letter-a",
+      "count": 11
+    },
+    {
+      "id": "gen:v1:country-initial:letter-c",
+      "count": 15
+    },
+    {
+      "id": "gen:v1:country-initial:letter-d",
+      "count": 4
+    },
+    {
+      "id": "gen:v1:country-initial:letter-e",
+      "count": 9
+    },
+    {
+      "id": "gen:v1:country-initial:letter-f",
+      "count": 4
+    },
+    {
+      "id": "gen:v1:country-initial:letter-g",
+      "count": 10
+    },
+    {
+      "id": "gen:v1:country-initial:letter-i",
+      "count": 8
+    },
+    {
+      "id": "gen:v1:country-initial:letter-k",
+      "count": 6
+    },
+    {
+      "id": "gen:v1:country-initial:letter-l",
+      "count": 9
+    },
+    {
+      "id": "gen:v1:country-initial:letter-m",
+      "count": 17
+    },
+    {
+      "id": "gen:v1:country-initial:letter-n",
+      "count": 10
+    },
+    {
+      "id": "gen:v1:country-initial:letter-p",
+      "count": 10
+    },
+    {
+      "id": "gen:v1:country-initial:letter-r",
+      "count": 4
+    },
+    {
+      "id": "gen:v1:country-initial:letter-s",
+      "count": 28
+    },
+    {
+      "id": "gen:v1:country-initial:letter-t",
+      "count": 13
+    },
+    {
+      "id": "gen:v1:country-initial:letter-u",
+      "count": 7
+    },
+    {
+      "id": "gen:v1:country-initial:letter-v",
+      "count": 4
+    },
+    {
+      "id": "gen:v1:capital-continent:continent-africa",
+      "count": 57
+    },
+    {
+      "id": "gen:v1:capital-continent:continent-asia",
+      "count": 51
+    },
+    {
+      "id": "gen:v1:capital-continent:continent-north-america",
+      "count": 23
+    },
+    {
+      "id": "gen:v1:capital-continent:continent-oceania",
+      "count": 12
+    },
+    {
+      "id": "gen:v1:capital-continent:continent-south-america",
+      "count": 13
+    },
+    {
+      "id": "gen:v1:element-atomic-range:end-30--start-1",
+      "count": 30
+    },
+    {
+      "id": "gen:v1:element-atomic-range:end-60--start-31",
+      "count": 30
+    },
+    {
+      "id": "gen:v1:element-atomic-range:end-90--start-61",
+      "count": 30
+    },
+    {
+      "id": "gen:v1:element-atomic-range:end-118--start-91",
+      "count": 28
     }
   ],
   "duplicateEntityIds": 0,
@@ -162,7 +285,7 @@
   "invalidPredicates": 0,
   "missingSourceMetadata": 0,
   "missingRarityAssignments": 0,
-  "serializedEntityBytes": 4962175,
-  "offlineShardBytes": 2663441,
+  "serializedEntityBytes": 7482259,
+  "offlineShardBytes": 3938208,
   "errors": []
 }

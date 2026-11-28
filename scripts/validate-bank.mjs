@@ -5,7 +5,9 @@ import { matchesPredicate, normalize, quantile } from './lib/data-utils.mjs';
 const root = resolve(import.meta.dirname, '..');
 const load = async path => JSON.parse(await readFile(resolve(root, path), 'utf8'));
 const entities = await load('data/curated/entities.json');
-const prompts = await load('data/curated/prompts.json');
+const curatedPrompts = await load('data/curated/prompts.json');
+const generatedPrompts = await load('data/generated/questions.json');
+const prompts = [...curatedPrompts, ...generatedPrompts];
 const rarity = await load('data/overrides/rarity.json');
 const errors = [];
 const entityIds = new Set();
@@ -37,7 +39,7 @@ for (const prompt of prompts) {
   counts.push(members.length); promptCounts.set(prompt.id, members.length); memberships += members.length;
   const names = new Map();
   for (const entity of members) {
-    if (!rarity[prompt.id]?.[entity.id]) missingRarity++;
+    if (!prompt.generationVersion && !rarity[prompt.id]?.[entity.id]) missingRarity++;
     for (const value of [entity.name, ...entity.aliases]) {
       const key = normalize(value); aliases += value === entity.name ? 0 : 1;
       const prior = names.get(key);
@@ -55,6 +57,17 @@ for (const [id, expected] of Object.entries(exactFinite)) {
   if (actual !== expected) errors.push(id + ': expected ' + expected + ' finite members, found ' + actual);
 }
 if (missingRarity) errors.push('Missing rarity assignments: ' + missingRarity);
+const generatedIds = new Set();
+for (const prompt of generatedPrompts) {
+  if (!prompt.id.startsWith('gen:v1:')) errors.push('Unstable generated ID: ' + prompt.id);
+  if (generatedIds.has(prompt.id)) errors.push('Duplicate generated ID: ' + prompt.id);
+  generatedIds.add(prompt.id);
+  if (!prompt.templateId || !prompt.answerSetHash || !prompt.difficultyReason) errors.push('Incomplete generated metadata: ' + prompt.id);
+  if (prompt.answerCount !== promptCounts.get(prompt.id)) errors.push(prompt.id + ': recorded ' + prompt.answerCount + ' answers, found ' + promptCounts.get(prompt.id));
+}
+const standardAt100 = prompts.filter(prompt => prompt.mode === 'standard' && (promptCounts.get(prompt.id) ?? 0) >= 100).length;
+if (prompts.length < 300 || prompts.length > 500) errors.push('Playable bank outside 300-500 target: ' + prompts.length);
+if (standardAt100 < 100) errors.push('Fewer than 100 standard questions have 100 answers: ' + standardAt100);
 counts.sort((a, b) => a - b);
 const sourceBytes = (await stat(resolve(root, 'data/curated/entities.json'))).size;
 const shardFiles = (await load('public/data/v2/manifest.json')).shards;
@@ -64,6 +77,8 @@ const report = {
   generatedAt: new Date().toISOString(),
   entities: entities.length,
   prompts: prompts.length,
+  curatedPrompts: curatedPrompts.length,
+  generatedPrompts: generatedPrompts.length,
   canonicalAnswerRecords: memberships,
   aliasRecords: aliases,
   min: counts[0],
@@ -71,6 +86,7 @@ const report = {
   average: Number((memberships / prompts.length).toFixed(2)),
   max: counts.at(-1),
   broadQuestionsAtLeast100: prompts.filter(prompt => prompt.coverage === 'broad' && promptCounts.get(prompt.id) >= 100).length,
+  standardQuestionsAtLeast100: standardAt100,
   questionsAtLeast100: counts.filter(count => count >= 100).length,
   questionsAtLeast500: counts.filter(count => count >= 500).length,
   questionsAtLeast1000: counts.filter(count => count >= 1000).length,

@@ -2,6 +2,10 @@ import { TIERS, type Question, type Tier } from '../game/types';
 import rawEntities from '../../data/curated/entities.json';
 import rawPrompts from '../../data/curated/prompts.json';
 import rawRarity from '../../data/overrides/rarity.json';
+import generatedPrompts from '../../data/generated/questions.json';
+
+export const DATASET_VERSION = '3.0.0';
+export const DAILY_SCHEDULE_VERSION = 'daily-v1-bank-3.0.0';
 
 export type EntityValue = string | number | boolean | string[] | number[];
 export interface Entity {
@@ -29,16 +33,23 @@ interface PromptRecord {
   id: string;
   text: string;
   category: string;
-  difficulty: 'easy' | 'medium' | 'hard';
+  difficulty: 'easy' | 'medium' | 'hard' | 'challenging';
   mode: 'standard' | 'specialist';
   coverage: 'broad' | 'finite-set' | 'curated';
   target: number | null;
   where: EntityPredicate;
+  templateId?: string;
+  parameters?: Record<string, string | number>;
+  difficultyReason?: string;
+  sourceIds?: string[];
+  generationVersion?: string;
+  answerCount?: number;
+  answerSetHash?: string;
 }
 type RarityRecord = Record<string, Record<string, { tier: Tier; source: 'curated' | 'provisional' }>>;
 
 export const entities = rawEntities as unknown as Entity[];
-export const promptDefinitions = rawPrompts as unknown as PromptRecord[];
+export const promptDefinitions = [...rawPrompts, ...generatedPrompts] as unknown as PromptRecord[];
 const rarity = rawRarity as RarityRecord;
 
 export function normalizeEntityName(value: string) {
@@ -68,7 +79,15 @@ export function matchesPredicate(entity: Entity, predicate: EntityPredicate): bo
 }
 
 const provisionalTier = (entity: Entity): Tier => {
-  const population = entity.familiaritySignals?.population ?? null;
+  const atomicNumber = entity.familiaritySignals?.atomicNumber ?? null;
+  if (atomicNumber !== null) {
+    if (atomicNumber <= 20) return 'Copper';
+    if (atomicNumber <= 50) return 'Quartz';
+    if (atomicNumber <= 80) return 'Sapphire';
+    if (atomicNumber <= 100) return 'Amethyst';
+    return 'Stardust';
+  }
+  const population = entity.familiaritySignals?.population ?? entity.familiaritySignals?.countryPopulation ?? null;
   if (population !== null) {
     if (population >= 1_000_000) return 'Pebble';
     if (population >= 250_000) return 'Copper';
@@ -123,6 +142,10 @@ export const questions: Question[] = promptDefinitions.map(prompt => {
     difficulty: prompt.difficulty === 'hard' ? 'challenging' : prompt.difficulty,
     mode: prompt.mode,
     coverage: prompt.coverage,
+    templateId: prompt.templateId,
+    difficultyReason: prompt.difficultyReason,
+    sourceIds: prompt.sourceIds ?? ['saffilion:launch-bank'],
+    generationVersion: prompt.generationVersion,
     answers: members.map(entity => {
       const assignment = rarity[prompt.id]?.[entity.id];
       const tier = assignment?.tier ?? provisionalTier(entity);
@@ -131,5 +154,6 @@ export const questions: Question[] = promptDefinitions.map(prompt => {
   };
 });
 
-export const categories = ['All', ...new Set(questions.map(question => question.category))];
+export const categoryCounts = new Map([...new Set(questions.map(question => question.category))].map(category => [category, questions.filter(question => question.category === category && question.mode === 'standard').length]));
+export const categories = ['All', ...[...categoryCounts].filter(([, count]) => count >= 7).map(([category]) => category)];
 export const knownEntityIds = (value: string) => exactAliasIndex.get(normalizeEntityName(value)) ?? new Set<string>();

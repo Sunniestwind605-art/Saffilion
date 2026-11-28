@@ -3,7 +3,7 @@
   "sources": [
     {
       "id": "geonames",
-      "files": ["geonames/za/ZA.txt", "geonames/countryInfo.txt"],
+      "files": ["geonames/za/ZA.txt", "geonames/countryInfo.txt", "geonames/admin1CodesASCII.txt"],
       "licence": "CC BY 4.0"
     },
     {

@@ -22,8 +22,15 @@ function add(record, promptId, tier) {
     entity.aliases = [...new Set([...entity.aliases, ...record.aliases])];
     entity.types = [...new Set([...entity.types, ...record.types])];
     entity.sourceIds = [...new Set([...entity.sourceIds, ...record.sourceIds])];
-    entity.props = { ...entity.props, ...record.props, promptIds: [...new Set([...(entity.props.promptIds ?? []), ...(promptId ? [promptId] : [])])] };
-    entity.familiaritySignals = { ...entity.familiaritySignals, ...record.familiaritySignals };
+    const currentPopulation = entity.familiaritySignals?.population ?? -1;
+    const incomingPopulation = record.familiaritySignals?.population ?? -1;
+    const keepIncomingPlace = !record.types.includes('populated-place') || incomingPopulation > currentPopulation;
+    entity.props = {
+      ...entity.props,
+      ...(keepIncomingPlace ? record.props : {}),
+      promptIds: [...new Set([...(entity.props.promptIds ?? []), ...(promptId ? [promptId] : [])])],
+    };
+    if (keepIncomingPlace) entity.familiaritySignals = { ...entity.familiaritySignals, ...record.familiaritySignals };
   }
   for (const type of entity.types) for (const name of [entity.name, ...entity.aliases]) byName.set(type + '|' + normalize(name), entity);
   if (promptId) {
@@ -89,19 +96,31 @@ for (const row of periodic.Table.Row) {
 }
 
 const allowedPlaceCodes = new Set(['PPL', 'PPLA', 'PPLA2', 'PPLA3', 'PPLC']);
+const admin1Names = new Map();
+for (const line of (await readFile(resolve(root, 'data/sources/geonames/admin1CodesASCII.txt'), 'utf8')).split(/\r?\n/)) {
+  if (!line) continue;
+  const [code, name] = line.split('\t');
+  if (code.startsWith('ZA.')) admin1Names.set(code.slice(3), name);
+}
 const placeRows = (await readFile(resolve(root, 'data/sources/geonames/za/ZA.txt'), 'utf8')).split(/\r?\n/);
 for (const line of placeRows) {
   if (!line) continue;
   const c = line.split('\t');
   if (c[6] !== 'P' || !allowedPlaceCodes.has(c[7])) continue;
   const population = Number(c[14]) || 0;
+  const normalizedName = normalize(c[1]);
+  const lettersOnly = normalizedName.replace(/[^a-z]/g, '');
   const tier = population >= 500000 ? 'Pebble' : population >= 100000 ? 'Copper' : population >= 25000 ? 'Quartz' : population >= 5000 ? 'Sapphire' : population >= 500 ? 'Amethyst' : 'Stardust';
   add({
     id: 'geonames:' + c[0],
     name: c[1],
     aliases: c[2] && normalize(c[2]) !== normalize(c[1]) ? [c[2]] : [],
     types: ['city', 'town', 'populated-place'],
-    props: { promptIds: ['sa-02'], country: 'South Africa', featureCode: c[7] },
+    props: {
+      promptIds: ['sa-02'], country: 'South Africa', province: admin1Names.get(c[10]) ?? c[10], featureCode: c[7],
+      initial: lettersOnly[0] ?? '', ending: lettersOnly.at(-1) ?? '', letters: [...new Set(lettersOnly)],
+      nameLength: lettersOnly.length, wordCount: normalizedName.split(' ').filter(Boolean).length,
+    },
     sourceIds: ['geonames:' + c[0]],
     familiaritySignals: { population },
   }, 'sa-02', tier);

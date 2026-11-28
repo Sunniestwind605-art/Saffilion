@@ -42,19 +42,21 @@ const wikidataRequest = fetch('https://query.wikidata.org/sparql', {
   if (!response.ok) throw new Error('Wikidata: HTTP ' + response.status);
   return Buffer.from(await response.arrayBuffer());
 });
-const [zaZip, countryInfo, periodic, countries] = await Promise.all([
+const [zaZip, countryInfo, admin1Codes, periodic, countries] = await Promise.all([
   download('https://download.geonames.org/export/dump/ZA.zip'),
   download('https://download.geonames.org/export/dump/countryInfo.txt'),
+  download('https://download.geonames.org/export/dump/admin1CodesASCII.txt'),
   download('https://pubchem.ncbi.nlm.nih.gov/rest/pug/periodictable/JSON'),
   wikidataRequest,
 ]);
 await writeFile(resolve(geonamesDir, 'ZA.zip'), zaZip);
 await writeFile(resolve(geonamesDir, 'za/ZA.txt'), unzipFirst(zaZip));
 await writeFile(resolve(geonamesDir, 'countryInfo.txt'), countryInfo);
+await writeFile(resolve(geonamesDir, 'admin1CodesASCII.txt'), admin1Codes);
 await writeFile(resolve(pubchemDir, 'periodic-table.json'), periodic);
 await writeFile(resolve(wikidataDir, 'countries.json'), countries);
 await writeFile(resolve(root, 'data/sources/source-manifest.json'), JSON.stringify({
   retrievedAt: new Date().toISOString(),
-  sources: ['GeoNames ZA.zip', 'GeoNames countryInfo.txt', 'PubChem PUG periodic table', 'Wikidata UN-member country query'],
+  sources: ['GeoNames ZA.zip', 'GeoNames countryInfo.txt', 'GeoNames admin1CodesASCII.txt', 'PubChem PUG periodic table', 'Wikidata UN-member country query'],
 }, null, 2) + '\n');
 console.log('Downloaded and cached all Phase 2 source snapshots.');

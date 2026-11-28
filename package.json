@@ -10,7 +10,9 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "data:fetch": "node scripts/fetch-data.mjs",
-    "data:build": "node scripts/expand-snapshots.mjs",
+    "data:build": "node scripts/expand-snapshots.mjs && node scripts/generate-questions.mjs",
+    "data:generate-questions": "node scripts/generate-questions.mjs",
+    "data:report": "node scripts/generate-questions.mjs && node scripts/validate-bank.mjs",
     "data:validate": "node scripts/validate-bank.mjs",
     "validate:data": "node scripts/validate-bank.mjs && vitest run src/data/questions.test.ts",
     "validate:questions": "node scripts/validate-bank.mjs"
