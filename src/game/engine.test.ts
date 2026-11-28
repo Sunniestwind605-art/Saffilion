@@ -1,13 +1,15 @@
 import { describe, expect, it } from 'vitest';
-import { dailyQuestionIds, depthForPoints, digDurationForPoints, distance, equivalentAnswer, findAnswer, isKnownOutsideQuestion, normalize, pickQuestions, rankFor, seedFrom, suggestAnswer, travelPixelsForPoints, validateQuestions, freshSave } from './engine';
+import { dailyQuestionIds, depthForPoints, digDurationForPoints, distance, equivalentAnswer, findAnswer, isKnownOutsideQuestion, loadSave, normalize, pickQuestions, rankFor, seedFrom, suggestAnswer, travelPixelsForPoints, validateQuestions, freshSave } from './engine';
 import { questions } from '../data/questions';
 import { DAILY_SCHEDULE_VERSION } from '../data/knowledge';
+import { TIERS } from './types';
+import overrides from '../../data/overrides/rarity-v4.json';
 
 describe('answer engine', () => {
   const planets = questions.find(q => q.id === 'science-01')!;
   it('normalises case, accents, whitespace and punctuation', () => expect(normalize('  São--Tomé! ')).toBe('sao tome'));
   it('accepts canonical answers and curated aliases', () => {
-    expect(findAnswer(planets, '  JUPITER ')?.points).toBe(5);
+    expect(findAnswer(planets, '  JUPITER ')?.points).toBe(15);
     expect(findAnswer(questions.find(q => q.id === 'geo-01')!, 'RSA')?.canonical).toBe('South Africa');
   });
   it('accepts safe plural variants without turning fuzzy matching into autocomplete', () => {
@@ -19,6 +21,7 @@ describe('answer engine', () => {
   it('uses Damerau-Levenshtein transpositions', () => expect(distance('Jupietr', 'Jupiter')).toBe(1));
   it('suggests only confident submitted near-matches', () => {
     expect(suggestAnswer(planets, 'Jupitr')?.canonical).toBe('Jupiter');
+    expect(suggestAnswer(planets, 'Jupitr')?.points).toBe(findAnswer(planets, 'Jupiter')?.points);
     expect(suggestAnswer(planets, 'ju')).toBeUndefined();
     expect(suggestAnswer(planets, 'unrelated')).toBeUndefined();
   });
@@ -38,6 +41,10 @@ describe('answer engine', () => {
 });
 
 describe('game rules', () => {
+  it('uses one authoritative six-tier scoring curve', () => {
+    expect(TIERS).toEqual({ Pebble:10, Copper:15, Quartz:30, Sapphire:60, Amethyst:85, Stardust:100 });
+    expect(depthForPoints(Object.values(TIERS).reduce((sum, points) => sum + points, 0))).toBe(3000);
+  });
   it('contains at least 100 unique, valid questions', () => {
     expect(questions.length).toBeGreaterThanOrEqual(100);
     expect(validateQuestions(questions)).toEqual([]);
@@ -69,15 +76,48 @@ describe('game rules', () => {
     expect(rankFor(0)).toBe('Curious Kitten');
     expect(rankFor(700)).toBe('Stardust Legend');
   });
-  it('keeps curated answer weights meaningfully different', () => {
+  it('uses the Phase 4 rarity curve and keeps weights meaningfully different', () => {
     const africa = questions.find(q => q.id === 'geo-01')!;
-    expect(findAnswer(africa, 'South Africa')).toMatchObject({ tier: 'Pebble', points: 5 });
+    expect(findAnswer(africa, 'South Africa')).toMatchObject({ tier: 'Pebble', points: 10 });
     expect(findAnswer(africa, 'Comoros')).toMatchObject({ tier: 'Stardust', points: 100 });
-    expect(depthForPoints(5)).toBe(50);
+    expect(depthForPoints(10)).toBe(100);
     expect(depthForPoints(100)).toBe(1000);
-    expect(travelPixelsForPoints(100)).toBeGreaterThan(travelPixelsForPoints(5) * 7);
-    expect(digDurationForPoints(100)).toBeGreaterThan(digDurationForPoints(5) * 2);
-    expect(findAnswer(africa, 'Comoros')!.points / findAnswer(africa, 'South Africa')!.points).toBe(20);
+    expect(travelPixelsForPoints(100)).toBeGreaterThan(travelPixelsForPoints(10) * 5);
+    expect(digDurationForPoints(100)).toBeGreaterThan(digDurationForPoints(10) * 2);
+    expect(findAnswer(africa, 'Comoros')!.points / findAnswer(africa, 'South Africa')!.points).toBe(10);
     expect(new Set(questions.flatMap(q => q.answers.map(a => a.tier)))).toEqual(new Set(['Pebble','Copper','Quartz','Sapphire','Amethyst','Stardust']));
+  });
+  it('keeps aliases on the exact canonical classification', () => {
+    const africa = questions.find(q => q.id === 'geo-01')!;
+    expect(findAnswer(africa, 'RSA')).toBe(findAnswer(africa, 'South Africa'));
+  });
+  it('uses question context instead of assigning one global tier', () => {
+    const byEntity = new Map<string, Set<string>>();
+    for (const question of questions) for (const answer of question.answers) {
+      if (!byEntity.has(answer.entityId)) byEntity.set(answer.entityId, new Set());
+      byEntity.get(answer.entityId)!.add(answer.tier);
+    }
+    expect([...byEntity.values()].some(tiers => tiers.size > 1)).toBe(true);
+  });
+  it('does not promote low-confidence missing evidence to Stardust', () => {
+    expect(findAnswer(questions.find(q => q.id === 'sa-02')!, 'Copenhagen')).toMatchObject({ tier: 'Quartz', raritySource: 'model' });
+  });
+  it('applies every audited override to the requested question and entity', () => {
+    for (const override of overrides) {
+      const answer = questions.find(question => question.id === override.questionId)!.answers.find(item => item.entityId === override.entityId);
+      expect(answer).toMatchObject({ tier: override.tier, raritySource: 'override' });
+    }
+  });
+  it('rejects answers whose rarity provenance is absent', () => {
+    const question = structuredClone(questions.find(q => q.id === 'science-01')!);
+    (question.answers[0] as { raritySource?: string }).raritySource = undefined;
+    expect(validateQuestions([question]).some(error => error.includes('missing rarity metadata'))).toBe(true);
+  });
+  it('loads historical scores exactly as recorded instead of rescoring them', () => {
+    const historical = { ...freshSave(), expeditions:[{ id:'legacy', date:'2026-11-01T00:00:00.000Z', cat:'pebble', score:123, depth:1230, rounds:[{ questionId:'geo-01', prompt:'Legacy prompt', answer:'South Africa', canonical:'South Africa', points:5, tier:'Pebble', timedOut:false }] }] };
+    const priorStorage = globalThis.localStorage;
+    Object.defineProperty(globalThis, 'localStorage', { configurable:true, value:{ getItem:()=>JSON.stringify(historical), setItem:()=>undefined } });
+    expect(loadSave().expeditions[0]).toMatchObject({ score:123, depth:1230, rounds:[{ points:5, tier:'Pebble' }] });
+    Object.defineProperty(globalThis, 'localStorage', { configurable:true, value:priorStorage });
   });
 });

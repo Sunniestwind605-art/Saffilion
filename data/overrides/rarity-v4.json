@@ -1,0 +1,13 @@
+[
+  { "questionId": "geo-01", "entityId": "saffilion:country:south-africa", "tier": "Pebble", "reason": "Regional calibration: South Africa is an immediately familiar answer for Saffilion's audience.", "reviewedAt": "2026-11-28" },
+  { "questionId": "geo-01", "entityId": "saffilion:country:comoros", "tier": "Stardust", "reason": "A valid, discoverable African-country deep cut with strong reference identity.", "reviewedAt": "2026-11-28" },
+  { "questionId": "science-01", "entityId": "saffilion:planet:earth", "tier": "Pebble", "reason": "Universally familiar primary guess in the eight-planet finite set.", "reviewedAt": "2026-11-28" },
+  { "questionId": "science-01", "entityId": "saffilion:planet:saturn", "tier": "Copper", "reason": "Familiar secondary guess that fits Copper's clever-but-obvious role.", "reviewedAt": "2026-11-28" },
+  { "questionId": "science-03", "entityId": "saffilion:chemical-element:hydrogen", "tier": "Pebble", "reason": "Foundational and highly familiar chemical element.", "reviewedAt": "2026-11-28" },
+  { "questionId": "science-03", "entityId": "pubchem:element:118", "tier": "Stardust", "reason": "Oganesson is valid, memorable and exceptionally difficult to recall unaided.", "reviewedAt": "2026-11-28" },
+  { "questionId": "music-01", "entityId": "saffilion:answer:music-01:piano", "tier": "Pebble", "reason": "Globally familiar instrument and obvious first guess.", "reviewedAt": "2026-11-28" },
+  { "questionId": "food-01", "entityId": "saffilion:answer:food-01:apple", "tier": "Pebble", "reason": "Obvious high-familiarity fruit answer.", "reviewedAt": "2026-11-28" },
+  { "questionId": "nature-04", "entityId": "saffilion:answer:nature-04:lion", "tier": "Pebble", "reason": "Iconic African mammal and obvious category answer.", "reviewedAt": "2026-11-28" },
+  { "questionId": "words-04", "entityId": "saffilion:language:south-african-sign-language", "tier": "Sapphire", "reason": "Official and culturally important, but less likely to be recalled than the largest spoken languages.", "reviewedAt": "2026-11-28" },
+  { "questionId": "sa-04", "entityId": "saffilion:answer:sa-04:biltong", "tier": "Pebble", "reason": "Strong South African regional familiarity correction.", "reviewedAt": "2026-11-28" }
+]

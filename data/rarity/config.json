@@ -1,0 +1,42 @@
+{
+  "version": "rarity-model-v4.0.0",
+  "evidenceVersion": "familiarity-evidence-v1",
+  "scoringVersion": "rarity-v4-curve-1",
+  "questionVersion": "question-bank-3.0.0",
+  "metricTransforms": {
+    "pageviews": "log1p",
+    "sitelinks": "log1p",
+    "population": "log1p",
+    "countryPopulation": "log1p",
+    "editorialPrior": "identity",
+    "referenceBreadth": "log1p",
+    "regionalRelevance": "identity"
+  },
+  "weights": {
+    "country": { "pageviews": 0.4, "sitelinks": 0.2, "population": 0.15, "editorialPrior": 0.15, "regionalRelevance": 0.1 },
+    "capital": { "pageviews": 0.4, "sitelinks": 0.2, "countryPopulation": 0.2, "editorialPrior": 0.1, "regionalRelevance": 0.1 },
+    "populated-place": { "population": 0.65, "pageviews": 0.1, "sitelinks": 0.05, "editorialPrior": 0.1, "regionalRelevance": 0.1 },
+    "chemical-element": { "editorialPrior": 0.7, "pageviews": 0.15, "sitelinks": 0.1, "referenceBreadth": 0.05 },
+    "language": { "editorialPrior": 0.7, "pageviews": 0.1, "sitelinks": 0.05, "referenceBreadth": 0.05, "regionalRelevance": 0.1 },
+    "ordinary-word": { "editorialPrior": 0.85, "referenceBreadth": 0.15 },
+    "culture": { "editorialPrior": 0.75, "pageviews": 0.1, "sitelinks": 0.05, "referenceBreadth": 0.1 },
+    "science": { "editorialPrior": 0.8, "pageviews": 0.05, "sitelinks": 0.05, "referenceBreadth": 0.1 },
+    "nature": { "editorialPrior": 0.8, "pageviews": 0.05, "sitelinks": 0.05, "referenceBreadth": 0.1 },
+    "food": { "editorialPrior": 0.85, "referenceBreadth": 0.15 },
+    "everyday": { "editorialPrior": 0.85, "referenceBreadth": 0.15 },
+    "other": { "editorialPrior": 0.75, "pageviews": 0.05, "sitelinks": 0.05, "referenceBreadth": 0.15 }
+  },
+  "broadDistribution": {
+    "pebbleFrom": 0.9,
+    "copperFrom": 0.75,
+    "quartzFrom": 0.45,
+    "sapphireFrom": 0.2,
+    "amethystFrom": 0.02
+  },
+  "stardust": {
+    "maximumRelativeShare": 0.025,
+    "maximumAbsoluteFamiliarity": 0.4,
+    "minimumConfidence": 0.5
+  },
+  "missingFallbackPercentile": 0.5
+}

@@ -1,4 +1,4 @@
-import { TIERS, type Answer, type Question, type SaveData } from './types';
+import { DEPTH_PER_POINT, TIERS, type Answer, type Question, type SaveData } from './types';
 import { DAILY_SCHEDULE_VERSION, knownEntityIds } from '../data/knowledge';
 
 export function normalize(value: string) {
@@ -58,7 +58,7 @@ export function equivalentAnswer(a: string, b: string) {
   return a === b || (a.length >= 4 && b.length >= 4 && singular(a) === singular(b));
 }
 
-export function depthForPoints(points: number) { return Math.max(0, points) * 10; }
+export function depthForPoints(points: number) { return Math.max(0, points) * DEPTH_PER_POINT; }
 
 // Movement is deliberately close to proportional: a Stardust answer must feel
 // dramatically heavier than a Pebble answer, while still fitting on a phone.
@@ -92,6 +92,7 @@ export function validateQuestions(questions: Question[]) {
     const names = new Map<string, number>();
     for (const a of q.answers) {
       if (!(a.tier in TIERS) || a.points !== TIERS[a.tier]) errors.push(`${q.id}: invalid score for ${a.canonical}`);
+      if (a.raritySource !== 'model' && a.raritySource !== 'override') errors.push(`${q.id}: missing rarity metadata for ${a.canonical}`);
       for (const name of [a.canonical, ...a.aliases].map(normalize)) {
         const prior = names.get(name); if (prior !== undefined) errors.push(`${q.id}: duplicate or conflicting answer ${name}`); names.set(name, a.points);
       }

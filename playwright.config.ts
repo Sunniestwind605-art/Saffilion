@@ -2,10 +2,11 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
+  timeout: 60000,
   fullyParallel: true,
-  // The Phase 3 knowledge index is intentionally large. Bound parallel browser
-  // contexts so CI and ordinary laptops do not duplicate it across many workers.
-  workers: 2,
+  // The offline knowledge and rarity indexes are intentionally large. A single
+  // browser worker avoids starving animation frames on ordinary CI laptops.
+  workers: 1,
   retries: 1,
   reporter: 'list',
   use: { baseURL: 'http://127.0.0.1:4173/Saffilion/', trace: 'retain-on-failure' },

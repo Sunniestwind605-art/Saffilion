@@ -1,11 +1,13 @@
 import { TIERS, type Question, type Tier } from '../game/types';
 import rawEntities from '../../data/curated/entities.json';
 import rawPrompts from '../../data/curated/prompts.json';
-import rawRarity from '../../data/overrides/rarity.json';
+import rawRarity from '../../data/generated/rarity-v4.json';
 import generatedPrompts from '../../data/generated/questions.json';
 
-export const DATASET_VERSION = '3.0.0';
-export const DAILY_SCHEDULE_VERSION = 'daily-v1-bank-3.0.0';
+export const DATASET_VERSION = rawRarity.datasetVersion;
+export const SCORING_VERSION = rawRarity.scoringVersion;
+export const QUESTION_VERSION = rawRarity.questionVersion;
+export const DAILY_SCHEDULE_VERSION = `daily-v2-rarity-${DATASET_VERSION}`;
 
 export type EntityValue = string | number | boolean | string[] | number[];
 export interface Entity {
@@ -46,11 +48,15 @@ interface PromptRecord {
   answerCount?: number;
   answerSetHash?: string;
 }
-type RarityRecord = Record<string, Record<string, { tier: Tier; source: 'curated' | 'provisional' }>>;
-
 export const entities = rawEntities as unknown as Entity[];
 export const promptDefinitions = [...rawPrompts, ...generatedPrompts] as unknown as PromptRecord[];
-const rarity = rawRarity as RarityRecord;
+const rarity = rawRarity;
+
+for (const tier of rarity.tierOrder) {
+  if (TIERS[tier as Tier] !== rarity.points[tier as keyof typeof rarity.points]) {
+    throw new Error(`Rarity point mismatch for ${tier}`);
+  }
+}
 
 export function normalizeEntityName(value: string) {
   return value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase()
@@ -77,26 +83,6 @@ export function matchesPredicate(entity: Entity, predicate: EntityPredicate): bo
     case 'startsWith': return typeof value === 'string' && normalizeEntityName(value).startsWith(normalizeEntityName(predicate.value));
   }
 }
-
-const provisionalTier = (entity: Entity): Tier => {
-  const atomicNumber = entity.familiaritySignals?.atomicNumber ?? null;
-  if (atomicNumber !== null) {
-    if (atomicNumber <= 20) return 'Copper';
-    if (atomicNumber <= 50) return 'Quartz';
-    if (atomicNumber <= 80) return 'Sapphire';
-    if (atomicNumber <= 100) return 'Amethyst';
-    return 'Stardust';
-  }
-  const population = entity.familiaritySignals?.population ?? entity.familiaritySignals?.countryPopulation ?? null;
-  if (population !== null) {
-    if (population >= 1_000_000) return 'Pebble';
-    if (population >= 250_000) return 'Copper';
-    if (population >= 50_000) return 'Quartz';
-    if (population >= 10_000) return 'Sapphire';
-    if (population >= 1_000) return 'Amethyst';
-  }
-  return 'Stardust';
-};
 
 export const entityRegistry = new Map(entities.map(entity => [entity.id, entity]));
 export const entityTypeIndex = new Map<string, Set<string>>();
@@ -134,6 +120,11 @@ export function getPropertyIndex(property: string) {
 export const promptMemberships = new Map<string, Set<string>>();
 export const questions: Question[] = promptDefinitions.map(prompt => {
   const members = entities.filter(entity => matchesPredicate(entity, prompt.where));
+  const classification = rarity.questions[prompt.id as keyof typeof rarity.questions];
+  if (!classification || classification.count !== members.length || classification.codes.length !== members.length) {
+    throw new Error(`Missing or invalid rarity metadata for ${prompt.id}`);
+  }
+  const overrideIndexes = new Set<number>(classification.overrideIndexes as number[]);
   promptMemberships.set(prompt.id, new Set(members.map(entity => entity.id)));
   return {
     id: prompt.id,
@@ -146,10 +137,10 @@ export const questions: Question[] = promptDefinitions.map(prompt => {
     difficultyReason: prompt.difficultyReason,
     sourceIds: prompt.sourceIds ?? ['saffilion:launch-bank'],
     generationVersion: prompt.generationVersion,
-    answers: members.map(entity => {
-      const assignment = rarity[prompt.id]?.[entity.id];
-      const tier = assignment?.tier ?? provisionalTier(entity);
-      return { entityId: entity.id, canonical: entity.name, aliases: entity.aliases, tier, points: TIERS[tier], raritySource: assignment?.source ?? 'provisional' };
+    answers: members.map((entity, index) => {
+      const tier = rarity.tierOrder[Number(classification.codes[index])] as Tier | undefined;
+      if (!tier || TIERS[tier] === undefined) throw new Error(`Invalid rarity code for ${prompt.id}/${entity.id}`);
+      return { entityId: entity.id, canonical: entity.name, aliases: entity.aliases, tier, points: TIERS[tier], raritySource: overrideIndexes.has(index) ? 'override' : 'model' };
     }),
   };
 });

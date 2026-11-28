@@ -50,8 +50,8 @@ test('a correct answer visibly travels through depth instead of jumping', async 
   await page.getByLabel('Your answer').fill('Jupiter');
   await page.getByRole('button', { name: 'Dig!' }).click();
   await expect(page.locator('.mine-scene')).toHaveClass(/traveling/);
-  await expect(page.locator('.depth-gain')).toHaveText('+50 m');
-  await expect(page.locator('.mine-hud strong')).toHaveText('50 m', { timeout: 1600 });
+  await expect(page.locator('.depth-gain')).toHaveText('+150 m');
+  await expect(page.locator('.mine-hud strong')).toHaveText('150 m', { timeout: 1600 });
   const movingCamera = Number(await caveCanvas.getAttribute('data-camera'));
   expect(movingCamera).toBeGreaterThan(startCamera);
 });
@@ -97,6 +97,34 @@ test('all seven rounds finish, save, show gems, and Dig Again skips menus', asyn
   await expect(replayInput).toBeFocused();
   await replayInput.fill('Jupiter');
   await expect(replayInput).toHaveValue('Jupiter');
+});
+
+test('actual seven-round Phase 4 curve totals 360 points and 3,600 metres', async ({ page }) => {
+  const rounds = [
+    ['nature-01','Fish'],
+    ['geo-09','Atlantic Ocean'],
+    ['geo-10','Thar'],
+    ['nature-02','Flightless cormorant'],
+    ['nature-03','Zaglossus'],
+    ['nature-04','Andean mountain cat'],
+    ['nature-05','Apricot tree'],
+  ];
+  await page.addInitScript(ids => localStorage.setItem('saffilion-save-v1', JSON.stringify({
+    version:1, selectedCat:'pebble', expeditions:[], questionBag:[], recentQuestions:[], missingAnswers:[], dailyRecords:[], crystals:0, unlocked:[], equipped:null, settings:{sound:false,haptics:false,reducedMotion:true,batterySaver:true},
+    active:{questionIds:ids,round:0,results:[],deadline:Date.now()+30000,category:'All',mode:'unlimited'}
+  })), rounds.map(([id]) => id));
+  await page.goto('.');
+  for (const [index, [, answer]] of rounds.entries()) {
+    await page.getByLabel('Your answer').fill(answer);
+    await page.getByRole('button', { name: 'Dig!' }).click();
+    if (index < 6) await expect(page.getByText(`Question ${index+2} / 7`)).toBeVisible();
+  }
+  await expect(page.getByText('Expedition complete')).toBeVisible();
+  await expect(page.getByText('3,600 m')).toBeVisible();
+  await expect(page.getByText('360', { exact:true })).toBeVisible();
+  const expedition = await page.evaluate(() => JSON.parse(localStorage.getItem('saffilion-save-v1')!).expeditions[0]);
+  expect(expedition).toMatchObject({ score:360, depth:3600, datasetVersion:'4.0.0', scoringVersion:'rarity-v4-curve-1', questionVersion:'question-bank-3.0.0' });
+  expect(expedition.rounds.map((round:{points:number}) => round.points)).toEqual([10,15,30,60,85,100,60]);
 });
 
 test('timeout advances accurately with zero points', async ({ page }) => {
@@ -231,7 +259,7 @@ test('a missing-answer report stays local and contains versioned review data', a
   await expect(page.getByText('Saved only on this device for review. Nothing was sent.')).toBeVisible();
   const reports = await page.evaluate(() => JSON.parse(localStorage.getItem('saffilion-save-v1')!).missingAnswers);
   expect(reports).toHaveLength(1);
-  expect(reports[0]).toMatchObject({ questionId:'science-01', answer:'Pluto Prime', datasetVersion:'3.0.0', explanation:'A proposed alternate name.' });
+  expect(reports[0]).toMatchObject({ questionId:'science-01', answer:'Pluto Prime', datasetVersion:'4.0.0', explanation:'A proposed alternate name.' });
   expect(publicRequests).toEqual([]);
 });
 

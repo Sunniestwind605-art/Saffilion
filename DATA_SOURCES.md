@@ -1,6 +1,15 @@
 # Saffilion knowledge-source registry
 
-Saffilion builds and validates its answer bank from local snapshots. `npm run build` never calls a data API. Rarity is prompt-specific: launch answers retain their curated bands and imported answers receive deterministic provisional bands for later Phase 4 review.
+Saffilion builds and validates its answer bank from local snapshots. `npm run build` never calls a data API. Phase 4 rarity is stored per `questionId + entityId` and generated from cached, stable-ID familiarity evidence. Full modelling details and limitations are in [RARITY_METHODOLOGY.md](./RARITY_METHODOLOGY.md).
+
+## Familiarity evidence snapshot
+
+- [Wikidata Data access](https://www.wikidata.org/wiki/Wikidata:Data_access) and [licensing](https://www.wikidata.org/wiki/Wikidata:Licensing) support stable-QID sitelinks and CC0 reuse.
+- Wikimedia's PageViewInfo API supplies cached article pageviews resolved from the entity's language-specific sitelink, not a raw ambiguous name. The observation period is 29 September–27 November 2026.
+- Article availability is checked in English, Afrikaans, isiZulu and isiXhosa so English traffic is not treated as universal familiarity.
+- GeoNames population, PubChem atomic number, reference breadth, regional relevance and limited editorial priors provide category-appropriate supporting signals.
+- `data/sources/wikimedia/entity-metrics.json` and `data/familiarity/evidence.json` are checked-in snapshots. Ordinary builds use them without network access; only the explicit `data:refresh-familiarity` command refreshes upstream metrics.
+- Wikimedia project content and APIs have source-specific reuse terms; the model stores numeric observations and stable identifiers, while Wikidata structured data is CC0. GeoNames attribution remains required for its population/place extract.
 
 ## GeoNames gazetteer
 

@@ -1,0 +1,12 @@
+{
+  "version": "rarity-v4-curve-1",
+  "depthPerPoint": 10,
+  "points": {
+    "Pebble": 10,
+    "Copper": 15,
+    "Quartz": 30,
+    "Sapphire": 60,
+    "Amethyst": 85,
+    "Stardust": 100
+  }
+}

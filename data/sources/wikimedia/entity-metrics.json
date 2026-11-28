@@ -1,0 +1,5817 @@
+{
+  "version": "wikimedia-familiarity-v1",
+  "retrievedAt": "2026-11-28T08:01:56.249Z",
+  "observationPeriod": {
+    "start": "2026-09-29",
+    "end": "2026-11-27",
+    "description": "Daily article pageviews returned by MediaWiki PageViewInfo at collection time."
+  },
+  "languages": [
+    "en",
+    "af",
+    "zu",
+    "xh"
+  ],
+  "records": {
+    "saffilion:country:south-africa": {
+      "qid": "Q258",
+      "sitelinks": 300,
+      "titles": {
+        "enwiki": "South Africa",
+        "afwiki": "Suid-Afrika",
+        "zuwiki": "IRiphabhuliki yaseNingizimu Afrika",
+        "xhwiki": "UMzantsi Afrika"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 397657,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 397657
+    },
+    "saffilion:country:egypt": {
+      "qid": "Q79",
+      "sitelinks": 311,
+      "titles": {
+        "enwiki": "Egypt",
+        "afwiki": "Egipte",
+        "zuwiki": "IGibhithe",
+        "xhwiki": "Jiphethe"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 384349,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 384349
+    },
+    "saffilion:country:nigeria": {
+      "qid": "Q1033",
+      "sitelinks": 287,
+      "titles": {
+        "enwiki": "Nigeria",
+        "afwiki": "Nigerië",
+        "zuwiki": "INigeria",
+        "xhwiki": "INigeria"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 301889,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 301889
+    },
+    "saffilion:country:kenya": {
+      "qid": "Q114",
+      "sitelinks": 279,
+      "titles": {
+        "enwiki": "Kenya",
+        "afwiki": "Kenia",
+        "zuwiki": "IKhenya"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 183140,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 183140
+    },
+    "saffilion:country:sudan": {
+      "qid": "Q1049",
+      "sitelinks": 273,
+      "titles": {
+        "enwiki": "Sudan",
+        "afwiki": "Soedan",
+        "zuwiki": "ISudan"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 185518,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 185518
+    },
+    "saffilion:country:democratic-republic-of-the-congo": {
+      "qid": "Q974",
+      "sitelinks": 278,
+      "titles": {
+        "enwiki": "Democratic Republic of the Congo",
+        "afwiki": "Demokratiese Republiek die Kongo",
+        "zuwiki": "IKhongo-Kinshasa"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 282012,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 282012
+    },
+    "saffilion:country:morocco": {
+      "qid": "Q1028",
+      "sitelinks": 280,
+      "titles": {
+        "enwiki": "Morocco",
+        "afwiki": "Marokko",
+        "zuwiki": "IMorokho",
+        "xhwiki": "Morokho"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 291723,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 291723
+    },
+    "saffilion:country:ghana": {
+      "qid": "Q117",
+      "sitelinks": 273,
+      "titles": {
+        "enwiki": "Ghana",
+        "afwiki": "Ghana",
+        "zuwiki": "IGana"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 203843,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 203843
+    },
+    "saffilion:country:ethiopia": {
+      "qid": "Q115",
+      "sitelinks": 289,
+      "titles": {
+        "enwiki": "Ethiopia",
+        "afwiki": "Ethiopië",
+        "zuwiki": "I-Itiyopiya",
+        "xhwiki": "ITopiya"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 313921,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 313921
+    },
+    "saffilion:country:algeria": {
+      "qid": "Q262",
+      "sitelinks": 309,
+      "titles": {
+        "enwiki": "Algeria",
+        "afwiki": "Algerië",
+        "zuwiki": "I-Aljeriya",
+        "xhwiki": "E-Algeria"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 241151,
+        "afwiki": 88,
+        "zuwiki": 19,
+        "xhwiki": 0
+      },
+      "pageviews": 241258
+    },
+    "saffilion:country:senegal": {
+      "qid": "Q1041",
+      "sitelinks": 262,
+      "titles": {
+        "enwiki": "Senegal",
+        "afwiki": "Senegal",
+        "zuwiki": "ISenegal"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 147300,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 147300
+    },
+    "saffilion:country:cote-d-ivoire": {
+      "qid": "Q1008",
+      "sitelinks": 265,
+      "titles": {
+        "enwiki": "Ivory Coast",
+        "afwiki": "Ivoorkus",
+        "zuwiki": "Ugu Emhlophe"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 137256,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 137256
+    },
+    "saffilion:country:burkina-faso": {
+      "qid": "Q965",
+      "sitelinks": 265,
+      "titles": {
+        "enwiki": "Burkina Faso",
+        "afwiki": "Burkina Faso",
+        "zuwiki": "IBukhina Faso"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 328668,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 328668
+    },
+    "saffilion:country:tanzania": {
+      "qid": "Q924",
+      "sitelinks": 272,
+      "titles": {
+        "enwiki": "Tanzania",
+        "afwiki": "Tanzanië",
+        "zuwiki": "IThanzaniya",
+        "xhwiki": "ITanzania"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 225286,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 225286
+    },
+    "saffilion:country:uganda": {
+      "qid": "Q1036",
+      "sitelinks": 262,
+      "titles": {
+        "enwiki": "Uganda",
+        "afwiki": "Uganda",
+        "zuwiki": "IYuganda",
+        "xhwiki": "Uganda"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 176393,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 176393
+    },
+    "saffilion:country:cameroon": {
+      "qid": "Q1009",
+      "sitelinks": 264,
+      "titles": {
+        "enwiki": "Cameroon",
+        "afwiki": "Kameroen",
+        "zuwiki": "IKamerooni"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 141543,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 141543
+    },
+    "saffilion:country:angola": {
+      "qid": "Q916",
+      "sitelinks": 273,
+      "titles": {
+        "enwiki": "Angola",
+        "afwiki": "Angola",
+        "zuwiki": "I-Angola",
+        "xhwiki": "I-Angola"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 153509,
+        "afwiki": 104,
+        "zuwiki": 21,
+        "xhwiki": 0
+      },
+      "pageviews": 153634
+    },
+    "saffilion:country:zimbabwe": {
+      "qid": "Q954",
+      "sitelinks": 262,
+      "titles": {
+        "enwiki": "Zimbabwe",
+        "afwiki": "Zimbabwe",
+        "zuwiki": "IZimbabwe",
+        "xhwiki": "IZimbabwe"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 209556,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 209556
+    },
+    "saffilion:country:cabo-verde": {
+      "qid": "Q1011",
+      "sitelinks": 252,
+      "titles": {
+        "enwiki": "Cape Verde",
+        "afwiki": "Kaap Verde",
+        "zuwiki": "IKhepi Vedhi"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 216186,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 216186
+    },
+    "saffilion:country:mauritania": {
+      "qid": "Q1025",
+      "sitelinks": 257,
+      "titles": {
+        "enwiki": "Mauritania",
+        "afwiki": "Mauritanië",
+        "zuwiki": "IMoritaniya",
+        "xhwiki": "Mauritania"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 170137,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 170137
+    },
+    "saffilion:country:botswana": {
+      "qid": "Q963",
+      "sitelinks": 272,
+      "titles": {
+        "enwiki": "Botswana",
+        "afwiki": "Botswana",
+        "zuwiki": "IButswana",
+        "xhwiki": "IBotswana"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 146823,
+        "afwiki": 225,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 147048
+    },
+    "saffilion:country:namibia": {
+      "qid": "Q1030",
+      "sitelinks": 267,
+      "titles": {
+        "enwiki": "Namibia",
+        "afwiki": "Namibië",
+        "zuwiki": "INamibhiya",
+        "xhwiki": "INamibia"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 177893,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 177893
+    },
+    "saffilion:country:zambia": {
+      "qid": "Q953",
+      "sitelinks": 260,
+      "titles": {
+        "enwiki": "Zambia",
+        "afwiki": "Zambië",
+        "zuwiki": "IZambiya",
+        "xhwiki": "EZambia"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 113664,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 113664
+    },
+    "saffilion:country:mozambique": {
+      "qid": "Q1029",
+      "sitelinks": 256,
+      "titles": {
+        "enwiki": "Mozambique",
+        "afwiki": "Mosambiek",
+        "zuwiki": "IMozambiki",
+        "xhwiki": "Mozambikh"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 158263,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 158263
+    },
+    "saffilion:country:guinea-bissau": {
+      "qid": "Q1007",
+      "sitelinks": 253,
+      "titles": {
+        "enwiki": "Guinea-Bissau",
+        "afwiki": "Guinee-Bissau",
+        "zuwiki": "IGini Bisawu"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 90624,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 90624
+    },
+    "saffilion:country:equatorial-guinea": {
+      "qid": "Q983",
+      "sitelinks": 245,
+      "titles": {
+        "enwiki": "Equatorial Guinea",
+        "afwiki": "Ekwatoriaal-Guinee",
+        "zuwiki": "INkabazwe Gini",
+        "xhwiki": "Ekhwithoriyal Gini"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 159107,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 159107
+    },
+    "saffilion:country:lesotho": {
+      "qid": "Q1013",
+      "sitelinks": 243,
+      "titles": {
+        "enwiki": "Lesotho",
+        "afwiki": "Lesotho",
+        "zuwiki": "OSotho",
+        "xhwiki": "ELuSuthu"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 125046,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 125046
+    },
+    "saffilion:country:eswatini": {
+      "qid": "Q1050",
+      "sitelinks": 246,
+      "titles": {
+        "enwiki": "Eswatini",
+        "afwiki": "Eswatini",
+        "zuwiki": "Eswatini",
+        "xhwiki": "Eswatini"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 276563,
+        "afwiki": 0,
+        "zuwiki": 54,
+        "xhwiki": 0
+      },
+      "pageviews": 276617
+    },
+    "saffilion:country:malawi": {
+      "qid": "Q1020",
+      "sitelinks": 248,
+      "titles": {
+        "enwiki": "Malawi",
+        "afwiki": "Malawi",
+        "zuwiki": "IMalawi",
+        "xhwiki": "Malawi"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 102845,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 102845
+    },
+    "saffilion:country:rwanda": {
+      "qid": "Q1037",
+      "sitelinks": 256,
+      "titles": {
+        "enwiki": "Rwanda",
+        "afwiki": "Rwanda",
+        "zuwiki": "IRuwanda",
+        "xhwiki": "Rwanda"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 231722,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 231722
+    },
+    "saffilion:country:seychelles": {
+      "qid": "Q1042",
+      "sitelinks": 235,
+      "titles": {
+        "enwiki": "Seychelles",
+        "afwiki": "Seychelle",
+        "zuwiki": "IsiSeyisheli"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 210959,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 210959
+    },
+    "saffilion:country:djibouti": {
+      "qid": "Q977",
+      "sitelinks": 254,
+      "titles": {
+        "enwiki": "Djibouti",
+        "afwiki": "Djiboeti",
+        "zuwiki": "IJibhuthi"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 152917,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 152917
+    },
+    "saffilion:country:comoros": {
+      "qid": "Q970",
+      "sitelinks": 244,
+      "titles": {
+        "enwiki": "Comoros",
+        "afwiki": "Comore-eilande",
+        "zuwiki": "IsiKhomorosi"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 103496,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 103496
+    },
+    "saffilion:country:sao-tome-and-principe": {
+      "qid": "Q1039",
+      "sitelinks": 236,
+      "titles": {
+        "enwiki": "São Tomé and Príncipe",
+        "afwiki": "São Tomé en Príncipe",
+        "zuwiki": "ISawu Tome noPhrinitshipeyi",
+        "xhwiki": "Sawo Tome nePrinsipe"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 90823,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 90823
+    },
+    "saffilion:country:central-african-republic": {
+      "qid": "Q929",
+      "sitelinks": 254,
+      "titles": {
+        "enwiki": "Central African Republic",
+        "afwiki": "Sentraal-Afrikaanse Republiek",
+        "zuwiki": "Central African Republic",
+        "xhwiki": "Iriphabliki yaseAfrika eseMbindini"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 124278,
+        "afwiki": 0,
+        "zuwiki": 13,
+        "xhwiki": 0
+      },
+      "pageviews": 124291
+    },
+    "saffilion:country:chad": {
+      "qid": "Q657",
+      "sitelinks": 268,
+      "titles": {
+        "enwiki": "Chad",
+        "afwiki": "Tsjad",
+        "zuwiki": "ITshedi"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 120152,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 120152
+    },
+    "saffilion:country:brazil": {
+      "qid": "Q155",
+      "sitelinks": 306,
+      "titles": {
+        "enwiki": "Brazil",
+        "afwiki": "Brasilië",
+        "zuwiki": "IBrazili",
+        "xhwiki": "Brasil"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 568667,
+        "afwiki": 237,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 568904
+    },
+    "saffilion:country:argentina": {
+      "qid": "Q414",
+      "sitelinks": 300,
+      "titles": {
+        "enwiki": "Argentina",
+        "afwiki": "Argentinië",
+        "zuwiki": "I-Arjentina",
+        "xhwiki": "Ajentina"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 334769,
+        "afwiki": 243,
+        "zuwiki": 18,
+        "xhwiki": 14
+      },
+      "pageviews": 335044
+    },
+    "saffilion:country:chile": {
+      "qid": "Q298",
+      "sitelinks": 312,
+      "titles": {
+        "enwiki": "Chile",
+        "afwiki": "Chili",
+        "zuwiki": "ITshile",
+        "xhwiki": "IChile"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 205163,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 205163
+    },
+    "saffilion:country:peru": {
+      "qid": "Q419",
+      "sitelinks": 273,
+      "titles": {
+        "enwiki": "Peru",
+        "afwiki": "Peru",
+        "zuwiki": "Peru",
+        "xhwiki": "Peru"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 191573,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 191573
+    },
+    "saffilion:country:colombia": {
+      "qid": "Q739",
+      "sitelinks": 300,
+      "titles": {
+        "enwiki": "Colombia",
+        "afwiki": "Colombia",
+        "zuwiki": "IKolombiya",
+        "xhwiki": "IsiColombia"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 238839,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 238839
+    },
+    "saffilion:country:venezuela": {
+      "qid": "Q717",
+      "sitelinks": 278,
+      "titles": {
+        "enwiki": "Venezuela",
+        "afwiki": "Venezuela",
+        "zuwiki": "Venezuela"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 206873,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 206873
+    },
+    "saffilion:country:ecuador": {
+      "qid": "Q736",
+      "sitelinks": 261,
+      "titles": {
+        "enwiki": "Ecuador",
+        "afwiki": "Ecuador"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 149556,
+        "afwiki": 0
+      },
+      "pageviews": 149556
+    },
+    "saffilion:country:bolivia": {
+      "qid": "Q750",
+      "sitelinks": 271,
+      "titles": {
+        "enwiki": "Bolivia",
+        "afwiki": "Bolivië",
+        "xhwiki": "Bolivia"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 157985,
+        "afwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 157985
+    },
+    "saffilion:country:uruguay": {
+      "qid": "Q77",
+      "sitelinks": 267,
+      "titles": {
+        "enwiki": "Uruguay",
+        "afwiki": "Uruguay",
+        "xhwiki": "Uruguwayi"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 184608,
+        "afwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 184608
+    },
+    "saffilion:country:paraguay": {
+      "qid": "Q733",
+      "sitelinks": 261,
+      "titles": {
+        "enwiki": "Paraguay",
+        "afwiki": "Paraguay",
+        "xhwiki": "Paraguay"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 191198,
+        "afwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 191198
+    },
+    "saffilion:country:guyana": {
+      "qid": "Q734",
+      "sitelinks": 245,
+      "titles": {
+        "enwiki": "Guyana",
+        "afwiki": "Guyana"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 284075,
+        "afwiki": 0
+      },
+      "pageviews": 284075
+    },
+    "saffilion:country:suriname": {
+      "qid": "Q730",
+      "sitelinks": 244,
+      "titles": {
+        "enwiki": "Suriname",
+        "afwiki": "Suriname"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 201754,
+        "afwiki": 0
+      },
+      "pageviews": 201754
+    },
+    "saffilion:country:belgium": {
+      "qid": "Q31",
+      "sitelinks": 308,
+      "titles": {
+        "enwiki": "Belgium",
+        "afwiki": "België",
+        "zuwiki": "Belgium",
+        "xhwiki": "Bheljiyam"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 260387,
+        "afwiki": 0,
+        "zuwiki": 17,
+        "xhwiki": 12
+      },
+      "pageviews": 260416
+    },
+    "saffilion:country:bangladesh": {
+      "qid": "Q902",
+      "sitelinks": 285,
+      "titles": {
+        "enwiki": "Bangladesh",
+        "afwiki": "Bangladesj",
+        "zuwiki": "Bangladesh"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 390824,
+        "afwiki": 78,
+        "zuwiki": 22
+      },
+      "pageviews": 390924
+    },
+    "saffilion:country:bulgaria": {
+      "qid": "Q219",
+      "sitelinks": 297,
+      "titles": {
+        "enwiki": "Bulgaria",
+        "afwiki": "Bulgarye",
+        "zuwiki": "IBulgariya",
+        "xhwiki": "IBulgariya"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 255806,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 255806
+    },
+    "saffilion:country:bahamas": {
+      "qid": "Q778",
+      "sitelinks": 240,
+      "titles": {
+        "enwiki": "The Bahamas",
+        "afwiki": "Bahamas"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 193499,
+        "afwiki": 53
+      },
+      "pageviews": 193552
+    },
+    "saffilion:country:bahrain": {
+      "qid": "Q398",
+      "sitelinks": 257,
+      "titles": {
+        "enwiki": "Bahrain",
+        "afwiki": "Bahrein"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 211761,
+        "afwiki": 65
+      },
+      "pageviews": 211826
+    },
+    "saffilion:country:belarus": {
+      "qid": "Q184",
+      "sitelinks": 291,
+      "titles": {
+        "enwiki": "Belarus",
+        "afwiki": "Belarus",
+        "zuwiki": "IBelarusi",
+        "xhwiki": "Bhelarusi"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 244961,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 12
+      },
+      "pageviews": 244973
+    },
+    "saffilion:country:belize": {
+      "qid": "Q242",
+      "sitelinks": 250,
+      "titles": {
+        "enwiki": "Belize",
+        "afwiki": "Belize",
+        "zuwiki": "Belize"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 179295,
+        "afwiki": 0,
+        "zuwiki": 8
+      },
+      "pageviews": 179303
+    },
+    "saffilion:country:bosnia-and-herzegovina": {
+      "qid": "Q225",
+      "sitelinks": 281,
+      "titles": {
+        "enwiki": "Bosnia and Herzegovina",
+        "afwiki": "Bosnië en Herzegowina",
+        "zuwiki": "IBhosniya neHerzegovina",
+        "xhwiki": "Bhozniya neHerzegovina"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 261112,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 11
+      },
+      "pageviews": 261123
+    },
+    "saffilion:country:barbados": {
+      "qid": "Q244",
+      "sitelinks": 239,
+      "titles": {
+        "enwiki": "Barbados",
+        "afwiki": "Barbados"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 145207,
+        "afwiki": 0
+      },
+      "pageviews": 145207
+    },
+    "saffilion:country:benin": {
+      "qid": "Q962",
+      "sitelinks": 263,
+      "titles": {
+        "enwiki": "Benin",
+        "afwiki": "Benin",
+        "zuwiki": "IBenini"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 163415,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 163415
+    },
+    "saffilion:country:bhutan": {
+      "qid": "Q917",
+      "sitelinks": 262,
+      "titles": {
+        "enwiki": "Bhutan",
+        "afwiki": "Bhoetan",
+        "xhwiki": "Bhutan"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 205937,
+        "afwiki": 0,
+        "xhwiki": 8
+      },
+      "pageviews": 205945
+    },
+    "saffilion:country:burundi": {
+      "qid": "Q967",
+      "sitelinks": 259,
+      "titles": {
+        "enwiki": "Burundi",
+        "afwiki": "Burundi",
+        "zuwiki": "IBhurundi",
+        "xhwiki": "Burundi"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 119838,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 119838
+    },
+    "saffilion:country:brunei": {
+      "qid": "Q921",
+      "sitelinks": 263,
+      "titles": {
+        "enwiki": "Brunei",
+        "afwiki": "Broenei"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 213192,
+        "afwiki": 0
+      },
+      "pageviews": 213192
+    },
+    "saffilion:city:london": {
+      "qid": "Q84",
+      "sitelinks": 285,
+      "titles": {
+        "enwiki": "London",
+        "afwiki": "Londen",
+        "zuwiki": "ILondon",
+        "xhwiki": "ILondon"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 388999,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 388999
+    },
+    "saffilion:city:paris": {
+      "qid": "Q90",
+      "sitelinks": 291,
+      "titles": {
+        "enwiki": "Paris",
+        "afwiki": "Parys",
+        "zuwiki": "IParisi",
+        "xhwiki": "Paris"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 280007,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 280007
+    },
+    "saffilion:city:rome": {
+      "qid": "Q220",
+      "sitelinks": 274,
+      "titles": {
+        "enwiki": "Rome",
+        "afwiki": "Rome",
+        "zuwiki": "IRoma",
+        "xhwiki": "ERoma"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 195712,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 195712
+    },
+    "saffilion:city:berlin": {
+      "qid": "Q64",
+      "sitelinks": 272,
+      "titles": {
+        "enwiki": "Berlin",
+        "afwiki": "Berlyn",
+        "zuwiki": "IBerlini",
+        "xhwiki": "I-Berlin"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 298030,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 298030
+    },
+    "saffilion:city:amsterdam": {
+      "qid": "Q727",
+      "sitelinks": 243,
+      "titles": {
+        "enwiki": "Amsterdam",
+        "afwiki": "Amsterdam",
+        "zuwiki": "I-Amsterdami",
+        "xhwiki": "IAmsterdam"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 143792,
+        "afwiki": 126,
+        "zuwiki": 14,
+        "xhwiki": 0
+      },
+      "pageviews": 143932
+    },
+    "saffilion:city:brussels": {
+      "qid": "Q239",
+      "sitelinks": 197,
+      "titles": {
+        "enwiki": "City of Brussels",
+        "afwiki": "Brussel"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 39962,
+        "afwiki": 0
+      },
+      "pageviews": 39962
+    },
+    "saffilion:city:madrid": {
+      "qid": "Q2807",
+      "sitelinks": 257,
+      "titles": {
+        "enwiki": "Madrid",
+        "afwiki": "Madrid",
+        "xhwiki": "Madrid"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 133119,
+        "afwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 133119
+    },
+    "saffilion:city:lisbon": {
+      "qid": "Q597",
+      "sitelinks": 224,
+      "titles": {
+        "enwiki": "Lisbon",
+        "afwiki": "Lissabon",
+        "xhwiki": "ILisbon"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 122060,
+        "afwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 122060
+    },
+    "saffilion:city:athens": {
+      "qid": "Q1524",
+      "sitelinks": 239,
+      "titles": {
+        "enwiki": "Athens",
+        "afwiki": "Athene",
+        "zuwiki": "I-Athene"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 123788,
+        "afwiki": 42,
+        "zuwiki": 11
+      },
+      "pageviews": 123841
+    },
+    "saffilion:city:stockholm": {
+      "qid": "Q1754",
+      "sitelinks": 240,
+      "titles": {
+        "enwiki": "Stockholm",
+        "afwiki": "Stockholm",
+        "zuwiki": "IStokholmu"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 108386,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 108386
+    },
+    "saffilion:city:vienna": {
+      "qid": "Q1741",
+      "sitelinks": 244,
+      "titles": {
+        "enwiki": "Vienna",
+        "afwiki": "Wene",
+        "zuwiki": "IViyena",
+        "xhwiki": "EVienna"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 159411,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 14
+      },
+      "pageviews": 159425
+    },
+    "saffilion:city:prague": {
+      "qid": "Q1085",
+      "sitelinks": 224,
+      "titles": {
+        "enwiki": "Prague",
+        "afwiki": "Praag",
+        "zuwiki": "IPraha"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 177569,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 177569
+    },
+    "saffilion:city:dublin": {
+      "qid": "Q1761",
+      "sitelinks": 206,
+      "titles": {
+        "enwiki": "Dublin",
+        "afwiki": "Dublin"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 126529,
+        "afwiki": 0
+      },
+      "pageviews": 126529
+    },
+    "saffilion:city:warsaw": {
+      "qid": "Q270",
+      "sitelinks": 246,
+      "titles": {
+        "enwiki": "Warsaw",
+        "afwiki": "Warskou",
+        "zuwiki": "IWarshawa",
+        "xhwiki": "Warszawa"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 119339,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 119339
+    },
+    "saffilion:city:budapest": {
+      "qid": "Q1781",
+      "sitelinks": 217,
+      "titles": {
+        "enwiki": "Budapest",
+        "afwiki": "Boedapest"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 143356,
+        "afwiki": 0
+      },
+      "pageviews": 143356
+    },
+    "saffilion:city:tallinn": {
+      "qid": "Q1770",
+      "sitelinks": 206,
+      "titles": {
+        "enwiki": "Tallinn",
+        "afwiki": "Tallinn"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 73635,
+        "afwiki": 0
+      },
+      "pageviews": 73635
+    },
+    "saffilion:city:riga": {
+      "qid": "Q1773",
+      "sitelinks": 199,
+      "titles": {
+        "enwiki": "Riga",
+        "afwiki": "Riga",
+        "zuwiki": "IRiga"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 59961,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 59961
+    },
+    "saffilion:city:bucharest": {
+      "qid": "Q19660",
+      "sitelinks": 201,
+      "titles": {
+        "enwiki": "Bucharest",
+        "afwiki": "Boekarest"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 80721,
+        "afwiki": 0
+      },
+      "pageviews": 80721
+    },
+    "saffilion:city:sofia": {
+      "qid": "Q472",
+      "sitelinks": 201,
+      "titles": {
+        "enwiki": "Sofia",
+        "afwiki": "Sofia"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 73893,
+        "afwiki": 0
+      },
+      "pageviews": 73893
+    },
+    "saffilion:city:ljubljana": {
+      "qid": "Q437",
+      "sitelinks": 179,
+      "titles": {
+        "enwiki": "Ljubljana",
+        "afwiki": "Ljubljana"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 95608,
+        "afwiki": 0
+      },
+      "pageviews": 95608
+    },
+    "saffilion:city:bratislava": {
+      "qid": "Q1780",
+      "sitelinks": 195,
+      "titles": {
+        "enwiki": "Bratislava",
+        "afwiki": "Bratislava"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 96052,
+        "afwiki": 27
+      },
+      "pageviews": 96079
+    },
+    "saffilion:city:vilnius": {
+      "qid": "Q216",
+      "sitelinks": 201,
+      "titles": {
+        "enwiki": "Vilnius",
+        "afwiki": "Vilnius",
+        "zuwiki": "IVilnyusi"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 67192,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 67192
+    },
+    "saffilion:city:valletta": {
+      "qid": "Q23800",
+      "sitelinks": 164,
+      "titles": {
+        "enwiki": "Valletta",
+        "afwiki": "Valletta",
+        "xhwiki": "Valletta"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 43731,
+        "afwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 43731
+    },
+    "saffilion:city:podgorica": {
+      "qid": "Q23564",
+      "sitelinks": 171,
+      "titles": {
+        "enwiki": "Podgorica",
+        "afwiki": "Podgorica"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 30819,
+        "afwiki": 0
+      },
+      "pageviews": 30819
+    },
+    "saffilion:city:vaduz": {
+      "qid": "Q1844",
+      "sitelinks": 169,
+      "titles": {
+        "enwiki": "Vaduz",
+        "afwiki": "Vaduz"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 26125,
+        "afwiki": 0
+      },
+      "pageviews": 26125
+    },
+    "saffilion:city:chisinau": {
+      "qid": "Q21197",
+      "sitelinks": 171,
+      "titles": {
+        "enwiki": "Chișinău",
+        "afwiki": "Chișinău"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 43279,
+        "afwiki": 37
+      },
+      "pageviews": 43316
+    },
+    "saffilion:country:japan": {
+      "qid": "Q17",
+      "sitelinks": 333,
+      "titles": {
+        "enwiki": "Japan",
+        "afwiki": "Japan",
+        "zuwiki": "IJaphani",
+        "xhwiki": "IJapani"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 591224,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 591224
+    },
+    "saffilion:country:iceland": {
+      "qid": "Q189",
+      "sitelinks": 285,
+      "titles": {
+        "enwiki": "Iceland",
+        "afwiki": "Ysland",
+        "zuwiki": "I-Ayisilandi",
+        "xhwiki": "Ayisilend"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 237539,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 16
+      },
+      "pageviews": 237555
+    },
+    "saffilion:country:new-zealand": {
+      "qid": "Q664",
+      "sitelinks": 287,
+      "titles": {
+        "enwiki": "New Zealand",
+        "afwiki": "Nieu-Seeland",
+        "zuwiki": "INyuzilandi",
+        "xhwiki": "Nyu Zilend"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 442654,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 442654
+    },
+    "saffilion:country:madagascar": {
+      "qid": "Q1019",
+      "sitelinks": 267,
+      "titles": {
+        "enwiki": "Madagascar",
+        "afwiki": "Madagaskar",
+        "zuwiki": "IMadagasika"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 210465,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 210465
+    },
+    "saffilion:country:united-kingdom": {
+      "qid": "Q145",
+      "sitelinks": 317,
+      "titles": {
+        "enwiki": "United Kingdom",
+        "afwiki": "Verenigde Koninkryk",
+        "zuwiki": "Umbuso Ohlangeneyo",
+        "xhwiki": "Iunited kingdom"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 909616,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 909616
+    },
+    "saffilion:country:indonesia": {
+      "qid": "Q252",
+      "sitelinks": 296,
+      "titles": {
+        "enwiki": "Indonesia",
+        "afwiki": "Indonesië",
+        "zuwiki": "I-Indonesia"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 454265,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 454265
+    },
+    "saffilion:country:sri-lanka": {
+      "qid": "Q854",
+      "sitelinks": 252,
+      "titles": {
+        "enwiki": "Sri Lanka",
+        "afwiki": "Sri Lanka",
+        "zuwiki": "Sri Lanka"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 335686,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 335686
+    },
+    "saffilion:country:cuba": {
+      "qid": "Q241",
+      "sitelinks": 272,
+      "titles": {
+        "enwiki": "Cuba",
+        "afwiki": "Kuba",
+        "xhwiki": "Tyhubha"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 225321,
+        "afwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 225321
+    },
+    "saffilion:country:jamaica": {
+      "qid": "Q766",
+      "sitelinks": 246,
+      "titles": {
+        "enwiki": "Jamaica",
+        "afwiki": "Jamaika",
+        "zuwiki": "I-Jamaica"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 184129,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 184129
+    },
+    "saffilion:country:ireland": {
+      "qid": "Q27",
+      "sitelinks": 281,
+      "titles": {
+        "enwiki": "Republic of Ireland",
+        "afwiki": "Republiek Ierland",
+        "zuwiki": "I-Ayilendi"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 222394,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 222394
+    },
+    "saffilion:country:philippines": {
+      "qid": "Q928",
+      "sitelinks": 275,
+      "titles": {
+        "enwiki": "Philippines",
+        "afwiki": "Filippyne"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 462396,
+        "afwiki": 141
+      },
+      "pageviews": 462537
+    },
+    "saffilion:country:malta": {
+      "qid": "Q233",
+      "sitelinks": 276,
+      "titles": {
+        "enwiki": "Malta",
+        "afwiki": "Malta",
+        "zuwiki": "IMalta",
+        "xhwiki": "Maltha"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 301431,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 301431
+    },
+    "saffilion:country:fiji": {
+      "qid": "Q712",
+      "sitelinks": 235,
+      "titles": {
+        "enwiki": "Fiji",
+        "afwiki": "Fidji",
+        "zuwiki": "IFiji"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 211556,
+        "afwiki": 72,
+        "zuwiki": 0
+      },
+      "pageviews": 211628
+    },
+    "saffilion:country:cyprus": {
+      "qid": "Q229",
+      "sitelinks": 269,
+      "titles": {
+        "enwiki": "Cyprus",
+        "afwiki": "Siprus"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 305701,
+        "afwiki": 0
+      },
+      "pageviews": 305701
+    },
+    "geonames:955514": {
+      "qid": "Q334",
+      "sitelinks": 271,
+      "titles": {
+        "enwiki": "Singapore",
+        "afwiki": "Singapoer"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 602225,
+        "afwiki": 0
+      },
+      "pageviews": 602225
+    },
+    "saffilion:country:mauritius": {
+      "qid": "Q1027",
+      "sitelinks": 242,
+      "titles": {
+        "enwiki": "Mauritius",
+        "afwiki": "Mauritius",
+        "zuwiki": "IMorishisi"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 358022,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 358022
+    },
+    "saffilion:country:samoa": {
+      "qid": "Q683",
+      "sitelinks": 221,
+      "titles": {
+        "enwiki": "Samoa",
+        "afwiki": "Samoa",
+        "xhwiki": "Samowa"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 162431,
+        "afwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 162431
+    },
+    "saffilion:country:maldives": {
+      "qid": "Q826",
+      "sitelinks": 242,
+      "titles": {
+        "enwiki": "Maldives",
+        "afwiki": "Maledive"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 240866,
+        "afwiki": 0
+      },
+      "pageviews": 240866
+    },
+    "saffilion:country:vanuatu": {
+      "qid": "Q686",
+      "sitelinks": 226,
+      "titles": {
+        "enwiki": "Vanuatu",
+        "afwiki": "Vanuatu"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 160451,
+        "afwiki": 0
+      },
+      "pageviews": 160451
+    },
+    "saffilion:country:nauru": {
+      "qid": "Q697",
+      "sitelinks": 226,
+      "titles": {
+        "enwiki": "Nauru",
+        "afwiki": "Nauru",
+        "xhwiki": "Nawuru"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 173726,
+        "afwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 173726
+    },
+    "saffilion:country:kiribati": {
+      "qid": "Q710",
+      "sitelinks": 220,
+      "titles": {
+        "enwiki": "Kiribati",
+        "afwiki": "Kiribati"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 195181,
+        "afwiki": 0
+      },
+      "pageviews": 195181
+    },
+    "saffilion:country:tuvalu": {
+      "qid": "Q672",
+      "sitelinks": 223,
+      "titles": {
+        "enwiki": "Tuvalu",
+        "afwiki": "Tuvalu",
+        "zuwiki": "Tuvalu",
+        "xhwiki": "Tuvalu"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 124450,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 124450
+    },
+    "saffilion:country:spain": {
+      "qid": "Q29",
+      "sitelinks": 314,
+      "titles": {
+        "enwiki": "Spain",
+        "afwiki": "Spanje",
+        "zuwiki": "ISpeyini",
+        "xhwiki": "ISpain"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 421393,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 421393
+    },
+    "saffilion:country:france": {
+      "qid": "Q142",
+      "sitelinks": 339,
+      "titles": {
+        "enwiki": "France",
+        "afwiki": "Frankryk",
+        "zuwiki": "IFulansi",
+        "xhwiki": "Fransi"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 557112,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 557112
+    },
+    "saffilion:country:italy": {
+      "qid": "Q38",
+      "sitelinks": 324,
+      "titles": {
+        "enwiki": "Italy",
+        "afwiki": "Italië",
+        "zuwiki": "ITaliya",
+        "xhwiki": "IItaly"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 369054,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 369054
+    },
+    "saffilion:country:greece": {
+      "qid": "Q41",
+      "sitelinks": 300,
+      "titles": {
+        "enwiki": "Greece",
+        "afwiki": "Griekeland",
+        "zuwiki": "IGreki",
+        "xhwiki": "Grisi"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 274847,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 274847
+    },
+    "saffilion:country:turkey": {
+      "qid": "Q43",
+      "sitelinks": 345,
+      "titles": {
+        "enwiki": "Turkey",
+        "afwiki": "Turkye",
+        "zuwiki": "ITheki",
+        "xhwiki": "ITurkiya"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 480163,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 480163
+    },
+    "saffilion:country:tunisia": {
+      "qid": "Q948",
+      "sitelinks": 272,
+      "titles": {
+        "enwiki": "Tunisia",
+        "afwiki": "Tunisië",
+        "zuwiki": "IThuniziya"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 167055,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 167055
+    },
+    "saffilion:country:croatia": {
+      "qid": "Q224",
+      "sitelinks": 296,
+      "titles": {
+        "enwiki": "Croatia",
+        "afwiki": "Kroasië",
+        "zuwiki": "IKrowati"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 255005,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 255005
+    },
+    "saffilion:country:israel": {
+      "qid": "Q801",
+      "sitelinks": 294,
+      "titles": {
+        "enwiki": "Israel",
+        "afwiki": "Israel",
+        "zuwiki": "Isirayeli"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 761215,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 761215
+    },
+    "saffilion:country:syria": {
+      "qid": "Q858",
+      "sitelinks": 269,
+      "titles": {
+        "enwiki": "Syria",
+        "afwiki": "Sirië"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 243274,
+        "afwiki": 0
+      },
+      "pageviews": 243274
+    },
+    "saffilion:country:albania": {
+      "qid": "Q222",
+      "sitelinks": 323,
+      "titles": {
+        "enwiki": "Albania",
+        "afwiki": "Albanië",
+        "zuwiki": "I-Albaniya",
+        "xhwiki": "Albania"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 357146,
+        "afwiki": 75,
+        "zuwiki": 0,
+        "xhwiki": 11
+      },
+      "pageviews": 357232
+    },
+    "saffilion:country:lebanon": {
+      "qid": "Q822",
+      "sitelinks": 264,
+      "titles": {
+        "enwiki": "Lebanon",
+        "afwiki": "Libanon"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 229789,
+        "afwiki": 0
+      },
+      "pageviews": 229789
+    },
+    "saffilion:country:montenegro": {
+      "qid": "Q236",
+      "sitelinks": 265,
+      "titles": {
+        "enwiki": "Montenegro",
+        "afwiki": "Montenegro",
+        "zuwiki": "IMontenegro",
+        "xhwiki": "Montenegro"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 261131,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 261131
+    },
+    "saffilion:country:libya": {
+      "qid": "Q1016",
+      "sitelinks": 266,
+      "titles": {
+        "enwiki": "Libya",
+        "afwiki": "Libië",
+        "zuwiki": "ILibhiya"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 190615,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 190615
+    },
+    "wikidata:Q235": {
+      "qid": "Q235",
+      "sitelinks": 269,
+      "titles": {
+        "enwiki": "Monaco",
+        "afwiki": "Monaco"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 294899,
+        "afwiki": 0
+      },
+      "pageviews": 294899
+    },
+    "saffilion:country:slovenia": {
+      "qid": "Q215",
+      "sitelinks": 278,
+      "titles": {
+        "enwiki": "Slovenia",
+        "afwiki": "Slowenië",
+        "zuwiki": "ISloveniya",
+        "xhwiki": "Sloveniya"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 233952,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 233952
+    },
+    "saffilion:country:state-of-palestine": {
+      "qid": "Q219060",
+      "sitelinks": 194,
+      "titles": {
+        "enwiki": "Palestine",
+        "afwiki": "Staat Palestina"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 369528,
+        "afwiki": 0
+      },
+      "pageviews": 369528
+    },
+    "saffilion:country:switzerland": {
+      "qid": "Q39",
+      "sitelinks": 307,
+      "titles": {
+        "enwiki": "Switzerland",
+        "afwiki": "Switserland",
+        "zuwiki": "ISwitzerland",
+        "xhwiki": "Switserii"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 331438,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 331438
+    },
+    "saffilion:country:austria": {
+      "qid": "Q40",
+      "sitelinks": 299,
+      "titles": {
+        "enwiki": "Austria",
+        "afwiki": "Oostenryk",
+        "zuwiki": "I-Ostriya"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 262341,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 262341
+    },
+    "saffilion:country:nepal": {
+      "qid": "Q837",
+      "sitelinks": 262,
+      "titles": {
+        "enwiki": "Nepal",
+        "afwiki": "Nepal",
+        "zuwiki": "Nepal",
+        "xhwiki": "Nephal"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 239471,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 239471
+    },
+    "saffilion:country:afghanistan": {
+      "qid": "Q889",
+      "sitelinks": 288,
+      "titles": {
+        "enwiki": "Afghanistan",
+        "afwiki": "Afghanistan",
+        "zuwiki": "I-Afganistani"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 324208,
+        "afwiki": 96,
+        "zuwiki": 0
+      },
+      "pageviews": 324304
+    },
+    "saffilion:country:mongolia": {
+      "qid": "Q711",
+      "sitelinks": 265,
+      "titles": {
+        "enwiki": "Mongolia",
+        "afwiki": "Mongolië"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 261158,
+        "afwiki": 0
+      },
+      "pageviews": 261158
+    },
+    "saffilion:country:serbia": {
+      "qid": "Q403",
+      "sitelinks": 285,
+      "titles": {
+        "enwiki": "Serbia",
+        "afwiki": "Serwië",
+        "zuwiki": "ISerbiya"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 388061,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 388061
+    },
+    "saffilion:country:hungary": {
+      "qid": "Q28",
+      "sitelinks": 289,
+      "titles": {
+        "enwiki": "Hungary",
+        "afwiki": "Hongarye",
+        "zuwiki": "IHungariya",
+        "xhwiki": "Hangari"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 232436,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 232436
+    },
+    "saffilion:country:south-sudan": {
+      "qid": "Q958",
+      "sitelinks": 237,
+      "titles": {
+        "enwiki": "South Sudan",
+        "afwiki": "Suid-Soedan",
+        "zuwiki": "INingizimu Sudan"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 152673,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 152673
+    },
+    "saffilion:country:kazakhstan": {
+      "qid": "Q232",
+      "sitelinks": 286,
+      "titles": {
+        "enwiki": "Kazakhstan",
+        "afwiki": "Kasakstan",
+        "xhwiki": "Kazakhstan"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 372831,
+        "afwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 372831
+    },
+    "saffilion:country:laos": {
+      "qid": "Q819",
+      "sitelinks": 268,
+      "titles": {
+        "enwiki": "Laos",
+        "afwiki": "Laos"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 189717,
+        "afwiki": 0
+      },
+      "pageviews": 189717
+    },
+    "saffilion:country:mali": {
+      "qid": "Q912",
+      "sitelinks": 261,
+      "titles": {
+        "enwiki": "Mali",
+        "afwiki": "Mali",
+        "zuwiki": "IMali",
+        "xhwiki": "Mali"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 130240,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 130240
+    },
+    "saffilion:country:liechtenstein": {
+      "qid": "Q347",
+      "sitelinks": 269,
+      "titles": {
+        "enwiki": "Liechtenstein",
+        "afwiki": "Liechtenstein",
+        "xhwiki": "Likhtensteyin"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 291270,
+        "afwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 291270
+    },
+    "saffilion:country:san-marino": {
+      "qid": "Q238",
+      "sitelinks": 270,
+      "titles": {
+        "enwiki": "San Marino",
+        "afwiki": "San Marino",
+        "zuwiki": "USanti Marino",
+        "xhwiki": "Sen Marino"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 208659,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 208659
+    },
+    "wikidata:Q237": {
+      "qid": "Q237",
+      "sitelinks": 275,
+      "titles": {
+        "enwiki": "Vatican City",
+        "afwiki": "Vatikaanstad",
+        "zuwiki": "Indolobha yaseVathikhani",
+        "xhwiki": "EsikaPhapha"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 216921,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 216921
+    },
+    "saffilion:country:germany": {
+      "qid": "Q183",
+      "sitelinks": 316,
+      "titles": {
+        "enwiki": "Germany",
+        "afwiki": "Duitsland",
+        "zuwiki": "IJalimani",
+        "xhwiki": "IJamani"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 520972,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 520972
+    },
+    "saffilion:country:portugal": {
+      "qid": "Q45",
+      "sitelinks": 303,
+      "titles": {
+        "enwiki": "Portugal",
+        "afwiki": "Portugal",
+        "zuwiki": "IPhothugali",
+        "xhwiki": "Photshugo"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 293335,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 293335
+    },
+    "saffilion:country:latvia": {
+      "qid": "Q211",
+      "sitelinks": 279,
+      "titles": {
+        "enwiki": "Latvia",
+        "afwiki": "Letland",
+        "zuwiki": "ILatviya"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 213704,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 213704
+    },
+    "saffilion:country:lithuania": {
+      "qid": "Q37",
+      "sitelinks": 289,
+      "titles": {
+        "enwiki": "Lithuania",
+        "afwiki": "Litaue",
+        "zuwiki": "ILithuwaniya"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 247307,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 247307
+    },
+    "saffilion:country:finland": {
+      "qid": "Q33",
+      "sitelinks": 324,
+      "titles": {
+        "enwiki": "Finland",
+        "afwiki": "Finland",
+        "zuwiki": "IFinlandi",
+        "xhwiki": "IFinland"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 263486,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 263486
+    },
+    "saffilion:country:estonia": {
+      "qid": "Q191",
+      "sitelinks": 295,
+      "titles": {
+        "enwiki": "Estonia",
+        "afwiki": "Estland",
+        "zuwiki": "I-Estoniya",
+        "xhwiki": "Estoniya"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 211433,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 211433
+    },
+    "saffilion:country:slovakia": {
+      "qid": "Q214",
+      "sitelinks": 279,
+      "titles": {
+        "enwiki": "Slovakia",
+        "afwiki": "Slowakye",
+        "zuwiki": "ISlovaki",
+        "xhwiki": "Slovakiya"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 210053,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 210053
+    },
+    "saffilion:country:andorra": {
+      "qid": "Q228",
+      "sitelinks": 286,
+      "titles": {
+        "enwiki": "Andorra",
+        "afwiki": "Andorra",
+        "zuwiki": "I-Andora",
+        "xhwiki": "Andorra"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 203267,
+        "afwiki": 260,
+        "zuwiki": 0,
+        "xhwiki": 16
+      },
+      "pageviews": 203543
+    },
+    "saffilion:country:luxembourg": {
+      "qid": "Q32",
+      "sitelinks": 279,
+      "titles": {
+        "enwiki": "Luxembourg",
+        "afwiki": "Luxemburg",
+        "xhwiki": "Luxemburg"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 237382,
+        "afwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 237382
+    },
+    "saffilion:city:cape-town": {
+      "qid": "Q5465",
+      "sitelinks": 195,
+      "titles": {
+        "enwiki": "Cape Town",
+        "afwiki": "Kaapstad",
+        "zuwiki": "IKapa",
+        "xhwiki": "IKapa"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 115854,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 115854
+    },
+    "saffilion:city:pretoria": {
+      "qid": "Q3926",
+      "sitelinks": 170,
+      "titles": {
+        "enwiki": "Pretoria",
+        "afwiki": "Pretoria",
+        "zuwiki": "IPitoli",
+        "xhwiki": "E-Pitoli"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 77199,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 21
+      },
+      "pageviews": 77220
+    },
+    "saffilion:city:bloemfontein": {
+      "qid": "Q37701",
+      "sitelinks": 131,
+      "titles": {
+        "enwiki": "Bloemfontein",
+        "afwiki": "Bloemfontein",
+        "zuwiki": "IBloemfontein",
+        "xhwiki": "EBloemfontein"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 49793,
+        "afwiki": 289,
+        "zuwiki": 0,
+        "xhwiki": 10
+      },
+      "pageviews": 50092
+    },
+    "geonames:939557": {
+      "qid": "Q3935",
+      "sitelinks": 155,
+      "titles": {
+        "enwiki": "Windhoek",
+        "afwiki": "Windhoek",
+        "zuwiki": "Windhoek"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 37595,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 37595
+    },
+    "geonames:940882": {
+      "qid": "Q23661",
+      "sitelinks": 166,
+      "titles": {
+        "enwiki": "Wellington",
+        "afwiki": "Wellington, Nieu-Seeland"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 77491,
+        "afwiki": 0
+      },
+      "pageviews": 77491
+    },
+    "geonames:944038": {
+      "qid": "Q3940",
+      "sitelinks": 133,
+      "titles": {
+        "enwiki": "Victoria, Seychelles",
+        "afwiki": "Victoria (Seychelle)"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 13842,
+        "afwiki": 0
+      },
+      "pageviews": 13842
+    },
+    "geonames:967278": {
+      "qid": "Q1930",
+      "sitelinks": 204,
+      "titles": {
+        "enwiki": "Ottawa",
+        "afwiki": "Ottawa"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 117797,
+        "afwiki": 0
+      },
+      "pageviews": 117797
+    },
+    "geonames:978478": {
+      "qid": "Q3909",
+      "sitelinks": 141,
+      "titles": {
+        "enwiki": "Maseru",
+        "afwiki": "Maseru",
+        "zuwiki": "Maseru, Idolobha"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 11595,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 11595
+    },
+    "geonames:981318": {
+      "qid": "Q3881",
+      "sitelinks": 150,
+      "titles": {
+        "enwiki": "Lusaka",
+        "afwiki": "Lusaka",
+        "zuwiki": "Lusaka"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 20004,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 20004
+    },
+    "geonames:990861": {
+      "qid": "Q34692",
+      "sitelinks": 143,
+      "titles": {
+        "enwiki": "Kingston, Jamaica",
+        "afwiki": "Kingston, Jamaika"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 38381,
+        "afwiki": 0
+      },
+      "pageviews": 38381
+    },
+    "geonames:1013038": {
+      "qid": "Q35381",
+      "sitelinks": 137,
+      "titles": {
+        "enwiki": "Colombo",
+        "afwiki": "Colombo"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 49926,
+        "afwiki": 38
+      },
+      "pageviews": 49964
+    },
+    "geonames:1023342": {
+      "qid": "Q3561",
+      "sitelinks": 190,
+      "titles": {
+        "enwiki": "Algiers",
+        "afwiki": "Algiers",
+        "zuwiki": "Algiers"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 50882,
+        "afwiki": 28,
+        "zuwiki": 13
+      },
+      "pageviews": 50923
+    },
+    "geonames:1023648": {
+      "qid": "Q131694",
+      "sitelinks": 101,
+      "titles": {
+        "enwiki": "Aden",
+        "afwiki": "Aden"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 70000,
+        "afwiki": 32
+      },
+      "pageviews": 70032
+    },
+    "geonames:11467772": {
+      "qid": "Q3921",
+      "sitelinks": 156,
+      "titles": {
+        "enwiki": "Harare",
+        "afwiki": "Harare",
+        "zuwiki": "IHarare"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 48979,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 48979
+    },
+    "wikidata:Q763": {
+      "qid": "Q763",
+      "sitelinks": 203,
+      "titles": {
+        "enwiki": "Saint Kitts and Nevis",
+        "afwiki": "St. Kitts en Nevis"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 103549,
+        "afwiki": 0
+      },
+      "pageviews": 103549
+    },
+    "wikidata:Q41295": {
+      "qid": "Q41295",
+      "sitelinks": 115,
+      "titles": {
+        "enwiki": "Basseterre",
+        "afwiki": "Basseterre"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 11487,
+        "afwiki": 14
+      },
+      "pageviews": 11501
+    },
+    "wikidata:Q769": {
+      "qid": "Q769",
+      "sitelinks": 218,
+      "titles": {
+        "enwiki": "Grenada",
+        "afwiki": "Grenada"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 128938,
+        "afwiki": 0
+      },
+      "pageviews": 128938
+    },
+    "wikidata:Q41547": {
+      "qid": "Q41547",
+      "sitelinks": 122,
+      "titles": {
+        "enwiki": "St. George's, Grenada",
+        "afwiki": "St. George’s, Grenada"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 8118,
+        "afwiki": 0
+      },
+      "pageviews": 8118
+    },
+    "wikidata:Q774": {
+      "qid": "Q774",
+      "sitelinks": 244,
+      "titles": {
+        "enwiki": "Guatemala",
+        "afwiki": "Guatemala",
+        "zuwiki": "Guatemala"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 162722,
+        "afwiki": 0,
+        "zuwiki": 7
+      },
+      "pageviews": 162729
+    },
+    "wikidata:Q1555": {
+      "qid": "Q1555",
+      "sitelinks": 139,
+      "titles": {
+        "enwiki": "Guatemala City",
+        "afwiki": "Guatemalastad"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 29483,
+        "afwiki": 0
+      },
+      "pageviews": 29483
+    },
+    "wikidata:Q2467": {
+      "qid": "Q2467",
+      "sitelinks": 128,
+      "titles": {
+        "enwiki": "Nassau, Bahamas",
+        "afwiki": "Nassau"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 51193,
+        "afwiki": 0
+      },
+      "pageviews": 51193
+    },
+    "wikidata:Q781": {
+      "qid": "Q781",
+      "sitelinks": 235,
+      "titles": {
+        "enwiki": "Antigua and Barbuda",
+        "afwiki": "Antigua en Barbuda"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 94760,
+        "afwiki": 59
+      },
+      "pageviews": 94819
+    },
+    "wikidata:Q36262": {
+      "qid": "Q36262",
+      "sitelinks": 126,
+      "titles": {
+        "enwiki": "St. John's, Antigua and Barbuda",
+        "afwiki": "St. John’s, Antigua en Barbuda"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 12311,
+        "afwiki": 0
+      },
+      "pageviews": 12311
+    },
+    "wikidata:Q783": {
+      "qid": "Q783",
+      "sitelinks": 247,
+      "titles": {
+        "enwiki": "Honduras",
+        "afwiki": "Honduras",
+        "zuwiki": "Honduras"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 128107,
+        "afwiki": 0,
+        "zuwiki": 13
+      },
+      "pageviews": 128120
+    },
+    "wikidata:Q3238": {
+      "qid": "Q3238",
+      "sitelinks": 142,
+      "titles": {
+        "enwiki": "Tegucigalpa",
+        "afwiki": "Tegucigalpa"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 26991,
+        "afwiki": 0
+      },
+      "pageviews": 26991
+    },
+    "wikidata:Q784": {
+      "qid": "Q784",
+      "sitelinks": 229,
+      "titles": {
+        "enwiki": "Dominica",
+        "afwiki": "Dominica"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 107568,
+        "afwiki": 0
+      },
+      "pageviews": 107568
+    },
+    "wikidata:Q36281": {
+      "qid": "Q36281",
+      "sitelinks": 115,
+      "titles": {
+        "enwiki": "Roseau",
+        "afwiki": "Roseau"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 7160,
+        "afwiki": 0
+      },
+      "pageviews": 7160
+    },
+    "wikidata:Q786": {
+      "qid": "Q786",
+      "sitelinks": 237,
+      "titles": {
+        "enwiki": "Dominican Republic",
+        "afwiki": "Dominikaanse Republiek"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 229392,
+        "afwiki": 0
+      },
+      "pageviews": 229392
+    },
+    "wikidata:Q34820": {
+      "qid": "Q34820",
+      "sitelinks": 135,
+      "titles": {
+        "enwiki": "Santo Domingo",
+        "afwiki": "Santo Domingo"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 50854,
+        "afwiki": 0
+      },
+      "pageviews": 50854
+    },
+    "wikidata:Q790": {
+      "qid": "Q790",
+      "sitelinks": 240,
+      "titles": {
+        "enwiki": "Haiti",
+        "afwiki": "Haïti",
+        "xhwiki": "I-Haiti"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 273319,
+        "afwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 273319
+    },
+    "wikidata:Q34261": {
+      "qid": "Q34261",
+      "sitelinks": 136,
+      "titles": {
+        "enwiki": "Port-au-Prince",
+        "afwiki": "Port-au-Prince"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 49692,
+        "afwiki": 0
+      },
+      "pageviews": 49692
+    },
+    "wikidata:Q792": {
+      "qid": "Q792",
+      "sitelinks": 241,
+      "titles": {
+        "enwiki": "El Salvador",
+        "afwiki": "El Salvador",
+        "zuwiki": "El Salvador"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 270421,
+        "afwiki": 0,
+        "zuwiki": 8
+      },
+      "pageviews": 270429
+    },
+    "wikidata:Q3110": {
+      "qid": "Q3110",
+      "sitelinks": 136,
+      "titles": {
+        "enwiki": "San Salvador",
+        "afwiki": "San Salvador"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 32866,
+        "afwiki": 0
+      },
+      "pageviews": 32866
+    },
+    "wikidata:Q794": {
+      "qid": "Q794",
+      "sitelinks": 299,
+      "titles": {
+        "enwiki": "Iran",
+        "afwiki": "Iran",
+        "zuwiki": "I-Irani",
+        "xhwiki": "IIran"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 434007,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 434007
+    },
+    "wikidata:Q3616": {
+      "qid": "Q3616",
+      "sitelinks": 210,
+      "titles": {
+        "enwiki": "Tehran",
+        "afwiki": "Teheran"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 72562,
+        "afwiki": 0
+      },
+      "pageviews": 72562
+    },
+    "wikidata:Q796": {
+      "qid": "Q796",
+      "sitelinks": 276,
+      "titles": {
+        "enwiki": "Iraq",
+        "afwiki": "Irak",
+        "zuwiki": "I-Iraki"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 208625,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 208625
+    },
+    "wikidata:Q1530": {
+      "qid": "Q1530",
+      "sitelinks": 212,
+      "titles": {
+        "enwiki": "Baghdad",
+        "afwiki": "Bagdad"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 81379,
+        "afwiki": 48
+      },
+      "pageviews": 81427
+    },
+    "wikidata:Q800": {
+      "qid": "Q800",
+      "sitelinks": 248,
+      "titles": {
+        "enwiki": "Costa Rica",
+        "afwiki": "Costa Rica",
+        "zuwiki": "Costa Rica"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 143759,
+        "afwiki": 0,
+        "zuwiki": 7
+      },
+      "pageviews": 143766
+    },
+    "wikidata:Q3070": {
+      "qid": "Q3070",
+      "sitelinks": 138,
+      "titles": {
+        "enwiki": "San José, Costa Rica",
+        "afwiki": "San José, Costa Rica"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 26561,
+        "afwiki": 0
+      },
+      "pageviews": 26561
+    },
+    "wikidata:Q1218": {
+      "qid": "Q1218",
+      "sitelinks": 247,
+      "titles": {
+        "enwiki": "Jerusalem",
+        "afwiki": "Jerusalem",
+        "zuwiki": "IYerusalem",
+        "xhwiki": "IJerusalem"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 222266,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 222266
+    },
+    "wikidata:Q804": {
+      "qid": "Q804",
+      "sitelinks": 249,
+      "titles": {
+        "enwiki": "Panama",
+        "afwiki": "Panama",
+        "zuwiki": "Panama"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 132179,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 132179
+    },
+    "wikidata:Q3306": {
+      "qid": "Q3306",
+      "sitelinks": 140,
+      "titles": {
+        "enwiki": "Panama City",
+        "afwiki": "Panamastad"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 42633,
+        "afwiki": 0
+      },
+      "pageviews": 42633
+    },
+    "wikidata:Q805": {
+      "qid": "Q805",
+      "sitelinks": 258,
+      "titles": {
+        "enwiki": "Yemen",
+        "afwiki": "Jemen",
+        "zuwiki": "IYemen"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 329937,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 329937
+    },
+    "wikidata:Q2471": {
+      "qid": "Q2471",
+      "sitelinks": 151,
+      "titles": {
+        "enwiki": "Sanaa",
+        "afwiki": "Sanaa"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 72124,
+        "afwiki": 0
+      },
+      "pageviews": 72124
+    },
+    "wikidata:Q810": {
+      "qid": "Q810",
+      "sitelinks": 261,
+      "titles": {
+        "enwiki": "Jordan",
+        "afwiki": "Jordanië"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 238088,
+        "afwiki": 0
+      },
+      "pageviews": 238088
+    },
+    "wikidata:Q3805": {
+      "qid": "Q3805",
+      "sitelinks": 172,
+      "titles": {
+        "enwiki": "Amman",
+        "afwiki": "Amman"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 44931,
+        "afwiki": 18
+      },
+      "pageviews": 44949
+    },
+    "wikidata:Q811": {
+      "qid": "Q811",
+      "sitelinks": 247,
+      "titles": {
+        "enwiki": "Nicaragua",
+        "afwiki": "Nicaragua",
+        "zuwiki": "Nicaragua"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 137839,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 137839
+    },
+    "wikidata:Q131546626": {
+      "qid": "Q131546626",
+      "sitelinks": 1,
+      "titles": {},
+      "pageviewsByWiki": {},
+      "pageviews": 0
+    },
+    "wikidata:Q813": {
+      "qid": "Q813",
+      "sitelinks": 265,
+      "titles": {
+        "enwiki": "Kyrgyzstan",
+        "afwiki": "Kirgisië"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 256008,
+        "afwiki": 0
+      },
+      "pageviews": 256008
+    },
+    "wikidata:Q9361": {
+      "qid": "Q9361",
+      "sitelinks": 169,
+      "titles": {
+        "enwiki": "Bishkek",
+        "afwiki": "Bisjkek"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 42205,
+        "afwiki": 0
+      },
+      "pageviews": 42205
+    },
+    "wikidata:Q817": {
+      "qid": "Q817",
+      "sitelinks": 254,
+      "titles": {
+        "enwiki": "Kuwait",
+        "afwiki": "Koeweit"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 156758,
+        "afwiki": 0
+      },
+      "pageviews": 156758
+    },
+    "wikidata:Q35178": {
+      "qid": "Q35178",
+      "sitelinks": 153,
+      "titles": {
+        "enwiki": "Kuwait City",
+        "afwiki": "Koeweit (stad)"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 23905,
+        "afwiki": 0
+      },
+      "pageviews": 23905
+    },
+    "wikidata:Q9326": {
+      "qid": "Q9326",
+      "sitelinks": 156,
+      "titles": {
+        "enwiki": "Vientiane",
+        "afwiki": "Vientiane"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 34394,
+        "afwiki": 0
+      },
+      "pageviews": 34394
+    },
+    "wikidata:Q3820": {
+      "qid": "Q3820",
+      "sitelinks": 183,
+      "titles": {
+        "enwiki": "Beirut",
+        "afwiki": "Beiroet"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 69571,
+        "afwiki": 0
+      },
+      "pageviews": 69571
+    },
+    "wikidata:Q9347": {
+      "qid": "Q9347",
+      "sitelinks": 141,
+      "titles": {
+        "enwiki": "Malé",
+        "afwiki": "Malé"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 36887,
+        "afwiki": 0
+      },
+      "pageviews": 36887
+    },
+    "wikidata:Q833": {
+      "qid": "Q833",
+      "sitelinks": 280,
+      "titles": {
+        "enwiki": "Malaysia",
+        "afwiki": "Maleisië",
+        "zuwiki": "IMalaysia"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 360999,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 360999
+    },
+    "wikidata:Q1865": {
+      "qid": "Q1865",
+      "sitelinks": 188,
+      "titles": {
+        "enwiki": "Kuala Lumpur",
+        "afwiki": "Kuala Lumpur"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 118921,
+        "afwiki": 0
+      },
+      "pageviews": 118921
+    },
+    "wikidata:Q836": {
+      "qid": "Q836",
+      "sitelinks": 261,
+      "titles": {
+        "enwiki": "Myanmar",
+        "afwiki": "Mianmar"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 360084,
+        "afwiki": 0
+      },
+      "pageviews": 360084
+    },
+    "wikidata:Q37400": {
+      "qid": "Q37400",
+      "sitelinks": 144,
+      "titles": {
+        "enwiki": "Naypyidaw",
+        "afwiki": "Naypyidaw"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 34189,
+        "afwiki": 0
+      },
+      "pageviews": 34189
+    },
+    "wikidata:Q3037": {
+      "qid": "Q3037",
+      "sitelinks": 175,
+      "titles": {
+        "enwiki": "Kathmandu",
+        "afwiki": "Katmandoe"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 66108,
+        "afwiki": 0
+      },
+      "pageviews": 66108
+    },
+    "wikidata:Q842": {
+      "qid": "Q842",
+      "sitelinks": 248,
+      "titles": {
+        "enwiki": "Oman",
+        "afwiki": "Oman",
+        "xhwiki": "Oman"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 263996,
+        "afwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 263996
+    },
+    "wikidata:Q3826": {
+      "qid": "Q3826",
+      "sitelinks": 144,
+      "titles": {
+        "enwiki": "Muscat",
+        "afwiki": "Maskat"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 50206,
+        "afwiki": 0
+      },
+      "pageviews": 50206
+    },
+    "wikidata:Q843": {
+      "qid": "Q843",
+      "sitelinks": 282,
+      "titles": {
+        "enwiki": "Pakistan",
+        "afwiki": "Pakistan",
+        "zuwiki": "IPakistani"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 389548,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 389548
+    },
+    "wikidata:Q1362": {
+      "qid": "Q1362",
+      "sitelinks": 178,
+      "titles": {
+        "enwiki": "Islamabad",
+        "afwiki": "Islamabad"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 58415,
+        "afwiki": 0
+      },
+      "pageviews": 58415
+    },
+    "wikidata:Q846": {
+      "qid": "Q846",
+      "sitelinks": 257,
+      "titles": {
+        "enwiki": "Qatar",
+        "afwiki": "Katar"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 184919,
+        "afwiki": 0
+      },
+      "pageviews": 184919
+    },
+    "wikidata:Q3861": {
+      "qid": "Q3861",
+      "sitelinks": 169,
+      "titles": {
+        "enwiki": "Doha",
+        "afwiki": "Doha"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 64791,
+        "afwiki": 0
+      },
+      "pageviews": 64791
+    },
+    "wikidata:Q851": {
+      "qid": "Q851",
+      "sitelinks": 282,
+      "titles": {
+        "enwiki": "Saudi Arabia",
+        "afwiki": "Saoedi-Arabië"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 390220,
+        "afwiki": 0
+      },
+      "pageviews": 390220
+    },
+    "wikidata:Q3692": {
+      "qid": "Q3692",
+      "sitelinks": 171,
+      "titles": {
+        "enwiki": "Riyadh",
+        "afwiki": "Riaad"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 110773,
+        "afwiki": 0
+      },
+      "pageviews": 110773
+    },
+    "wikidata:Q41963": {
+      "qid": "Q41963",
+      "sitelinks": 118,
+      "titles": {
+        "enwiki": "Sri Jayawardenepura Kotte",
+        "afwiki": "Sri Jayawardenepura Kotte"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 19289,
+        "afwiki": 0
+      },
+      "pageviews": 19289
+    },
+    "wikidata:Q3766": {
+      "qid": "Q3766",
+      "sitelinks": 208,
+      "titles": {
+        "enwiki": "Damascus",
+        "afwiki": "Damaskus"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 88840,
+        "afwiki": 0
+      },
+      "pageviews": 88840
+    },
+    "wikidata:Q863": {
+      "qid": "Q863",
+      "sitelinks": 258,
+      "titles": {
+        "enwiki": "Tajikistan",
+        "afwiki": "Tadjikistan"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 161022,
+        "afwiki": 0
+      },
+      "pageviews": 161022
+    },
+    "wikidata:Q9365": {
+      "qid": "Q9365",
+      "sitelinks": 163,
+      "titles": {
+        "enwiki": "Dushanbe",
+        "afwiki": "Doesjanbe"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 29200,
+        "afwiki": 0
+      },
+      "pageviews": 29200
+    },
+    "wikidata:Q865": {
+      "qid": "Q865",
+      "sitelinks": 253,
+      "titles": {
+        "enwiki": "Taiwan",
+        "afwiki": "Republiek China",
+        "xhwiki": "Taiwan"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 488304,
+        "afwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 488304
+    },
+    "wikidata:Q1867": {
+      "qid": "Q1867",
+      "sitelinks": 174,
+      "titles": {
+        "enwiki": "Taipei",
+        "afwiki": "Taipei"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 121081,
+        "afwiki": 0
+      },
+      "pageviews": 121081
+    },
+    "wikidata:Q869": {
+      "qid": "Q869",
+      "sitelinks": 286,
+      "titles": {
+        "enwiki": "Thailand",
+        "afwiki": "Thailand",
+        "zuwiki": "IThailande"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 310296,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 310296
+    },
+    "wikidata:Q1861": {
+      "qid": "Q1861",
+      "sitelinks": 224,
+      "titles": {
+        "enwiki": "Bangkok",
+        "afwiki": "Bangkok",
+        "xhwiki": "Bangkok"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 136918,
+        "afwiki": 38,
+        "xhwiki": 7
+      },
+      "pageviews": 136963
+    },
+    "wikidata:Q874": {
+      "qid": "Q874",
+      "sitelinks": 252,
+      "titles": {
+        "enwiki": "Turkmenistan",
+        "afwiki": "Turkmenistan"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 231664,
+        "afwiki": 0
+      },
+      "pageviews": 231664
+    },
+    "wikidata:Q23438": {
+      "qid": "Q23438",
+      "sitelinks": 169,
+      "titles": {
+        "enwiki": "Ashgabat",
+        "afwiki": "Asjchabad"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 45386,
+        "afwiki": 23
+      },
+      "pageviews": 45409
+    },
+    "wikidata:Q878": {
+      "qid": "Q878",
+      "sitelinks": 261,
+      "titles": {
+        "enwiki": "United Arab Emirates",
+        "afwiki": "Verenigde Arabiese Emirate"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 410678,
+        "afwiki": 0
+      },
+      "pageviews": 410678
+    },
+    "wikidata:Q1519": {
+      "qid": "Q1519",
+      "sitelinks": 166,
+      "titles": {
+        "enwiki": "Abu Dhabi",
+        "afwiki": "Aboe Dhabi"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 121817,
+        "afwiki": 43
+      },
+      "pageviews": 121860
+    },
+    "wikidata:Q881": {
+      "qid": "Q881",
+      "sitelinks": 307,
+      "titles": {
+        "enwiki": "Vietnam",
+        "afwiki": "Viëtnam",
+        "zuwiki": "IViyetnami",
+        "xhwiki": "Vietnam"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 374538,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 374538
+    },
+    "wikidata:Q1858": {
+      "qid": "Q1858",
+      "sitelinks": 179,
+      "titles": {
+        "enwiki": "Hanoi",
+        "afwiki": "Hanoi"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 94278,
+        "afwiki": 0
+      },
+      "pageviews": 94278
+    },
+    "wikidata:Q884": {
+      "qid": "Q884",
+      "sitelinks": 284,
+      "titles": {
+        "enwiki": "South Korea",
+        "afwiki": "Suid-Korea",
+        "zuwiki": "South Korea",
+        "xhwiki": "Republic of Korea"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 342062,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 342062
+    },
+    "wikidata:Q8684": {
+      "qid": "Q8684",
+      "sitelinks": 223,
+      "titles": {
+        "enwiki": "Seoul",
+        "afwiki": "Seoel",
+        "zuwiki": "ESeoul"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 140054,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 140054
+    },
+    "wikidata:Q5838": {
+      "qid": "Q5838",
+      "sitelinks": 193,
+      "titles": {
+        "enwiki": "Kabul",
+        "afwiki": "Kaboel"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 54401,
+        "afwiki": 0
+      },
+      "pageviews": 54401
+    },
+    "wikidata:Q1354": {
+      "qid": "Q1354",
+      "sitelinks": 202,
+      "titles": {
+        "enwiki": "Dhaka",
+        "afwiki": "Dhaka"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 91615,
+        "afwiki": 0
+      },
+      "pageviews": 91615
+    },
+    "wikidata:Q3703": {
+      "qid": "Q3703",
+      "sitelinks": 161,
+      "titles": {
+        "enwiki": "Bamako",
+        "afwiki": "Bamako"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 24115,
+        "afwiki": 33
+      },
+      "pageviews": 24148
+    },
+    "wikidata:Q3897": {
+      "qid": "Q3897",
+      "sitelinks": 166,
+      "titles": {
+        "enwiki": "Luanda",
+        "afwiki": "Luanda",
+        "zuwiki": "Luanda"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 37839,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 37839
+    },
+    "wikidata:Q9270": {
+      "qid": "Q9270",
+      "sitelinks": 156,
+      "titles": {
+        "enwiki": "Thimphu",
+        "afwiki": "Thimphu"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 24505,
+        "afwiki": 0
+      },
+      "pageviews": 24505
+    },
+    "wikidata:Q9279": {
+      "qid": "Q9279",
+      "sitelinks": 148,
+      "titles": {
+        "enwiki": "Bandar Seri Begawan",
+        "afwiki": "Bandar Seri Begawan"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 21632,
+        "afwiki": 21
+      },
+      "pageviews": 21653
+    },
+    "wikidata:Q3866": {
+      "qid": "Q3866",
+      "sitelinks": 147,
+      "titles": {
+        "enwiki": "Dodoma",
+        "afwiki": "Dodoma",
+        "zuwiki": "Dodoma"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 20463,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 20463
+    },
+    "wikidata:Q1461": {
+      "qid": "Q1461",
+      "sitelinks": 189,
+      "titles": {
+        "enwiki": "Manila",
+        "afwiki": "Manila"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 95124,
+        "afwiki": 0
+      },
+      "pageviews": 95124
+    },
+    "wikidata:Q3832": {
+      "qid": "Q3832",
+      "sitelinks": 146,
+      "titles": {
+        "enwiki": "Bangui",
+        "afwiki": "Bangui"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 21454,
+        "afwiki": 0
+      },
+      "pageviews": 21454
+    },
+    "wikidata:Q945": {
+      "qid": "Q945",
+      "sitelinks": 256,
+      "titles": {
+        "enwiki": "Togo",
+        "afwiki": "Togo",
+        "zuwiki": "ITogo"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 89785,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 89785
+    },
+    "wikidata:Q3792": {
+      "qid": "Q3792",
+      "sitelinks": 149,
+      "titles": {
+        "enwiki": "Lomé",
+        "afwiki": "Lomé"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 13262,
+        "afwiki": 0
+      },
+      "pageviews": 13262
+    },
+    "wikidata:Q3572": {
+      "qid": "Q3572",
+      "sitelinks": 160,
+      "titles": {
+        "enwiki": "Tunis",
+        "afwiki": "Tunis",
+        "zuwiki": "Tunis"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 35931,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 35931
+    },
+    "wikidata:Q1947": {
+      "qid": "Q1947",
+      "sitelinks": 137,
+      "titles": {
+        "enwiki": "Juba",
+        "afwiki": "Joeba",
+        "zuwiki": "Juba, Ningizimu Sudan"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 22985,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 22985
+    },
+    "wikidata:Q3799": {
+      "qid": "Q3799",
+      "sitelinks": 146,
+      "titles": {
+        "enwiki": "Porto-Novo",
+        "afwiki": "Porto-Novo"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 12610,
+        "afwiki": 0
+      },
+      "pageviews": 12610
+    },
+    "wikidata:Q3919": {
+      "qid": "Q3919",
+      "sitelinks": 149,
+      "titles": {
+        "enwiki": "Gaborone",
+        "afwiki": "Gaborone",
+        "zuwiki": "IGaborone"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 26133,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 26133
+    },
+    "wikidata:Q3777": {
+      "qid": "Q3777",
+      "sitelinks": 153,
+      "titles": {
+        "enwiki": "Ouagadougou",
+        "afwiki": "Ouagadougou"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 38799,
+        "afwiki": 0
+      },
+      "pageviews": 38799
+    },
+    "wikidata:Q167551": {
+      "qid": "Q167551",
+      "sitelinks": 92,
+      "titles": {
+        "enwiki": "Gitega",
+        "afwiki": "Gitega",
+        "zuwiki": "Gitega"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 9708,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 9708
+    },
+    "wikidata:Q3901": {
+      "qid": "Q3901",
+      "sitelinks": 137,
+      "titles": {
+        "enwiki": "Moroni, Comoros",
+        "afwiki": "Moroni"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 10579,
+        "afwiki": 0
+      },
+      "pageviews": 10579
+    },
+    "wikidata:Q971": {
+      "qid": "Q971",
+      "sitelinks": 255,
+      "titles": {
+        "enwiki": "Republic of the Congo",
+        "afwiki": "Republiek die Kongo",
+        "zuwiki": "IKhongo-Brazzaville"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 95500,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 95500
+    },
+    "wikidata:Q3844": {
+      "qid": "Q3844",
+      "sitelinks": 157,
+      "titles": {
+        "enwiki": "Brazzaville",
+        "afwiki": "Brazzaville",
+        "zuwiki": "Brazzaville",
+        "xhwiki": "IBrazzaville"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 26855,
+        "afwiki": 0,
+        "zuwiki": 13,
+        "xhwiki": 0
+      },
+      "pageviews": 26868
+    },
+    "wikidata:Q3838": {
+      "qid": "Q3838",
+      "sitelinks": 184,
+      "titles": {
+        "enwiki": "Kinshasa",
+        "afwiki": "Kinshasa",
+        "zuwiki": "Kinshasa"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 79408,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 79408
+    },
+    "wikidata:Q3604": {
+      "qid": "Q3604",
+      "sitelinks": 135,
+      "titles": {
+        "enwiki": "Djibouti City",
+        "afwiki": "Djiboeti (stad)",
+        "zuwiki": "Djibouti, Idolobha"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 13488,
+        "afwiki": 0,
+        "zuwiki": 4
+      },
+      "pageviews": 13492
+    },
+    "wikidata:Q1140136": {
+      "qid": "Q1140136",
+      "sitelinks": 62,
+      "titles": {
+        "enwiki": "Ciudad de la Paz",
+        "afwiki": "Ciudad de la Paz",
+        "zuwiki": "Ciudad de la Paz"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 31641,
+        "afwiki": 0,
+        "zuwiki": 10
+      },
+      "pageviews": 31651
+    },
+    "wikidata:Q986": {
+      "qid": "Q986",
+      "sitelinks": 265,
+      "titles": {
+        "enwiki": "Eritrea",
+        "afwiki": "Eritrea",
+        "zuwiki": "I-Eritrea"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 282640,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 282640
+    },
+    "wikidata:Q3642": {
+      "qid": "Q3642",
+      "sitelinks": 152,
+      "titles": {
+        "enwiki": "Asmara",
+        "afwiki": "Asmara",
+        "zuwiki": "Asmara"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 30786,
+        "afwiki": 39,
+        "zuwiki": 7
+      },
+      "pageviews": 30832
+    },
+    "wikidata:Q1000": {
+      "qid": "Q1000",
+      "sitelinks": 254,
+      "titles": {
+        "enwiki": "Gabon",
+        "afwiki": "Gaboen",
+        "zuwiki": "IGabhoni"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 99311,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 99311
+    },
+    "wikidata:Q3825": {
+      "qid": "Q3825",
+      "sitelinks": 150,
+      "titles": {
+        "enwiki": "Libreville",
+        "afwiki": "Libreville",
+        "zuwiki": "Libreville"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 14351,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 14351
+    },
+    "wikidata:Q1005": {
+      "qid": "Q1005",
+      "sitelinks": 255,
+      "titles": {
+        "enwiki": "The Gambia",
+        "afwiki": "Gambië",
+        "zuwiki": "IGambia"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 129398,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 129398
+    },
+    "wikidata:Q3726": {
+      "qid": "Q3726",
+      "sitelinks": 149,
+      "titles": {
+        "enwiki": "Banjul",
+        "afwiki": "Banjul"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 16430,
+        "afwiki": 19
+      },
+      "pageviews": 16449
+    },
+    "wikidata:Q1006": {
+      "qid": "Q1006",
+      "sitelinks": 253,
+      "titles": {
+        "enwiki": "Guinea",
+        "afwiki": "Guinee",
+        "zuwiki": "IGini"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 108879,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 108879
+    },
+    "wikidata:Q3733": {
+      "qid": "Q3733",
+      "sitelinks": 149,
+      "titles": {
+        "enwiki": "Conakry",
+        "afwiki": "Conakry"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 26003,
+        "afwiki": 0
+      },
+      "pageviews": 26003
+    },
+    "wikidata:Q3739": {
+      "qid": "Q3739",
+      "sitelinks": 153,
+      "titles": {
+        "enwiki": "Bissau",
+        "afwiki": "Bissau"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 9873,
+        "afwiki": 21
+      },
+      "pageviews": 9894
+    },
+    "wikidata:Q3768": {
+      "qid": "Q3768",
+      "sitelinks": 146,
+      "titles": {
+        "enwiki": "Yamoussoukro",
+        "afwiki": "Yamoussoukro"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 14072,
+        "afwiki": 0
+      },
+      "pageviews": 14072
+    },
+    "wikidata:Q3808": {
+      "qid": "Q3808",
+      "sitelinks": 152,
+      "titles": {
+        "enwiki": "Yaoundé",
+        "afwiki": "Yaoundé"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 23589,
+        "afwiki": 0
+      },
+      "pageviews": 23589
+    },
+    "wikidata:Q3751": {
+      "qid": "Q3751",
+      "sitelinks": 144,
+      "titles": {
+        "enwiki": "Praia",
+        "afwiki": "Praia, Kaap Verde"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 12985,
+        "afwiki": 0
+      },
+      "pageviews": 12985
+    },
+    "wikidata:Q1014": {
+      "qid": "Q1014",
+      "sitelinks": 253,
+      "titles": {
+        "enwiki": "Liberia",
+        "afwiki": "Liberië",
+        "zuwiki": "ILiberia"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 192708,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 192708
+    },
+    "wikidata:Q3748": {
+      "qid": "Q3748",
+      "sitelinks": 150,
+      "titles": {
+        "enwiki": "Monrovia",
+        "afwiki": "Monrovia"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 35435,
+        "afwiki": 0
+      },
+      "pageviews": 35435
+    },
+    "wikidata:Q3579": {
+      "qid": "Q3579",
+      "sitelinks": 166,
+      "titles": {
+        "enwiki": "Tripoli, Libya",
+        "afwiki": "Tripoli",
+        "zuwiki": "Tripoli, Libhiya"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 44072,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 44072
+    },
+    "wikidata:Q3915": {
+      "qid": "Q3915",
+      "sitelinks": 149,
+      "titles": {
+        "enwiki": "Antananarivo",
+        "afwiki": "Antananarivo",
+        "zuwiki": "Antananarivo"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 31624,
+        "afwiki": 26,
+        "zuwiki": 7
+      },
+      "pageviews": 31657
+    },
+    "wikidata:Q3876": {
+      "qid": "Q3876",
+      "sitelinks": 145,
+      "titles": {
+        "enwiki": "Lilongwe",
+        "afwiki": "Lilongwe",
+        "zuwiki": "Lilongwe"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 13622,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 13622
+    },
+    "wikidata:Q3688": {
+      "qid": "Q3688",
+      "sitelinks": 144,
+      "titles": {
+        "enwiki": "Nouakchott",
+        "afwiki": "Nouakchott",
+        "xhwiki": "Nouakchott"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 32723,
+        "afwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 32723
+    },
+    "wikidata:Q3929": {
+      "qid": "Q3929",
+      "sitelinks": 140,
+      "titles": {
+        "enwiki": "Port Louis",
+        "afwiki": "Port Louis"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 19373,
+        "afwiki": 0
+      },
+      "pageviews": 19373
+    },
+    "wikidata:Q3551": {
+      "qid": "Q3551",
+      "sitelinks": 170,
+      "titles": {
+        "enwiki": "Rabat",
+        "afwiki": "Rabat"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 39530,
+        "afwiki": 0
+      },
+      "pageviews": 39530
+    },
+    "wikidata:Q3889": {
+      "qid": "Q3889",
+      "sitelinks": 150,
+      "titles": {
+        "enwiki": "Maputo",
+        "afwiki": "Maputo",
+        "zuwiki": "Maputo",
+        "xhwiki": "EMaputo"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 24340,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 24340
+    },
+    "wikidata:Q1032": {
+      "qid": "Q1032",
+      "sitelinks": 256,
+      "titles": {
+        "enwiki": "Niger",
+        "afwiki": "Niger",
+        "zuwiki": "INayighe",
+        "xhwiki": "Nayija"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 124718,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 124718
+    },
+    "wikidata:Q3674": {
+      "qid": "Q3674",
+      "sitelinks": 149,
+      "titles": {
+        "enwiki": "Niamey",
+        "afwiki": "Niamey",
+        "xhwiki": "Niamey"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 17366,
+        "afwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 17366
+    },
+    "wikidata:Q3787": {
+      "qid": "Q3787",
+      "sitelinks": 185,
+      "titles": {
+        "enwiki": "Abuja",
+        "afwiki": "Abuja",
+        "xhwiki": "Abuja"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 42859,
+        "afwiki": 36,
+        "xhwiki": 11
+      },
+      "pageviews": 42906
+    },
+    "wikidata:Q3894": {
+      "qid": "Q3894",
+      "sitelinks": 163,
+      "titles": {
+        "enwiki": "Kampala",
+        "afwiki": "Kampala",
+        "zuwiki": "Kampala",
+        "xhwiki": "IKampala"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 51436,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 51436
+    },
+    "wikidata:Q3859": {
+      "qid": "Q3859",
+      "sitelinks": 152,
+      "titles": {
+        "enwiki": "Kigali",
+        "afwiki": "Kigali",
+        "zuwiki": "Kigali"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 36306,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 36306
+    },
+    "wikidata:Q3932": {
+      "qid": "Q3932",
+      "sitelinks": 130,
+      "titles": {
+        "enwiki": "São Tomé",
+        "afwiki": "São Tomé"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 12913,
+        "afwiki": 0
+      },
+      "pageviews": 12913
+    },
+    "wikidata:Q3718": {
+      "qid": "Q3718",
+      "sitelinks": 156,
+      "titles": {
+        "enwiki": "Dakar",
+        "afwiki": "Dakar"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 51363,
+        "afwiki": 0
+      },
+      "pageviews": 51363
+    },
+    "wikidata:Q1044": {
+      "qid": "Q1044",
+      "sitelinks": 250,
+      "titles": {
+        "enwiki": "Sierra Leone",
+        "afwiki": "Sierra Leone",
+        "zuwiki": "ISiera Liyoni"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 142484,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 142484
+    },
+    "wikidata:Q3780": {
+      "qid": "Q3780",
+      "sitelinks": 144,
+      "titles": {
+        "enwiki": "Freetown",
+        "afwiki": "Freetown, Sierra Leone"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 22601,
+        "afwiki": 0
+      },
+      "pageviews": 22601
+    },
+    "wikidata:Q1045": {
+      "qid": "Q1045",
+      "sitelinks": 262,
+      "titles": {
+        "enwiki": "Somalia",
+        "afwiki": "Somalië",
+        "zuwiki": "ISomaliya"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 236272,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 236272
+    },
+    "wikidata:Q2449": {
+      "qid": "Q2449",
+      "sitelinks": 151,
+      "titles": {
+        "enwiki": "Mogadishu",
+        "afwiki": "Mogadisjoe",
+        "zuwiki": "Mogadishu"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 71986,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 71986
+    },
+    "wikidata:Q1963": {
+      "qid": "Q1963",
+      "sitelinks": 164,
+      "titles": {
+        "enwiki": "Khartoum",
+        "afwiki": "Khartoem",
+        "zuwiki": "Khartoum"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 42000,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 42000
+    },
+    "wikidata:Q3904": {
+      "qid": "Q3904",
+      "sitelinks": 135,
+      "titles": {
+        "enwiki": "Mbabane",
+        "afwiki": "Mbabane",
+        "zuwiki": "IMbabane"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 36128,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 36128
+    },
+    "wikidata:Q101418": {
+      "qid": "Q101418",
+      "sitelinks": 93,
+      "titles": {
+        "enwiki": "Lobamba",
+        "afwiki": "Lobamba",
+        "zuwiki": "ILobamba"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 6019,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 6019
+    },
+    "wikidata:Q15180": {
+      "qid": "Q15180",
+      "sitelinks": 234,
+      "titles": {
+        "enwiki": "Soviet Union",
+        "afwiki": "Sowjetunie",
+        "zuwiki": "UBumbano wamaSoviyethi",
+        "xhwiki": "Isoviet Union"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 537508,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 537508
+    },
+    "wikidata:Q649": {
+      "qid": "Q649",
+      "sitelinks": 283,
+      "titles": {
+        "enwiki": "Moscow",
+        "afwiki": "Moskou",
+        "zuwiki": "IMoskwa",
+        "xhwiki": "Moscou"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 161846,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 161846
+    },
+    "wikidata:Q16957": {
+      "qid": "Q16957",
+      "sitelinks": 145,
+      "titles": {
+        "enwiki": "East Germany",
+        "afwiki": "Duitse Demokratiese Republiek"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 170266,
+        "afwiki": 0
+      },
+      "pageviews": 170266
+    },
+    "wikidata:Q56037": {
+      "qid": "Q56037",
+      "sitelinks": 72,
+      "titles": {
+        "enwiki": "East Berlin",
+        "afwiki": "Oos-Berlyn"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 24170,
+        "afwiki": 0
+      },
+      "pageviews": 24170
+    },
+    "wikidata:Q29999": {
+      "qid": "Q29999",
+      "sitelinks": 107,
+      "titles": {
+        "enwiki": "Kingdom of the Netherlands",
+        "afwiki": "Koninkryk van die Nederlande"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 84312,
+        "afwiki": 0
+      },
+      "pageviews": 84312
+    },
+    "wikidata:Q36704": {
+      "qid": "Q36704",
+      "sitelinks": 155,
+      "titles": {
+        "enwiki": "Yugoslavia",
+        "afwiki": "Joego-Slawië"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 212542,
+        "afwiki": 0
+      },
+      "pageviews": 212542
+    },
+    "wikidata:Q3711": {
+      "qid": "Q3711",
+      "sitelinks": 198,
+      "titles": {
+        "enwiki": "Belgrade",
+        "afwiki": "Belgrado"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 107518,
+        "afwiki": 38
+      },
+      "pageviews": 107556
+    },
+    "wikidata:Q158119": {
+      "qid": "Q158119",
+      "sitelinks": 114,
+      "titles": {
+        "enwiki": "Ramallah",
+        "afwiki": "Ramallah"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 42359,
+        "afwiki": 0
+      },
+      "pageviews": 42359
+    },
+    "wikidata:Q212938": {
+      "qid": "Q212938",
+      "sitelinks": 74,
+      "titles": {
+        "enwiki": "East Jerusalem"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 28597
+      },
+      "pageviews": 28597
+    },
+    "wikidata:Q2933": {
+      "qid": "Q2933",
+      "sitelinks": 158,
+      "titles": {
+        "enwiki": "Asunción",
+        "afwiki": "Asunción"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 35738,
+        "afwiki": 11
+      },
+      "pageviews": 35749
+    },
+    "wikidata:Q10717": {
+      "qid": "Q10717",
+      "sitelinks": 136,
+      "titles": {
+        "enwiki": "Georgetown, Guyana",
+        "afwiki": "Georgetown, Guyana"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 37149,
+        "afwiki": 0
+      },
+      "pageviews": 37149
+    },
+    "wikidata:Q2900": {
+      "qid": "Q2900",
+      "sitelinks": 158,
+      "titles": {
+        "enwiki": "Quito",
+        "afwiki": "Quito"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 39686,
+        "afwiki": 0
+      },
+      "pageviews": 39686
+    },
+    "wikidata:Q2841": {
+      "qid": "Q2841",
+      "sitelinks": 256,
+      "titles": {
+        "enwiki": "Bogotá",
+        "afwiki": "Bogotá",
+        "zuwiki": "IBogotaa"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 73654,
+        "afwiki": 30,
+        "zuwiki": 0
+      },
+      "pageviews": 73684
+    },
+    "wikidata:Q1491": {
+      "qid": "Q1491",
+      "sitelinks": 141,
+      "titles": {
+        "enwiki": "La Paz",
+        "afwiki": "La Paz"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 45803,
+        "afwiki": 0
+      },
+      "pageviews": 45803
+    },
+    "wikidata:Q2907": {
+      "qid": "Q2907",
+      "sitelinks": 137,
+      "titles": {
+        "enwiki": "Sucre",
+        "afwiki": "Sucre"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 16664,
+        "afwiki": 0
+      },
+      "pageviews": 16664
+    },
+    "wikidata:Q754": {
+      "qid": "Q754",
+      "sitelinks": 219,
+      "titles": {
+        "enwiki": "Trinidad and Tobago",
+        "afwiki": "Trinidad en Tobago"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 181713,
+        "afwiki": 0
+      },
+      "pageviews": 181713
+    },
+    "wikidata:Q39178": {
+      "qid": "Q39178",
+      "sitelinks": 127,
+      "titles": {
+        "enwiki": "Port of Spain",
+        "afwiki": "Port of Spain"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 42303,
+        "afwiki": 0
+      },
+      "pageviews": 42303
+    },
+    "wikidata:Q757": {
+      "qid": "Q757",
+      "sitelinks": 201,
+      "titles": {
+        "enwiki": "Saint Vincent and the Grenadines",
+        "afwiki": "St. Vincent en die Grenadine"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 84838,
+        "afwiki": 0
+      },
+      "pageviews": 84838
+    },
+    "wikidata:Q41474": {
+      "qid": "Q41474",
+      "sitelinks": 112,
+      "titles": {
+        "enwiki": "Kingstown",
+        "afwiki": "Kingstown"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 9250,
+        "afwiki": 0
+      },
+      "pageviews": 9250
+    },
+    "wikidata:Q760": {
+      "qid": "Q760",
+      "sitelinks": 207,
+      "titles": {
+        "enwiki": "Saint Lucia",
+        "afwiki": "St. Lucia"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 119559,
+        "afwiki": 0
+      },
+      "pageviews": 119559
+    },
+    "wikidata:Q41699": {
+      "qid": "Q41699",
+      "sitelinks": 122,
+      "titles": {
+        "enwiki": "Castries",
+        "afwiki": "Castries"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 8648,
+        "afwiki": 19
+      },
+      "pageviews": 8667
+    },
+    "wikidata:Q1533": {
+      "qid": "Q1533",
+      "sitelinks": 186,
+      "titles": {
+        "enwiki": "Caracas",
+        "afwiki": "Caracas"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 36771,
+        "afwiki": 32
+      },
+      "pageviews": 36803
+    },
+    "wikidata:Q3001": {
+      "qid": "Q3001",
+      "sitelinks": 144,
+      "titles": {
+        "enwiki": "Paramaribo",
+        "afwiki": "Paramaribo"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 24018,
+        "afwiki": 0
+      },
+      "pageviews": 24018
+    },
+    "wikidata:Q16": {
+      "qid": "Q16",
+      "sitelinks": 316,
+      "titles": {
+        "enwiki": "Canada",
+        "afwiki": "Kanada",
+        "zuwiki": "IKhanada",
+        "xhwiki": "Khanada"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 603342,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 603342
+    },
+    "wikidata:Q1490": {
+      "qid": "Q1490",
+      "sitelinks": 269,
+      "titles": {
+        "enwiki": "Tokyo",
+        "afwiki": "Tokio",
+        "zuwiki": "ITokyo"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 255532,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 255532
+    },
+    "wikidata:Q20": {
+      "qid": "Q20",
+      "sitelinks": 313,
+      "titles": {
+        "enwiki": "Norway",
+        "afwiki": "Noorweë",
+        "zuwiki": "INoki",
+        "xhwiki": "Norowe"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 276264,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 276264
+    },
+    "wikidata:Q585": {
+      "qid": "Q585",
+      "sitelinks": 213,
+      "titles": {
+        "enwiki": "Oslo",
+        "afwiki": "Oslo",
+        "xhwiki": "IOslo"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 80317,
+        "afwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 80317
+    },
+    "wikidata:Q30": {
+      "qid": "Q30",
+      "sitelinks": 333,
+      "titles": {
+        "enwiki": "United States",
+        "afwiki": "Verenigde State van Amerika",
+        "zuwiki": "IMelika",
+        "xhwiki": "IYunayithedi Steyitsi"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 1822714,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 1822714
+    },
+    "wikidata:Q61": {
+      "qid": "Q61",
+      "sitelinks": 251,
+      "titles": {
+        "enwiki": "Washington, D.C.",
+        "afwiki": "Washington, D.C.",
+        "zuwiki": "Washington, D.C.",
+        "xhwiki": "IWashington"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 396643,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 396643
+    },
+    "wikidata:Q1842": {
+      "qid": "Q1842",
+      "sitelinks": 157,
+      "titles": {
+        "enwiki": "Luxembourg City",
+        "afwiki": "Luxemburg (stad)"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 34272,
+        "afwiki": 0
+      },
+      "pageviews": 34272
+    },
+    "wikidata:Q1757": {
+      "qid": "Q1757",
+      "sitelinks": 254,
+      "titles": {
+        "enwiki": "Helsinki",
+        "afwiki": "Helsinki",
+        "zuwiki": "Helsinki",
+        "xhwiki": "I-Helsinki"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 83912,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 83912
+    },
+    "wikidata:Q34": {
+      "qid": "Q34",
+      "sitelinks": 296,
+      "titles": {
+        "enwiki": "Sweden",
+        "afwiki": "Swede",
+        "zuwiki": "ISwidi",
+        "xhwiki": "Swiden"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 287536,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 287536
+    },
+    "wikidata:Q36": {
+      "qid": "Q36",
+      "sitelinks": 310,
+      "titles": {
+        "enwiki": "Poland",
+        "afwiki": "Pole",
+        "zuwiki": "IPolandi",
+        "xhwiki": "IPoland"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 427801,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 427801
+    },
+    "wikidata:Q70": {
+      "qid": "Q70",
+      "sitelinks": 178,
+      "titles": {
+        "enwiki": "Bern",
+        "afwiki": "Bern"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 46143,
+        "afwiki": 0
+      },
+      "pageviews": 46143
+    },
+    "wikidata:Q3640": {
+      "qid": "Q3640",
+      "sitelinks": 216,
+      "titles": {
+        "enwiki": "Ankara",
+        "afwiki": "Ankara"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 68034,
+        "afwiki": 45
+      },
+      "pageviews": 68079
+    },
+    "wikidata:Q1335": {
+      "qid": "Q1335",
+      "sitelinks": 182,
+      "titles": {
+        "enwiki": "Montevideo",
+        "afwiki": "Montevideo"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 49115,
+        "afwiki": 0
+      },
+      "pageviews": 49115
+    },
+    "wikidata:Q85": {
+      "qid": "Q85",
+      "sitelinks": 231,
+      "titles": {
+        "enwiki": "Cairo",
+        "afwiki": "Kaïro",
+        "zuwiki": "Cairo"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 105880,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 105880
+    },
+    "wikidata:Q96": {
+      "qid": "Q96",
+      "sitelinks": 324,
+      "titles": {
+        "enwiki": "Mexico",
+        "afwiki": "Meksiko",
+        "zuwiki": "IMekisiko",
+        "xhwiki": "Mexico"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 426290,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 426290
+    },
+    "wikidata:Q1489": {
+      "qid": "Q1489",
+      "sitelinks": 226,
+      "titles": {
+        "enwiki": "Mexico City",
+        "afwiki": "Meksikostad"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 219845,
+        "afwiki": 0
+      },
+      "pageviews": 219845
+    },
+    "wikidata:Q3870": {
+      "qid": "Q3870",
+      "sitelinks": 211,
+      "titles": {
+        "enwiki": "Nairobi",
+        "afwiki": "Nairobi",
+        "zuwiki": "Nairobi"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 69768,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 69768
+    },
+    "wikidata:Q3624": {
+      "qid": "Q3624",
+      "sitelinks": 173,
+      "titles": {
+        "enwiki": "Addis Ababa",
+        "afwiki": "Addis Abeba",
+        "zuwiki": "Addis Ababa"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 87804,
+        "afwiki": 51,
+        "zuwiki": 15
+      },
+      "pageviews": 87870
+    },
+    "wikidata:Q3761": {
+      "qid": "Q3761",
+      "sitelinks": 183,
+      "titles": {
+        "enwiki": "Accra",
+        "afwiki": "Accra",
+        "xhwiki": "I-Accra"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 41408,
+        "afwiki": 17,
+        "xhwiki": 0
+      },
+      "pageviews": 41425
+    },
+    "wikidata:Q148": {
+      "qid": "Q148",
+      "sitelinks": 320,
+      "titles": {
+        "enwiki": "China",
+        "afwiki": "Volksrepubliek China",
+        "zuwiki": "IShayina",
+        "xhwiki": "IShayina"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 716422,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 716422
+    },
+    "wikidata:Q956": {
+      "qid": "Q956",
+      "sitelinks": 261,
+      "titles": {
+        "enwiki": "Beijing",
+        "afwiki": "Beijing",
+        "zuwiki": "Beijing"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 161176,
+        "afwiki": 0,
+        "zuwiki": 12
+      },
+      "pageviews": 161188
+    },
+    "wikidata:Q2844": {
+      "qid": "Q2844",
+      "sitelinks": 203,
+      "titles": {
+        "enwiki": "Brasília",
+        "afwiki": "Brasília",
+        "xhwiki": "Brasilia"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 82436,
+        "afwiki": 0,
+        "xhwiki": 4
+      },
+      "pageviews": 82440
+    },
+    "wikidata:Q159": {
+      "qid": "Q159",
+      "sitelinks": 328,
+      "titles": {
+        "enwiki": "Russia",
+        "afwiki": "Rusland",
+        "zuwiki": "IRashiya",
+        "xhwiki": "IRashiya"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 634401,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 634401
+    },
+    "wikidata:Q2280": {
+      "qid": "Q2280",
+      "sitelinks": 200,
+      "titles": {
+        "enwiki": "Minsk",
+        "afwiki": "Minsk"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 56606,
+        "afwiki": 0
+      },
+      "pageviews": 56606
+    },
+    "wikidata:Q1764": {
+      "qid": "Q1764",
+      "sitelinks": 192,
+      "titles": {
+        "enwiki": "Reykjavík",
+        "afwiki": "Reykjavik"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 87620,
+        "afwiki": 0
+      },
+      "pageviews": 87620
+    },
+    "wikidata:Q212": {
+      "qid": "Q212",
+      "sitelinks": 313,
+      "titles": {
+        "enwiki": "Ukraine",
+        "afwiki": "Oekraïne",
+        "zuwiki": "IYukreyini",
+        "xhwiki": "IYukreyini"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 341741,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 341741
+    },
+    "wikidata:Q1899": {
+      "qid": "Q1899",
+      "sitelinks": 234,
+      "titles": {
+        "enwiki": "Kyiv",
+        "afwiki": "Kijif",
+        "zuwiki": "IKiyevi",
+        "xhwiki": "Kyiv"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 86427,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 86427
+    },
+    "wikidata:Q213": {
+      "qid": "Q213",
+      "sitelinks": 289,
+      "titles": {
+        "enwiki": "Czech Republic",
+        "afwiki": "Tsjeggië",
+        "zuwiki": "ITsheki"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 364777,
+        "afwiki": 0,
+        "zuwiki": 0
+      },
+      "pageviews": 364777
+    },
+    "wikidata:Q217": {
+      "qid": "Q217",
+      "sitelinks": 274,
+      "titles": {
+        "enwiki": "Moldova",
+        "afwiki": "Moldowa",
+        "zuwiki": "IMoldova",
+        "xhwiki": "IMoldova"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 206341,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 206341
+    },
+    "wikidata:Q218": {
+      "qid": "Q218",
+      "sitelinks": 284,
+      "titles": {
+        "enwiki": "Romania",
+        "afwiki": "Roemenië",
+        "zuwiki": "IRomaniya",
+        "xhwiki": "Romaniya"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 272620,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 272620
+    },
+    "wikidata:Q221": {
+      "qid": "Q221",
+      "sitelinks": 271,
+      "titles": {
+        "enwiki": "North Macedonia",
+        "afwiki": "Noord-Masedonië",
+        "zuwiki": "INyakatho Masedoniya",
+        "xhwiki": "EMantla eMakedoni"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 246884,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 7
+      },
+      "pageviews": 246891
+    },
+    "wikidata:Q384": {
+      "qid": "Q384",
+      "sitelinks": 174,
+      "titles": {
+        "enwiki": "Skopje",
+        "afwiki": "Skopje"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 54055,
+        "afwiki": 0
+      },
+      "pageviews": 54055
+    },
+    "wikidata:Q19689": {
+      "qid": "Q19689",
+      "sitelinks": 258,
+      "titles": {
+        "enwiki": "Tirana",
+        "afwiki": "Tirana",
+        "zuwiki": "ITirana",
+        "xhwiki": "Tirana"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 53388,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 53388
+    },
+    "wikidata:Q1435": {
+      "qid": "Q1435",
+      "sitelinks": 190,
+      "titles": {
+        "enwiki": "Zagreb",
+        "afwiki": "Zagreb",
+        "xhwiki": "Zagreb"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 56998,
+        "afwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 56998
+    },
+    "wikidata:Q11194": {
+      "qid": "Q11194",
+      "sitelinks": 183,
+      "titles": {
+        "enwiki": "Sarajevo",
+        "afwiki": "Sarajevo"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 82308,
+        "afwiki": 0
+      },
+      "pageviews": 82308
+    },
+    "wikidata:Q227": {
+      "qid": "Q227",
+      "sitelinks": 297,
+      "titles": {
+        "enwiki": "Azerbaijan",
+        "afwiki": "Azerbeidjan",
+        "zuwiki": "Azerbaijan"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 368309,
+        "afwiki": 0,
+        "zuwiki": 19
+      },
+      "pageviews": 368328
+    },
+    "wikidata:Q9248": {
+      "qid": "Q9248",
+      "sitelinks": 220,
+      "titles": {
+        "enwiki": "Baku",
+        "afwiki": "Bakoe",
+        "zuwiki": "Baku"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 95033,
+        "afwiki": 0,
+        "zuwiki": 7
+      },
+      "pageviews": 95040
+    },
+    "wikidata:Q1863": {
+      "qid": "Q1863",
+      "sitelinks": 176,
+      "titles": {
+        "enwiki": "Andorra la Vella",
+        "afwiki": "Andorra la Vella"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 19793,
+        "afwiki": 33
+      },
+      "pageviews": 19826
+    },
+    "wikidata:Q3856": {
+      "qid": "Q3856",
+      "sitelinks": 181,
+      "titles": {
+        "enwiki": "Nicosia",
+        "afwiki": "Nicosia"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 44940,
+        "afwiki": 0
+      },
+      "pageviews": 44940
+    },
+    "wikidata:Q230": {
+      "qid": "Q230",
+      "sitelinks": 281,
+      "titles": {
+        "enwiki": "Georgia (country)",
+        "afwiki": "Georgië"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 345676,
+        "afwiki": 0
+      },
+      "pageviews": 345676
+    },
+    "wikidata:Q994": {
+      "qid": "Q994",
+      "sitelinks": 203,
+      "titles": {
+        "enwiki": "Tbilisi",
+        "afwiki": "Tbilisi"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 91611,
+        "afwiki": 0
+      },
+      "pageviews": 91611
+    },
+    "wikidata:Q1520": {
+      "qid": "Q1520",
+      "sitelinks": 196,
+      "titles": {
+        "enwiki": "Astana",
+        "afwiki": "Astana"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 67689,
+        "afwiki": 22
+      },
+      "pageviews": 67711
+    },
+    "wikidata:Q1848": {
+      "qid": "Q1848",
+      "sitelinks": 138,
+      "titles": {
+        "enwiki": "City of San Marino",
+        "afwiki": "San Marino (stad)"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 11580,
+        "afwiki": 0
+      },
+      "pageviews": 11580
+    },
+    "wikidata:Q1563": {
+      "qid": "Q1563",
+      "sitelinks": 167,
+      "titles": {
+        "enwiki": "Havana",
+        "afwiki": "Havana"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 47012,
+        "afwiki": 0
+      },
+      "pageviews": 47012
+    },
+    "wikidata:Q3043": {
+      "qid": "Q3043",
+      "sitelinks": 136,
+      "titles": {
+        "enwiki": "Belmopan",
+        "afwiki": "Belmopan"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 12969,
+        "afwiki": 0
+      },
+      "pageviews": 12969
+    },
+    "wikidata:Q36168": {
+      "qid": "Q36168",
+      "sitelinks": 132,
+      "titles": {
+        "enwiki": "Bridgetown",
+        "afwiki": "Bridgetown, Barbados"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 14611,
+        "afwiki": 0
+      },
+      "pageviews": 14611
+    },
+    "wikidata:Q3630": {
+      "qid": "Q3630",
+      "sitelinks": 224,
+      "titles": {
+        "enwiki": "Jakarta",
+        "afwiki": "Djakarta"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 166106,
+        "afwiki": 0
+      },
+      "pageviews": 166106
+    },
+    "wikidata:Q265": {
+      "qid": "Q265",
+      "sitelinks": 258,
+      "titles": {
+        "enwiki": "Uzbekistan",
+        "afwiki": "Oesbekistan"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 296736,
+        "afwiki": 0
+      },
+      "pageviews": 296736
+    },
+    "wikidata:Q269": {
+      "qid": "Q269",
+      "sitelinks": 175,
+      "titles": {
+        "enwiki": "Tashkent",
+        "afwiki": "Tasjkent"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 76380,
+        "afwiki": 0
+      },
+      "pageviews": 76380
+    },
+    "wikidata:Q2887": {
+      "qid": "Q2887",
+      "sitelinks": 251,
+      "titles": {
+        "enwiki": "Santiago",
+        "afwiki": "Santiago de Chile",
+        "zuwiki": "ISantiago",
+        "xhwiki": "Santiago"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 66879,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 66879
+    },
+    "wikidata:Q3882": {
+      "qid": "Q3882",
+      "sitelinks": 151,
+      "titles": {
+        "enwiki": "Manama",
+        "afwiki": "Manama"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 22764,
+        "afwiki": 0
+      },
+      "pageviews": 22764
+    },
+    "wikidata:Q399": {
+      "qid": "Q399",
+      "sitelinks": 289,
+      "titles": {
+        "enwiki": "Armenia",
+        "afwiki": "Armenië"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 314709,
+        "afwiki": 118
+      },
+      "pageviews": 314827
+    },
+    "wikidata:Q1953": {
+      "qid": "Q1953",
+      "sitelinks": 194,
+      "titles": {
+        "enwiki": "Yerevan",
+        "afwiki": "Jerewan"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 61186,
+        "afwiki": 0
+      },
+      "pageviews": 61186
+    },
+    "wikidata:Q408": {
+      "qid": "Q408",
+      "sitelinks": 323,
+      "titles": {
+        "enwiki": "Australia",
+        "afwiki": "Australië",
+        "zuwiki": "I-Ostreliya",
+        "xhwiki": "Ostreliya"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 564167,
+        "afwiki": 271,
+        "zuwiki": 0,
+        "xhwiki": 0
+      },
+      "pageviews": 564438
+    },
+    "wikidata:Q3114": {
+      "qid": "Q3114",
+      "sitelinks": 188,
+      "titles": {
+        "enwiki": "Canberra",
+        "afwiki": "Canberra"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 109644,
+        "afwiki": 57
+      },
+      "pageviews": 109701
+    },
+    "wikidata:Q1486": {
+      "qid": "Q1486",
+      "sitelinks": 231,
+      "titles": {
+        "enwiki": "Buenos Aires",
+        "afwiki": "Buenos Aires",
+        "zuwiki": "Buenos Aires"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 118311,
+        "afwiki": 80,
+        "zuwiki": 4
+      },
+      "pageviews": 118395
+    },
+    "wikidata:Q2868": {
+      "qid": "Q2868",
+      "sitelinks": 194,
+      "titles": {
+        "enwiki": "Lima",
+        "afwiki": "Lima"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 67104,
+        "afwiki": 0
+      },
+      "pageviews": 67104
+    },
+    "wikidata:Q423": {
+      "qid": "Q423",
+      "sitelinks": 269,
+      "titles": {
+        "enwiki": "North Korea",
+        "afwiki": "Noord-Korea",
+        "xhwiki": "Coreia do Twoaie"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 492048,
+        "afwiki": 0,
+        "xhwiki": 16
+      },
+      "pageviews": 492064
+    },
+    "wikidata:Q18808": {
+      "qid": "Q18808",
+      "sitelinks": 177,
+      "titles": {
+        "enwiki": "Pyongyang",
+        "afwiki": "Pjongjang"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 96518,
+        "afwiki": 0
+      },
+      "pageviews": 96518
+    },
+    "wikidata:Q424": {
+      "qid": "Q424",
+      "sitelinks": 269,
+      "titles": {
+        "enwiki": "Cambodia",
+        "afwiki": "Kambodja"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 219374,
+        "afwiki": 0
+      },
+      "pageviews": 219374
+    },
+    "wikidata:Q1850": {
+      "qid": "Q1850",
+      "sitelinks": 161,
+      "titles": {
+        "enwiki": "Phnom Penh",
+        "afwiki": "Phnom Penh"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 57117,
+        "afwiki": 0
+      },
+      "pageviews": 57117
+    },
+    "wikidata:Q574": {
+      "qid": "Q574",
+      "sitelinks": 247,
+      "titles": {
+        "enwiki": "Timor-Leste",
+        "afwiki": "Oos-Timor"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 189324,
+        "afwiki": 0
+      },
+      "pageviews": 189324
+    },
+    "wikidata:Q9310": {
+      "qid": "Q9310",
+      "sitelinks": 146,
+      "titles": {
+        "enwiki": "Dili",
+        "afwiki": "Dili"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 19253,
+        "afwiki": 0
+      },
+      "pageviews": 19253
+    },
+    "wikidata:Q3659": {
+      "qid": "Q3659",
+      "sitelinks": 150,
+      "titles": {
+        "enwiki": "N'Djamena",
+        "afwiki": "N'Djamena"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 20932,
+        "afwiki": 0
+      },
+      "pageviews": 20932
+    },
+    "wikidata:Q668": {
+      "qid": "Q668",
+      "sitelinks": 313,
+      "titles": {
+        "enwiki": "India",
+        "afwiki": "Indië",
+        "zuwiki": "India",
+        "xhwiki": "IIndia"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 793949,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 30
+      },
+      "pageviews": 793979
+    },
+    "wikidata:Q987": {
+      "qid": "Q987",
+      "sitelinks": 198,
+      "titles": {
+        "enwiki": "New Delhi",
+        "afwiki": "Nieu-Delhi"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 104584,
+        "afwiki": 0
+      },
+      "pageviews": 104584
+    },
+    "wikidata:Q34126": {
+      "qid": "Q34126",
+      "sitelinks": 116,
+      "titles": {
+        "enwiki": "Funafuti",
+        "afwiki": "Funafuti"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 11326,
+        "afwiki": 0
+      },
+      "pageviews": 11326
+    },
+    "wikidata:Q678": {
+      "qid": "Q678",
+      "sitelinks": 220,
+      "titles": {
+        "enwiki": "Tonga",
+        "afwiki": "Tonga",
+        "xhwiki": "Thonga"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 149339,
+        "afwiki": 0,
+        "xhwiki": 10
+      },
+      "pageviews": 149349
+    },
+    "wikidata:Q38834": {
+      "qid": "Q38834",
+      "sitelinks": 119,
+      "titles": {
+        "enwiki": "Nukuʻalofa",
+        "afwiki": "Nukuʻalofa"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 20675,
+        "afwiki": 0
+      },
+      "pageviews": 20675
+    },
+    "wikidata:Q36260": {
+      "qid": "Q36260",
+      "sitelinks": 129,
+      "titles": {
+        "enwiki": "Apia",
+        "afwiki": "Apia"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 16929,
+        "afwiki": 28
+      },
+      "pageviews": 16957
+    },
+    "wikidata:Q685": {
+      "qid": "Q685",
+      "sitelinks": 207,
+      "titles": {
+        "enwiki": "Solomon Islands",
+        "afwiki": "Salomonseilande"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 108188,
+        "afwiki": 0
+      },
+      "pageviews": 108188
+    },
+    "wikidata:Q40921": {
+      "qid": "Q40921",
+      "sitelinks": 118,
+      "titles": {
+        "enwiki": "Honiara",
+        "afwiki": "Honiara"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 12102,
+        "afwiki": 0
+      },
+      "pageviews": 12102
+    },
+    "wikidata:Q37806": {
+      "qid": "Q37806",
+      "sitelinks": 124,
+      "titles": {
+        "enwiki": "Port Vila",
+        "afwiki": "Port Vila"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 12027,
+        "afwiki": 0
+      },
+      "pageviews": 12027
+    },
+    "wikidata:Q691": {
+      "qid": "Q691",
+      "sitelinks": 240,
+      "titles": {
+        "enwiki": "Papua New Guinea",
+        "afwiki": "Papoea-Nieu-Guinee",
+        "zuwiki": "I-Papua Nyugini",
+        "xhwiki": "Gini eNtsha yasePapuwa"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 226700,
+        "afwiki": 0,
+        "zuwiki": 0,
+        "xhwiki": 10
+      },
+      "pageviews": 226710
+    },
+    "wikidata:Q36526": {
+      "qid": "Q36526",
+      "sitelinks": 136,
+      "titles": {
+        "enwiki": "Port Moresby",
+        "afwiki": "Port Moresby"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 42674,
+        "afwiki": 0
+      },
+      "pageviews": 42674
+    },
+    "wikidata:Q695": {
+      "qid": "Q695",
+      "sitelinks": 224,
+      "titles": {
+        "enwiki": "Palau",
+        "afwiki": "Palau"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 133130,
+        "afwiki": 0
+      },
+      "pageviews": 133130
+    },
+    "wikidata:Q515229": {
+      "qid": "Q515229",
+      "sitelinks": 87,
+      "titles": {
+        "enwiki": "Ngerulmud",
+        "afwiki": "Ngerulmud"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 17931,
+        "afwiki": 0
+      },
+      "pageviews": 17931
+    },
+    "wikidata:Q31026": {
+      "qid": "Q31026",
+      "sitelinks": 113,
+      "titles": {
+        "enwiki": "Yaren",
+        "afwiki": "Yaren"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 8828,
+        "afwiki": 0
+      },
+      "pageviews": 8828
+    },
+    "wikidata:Q702": {
+      "qid": "Q702",
+      "sitelinks": 200,
+      "titles": {
+        "enwiki": "Federated States of Micronesia",
+        "afwiki": "Gefedereerde State van Mikronesië"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 75433,
+        "afwiki": 0
+      },
+      "pageviews": 75433
+    },
+    "wikidata:Q42751": {
+      "qid": "Q42751",
+      "sitelinks": 114,
+      "titles": {
+        "enwiki": "Palikir",
+        "afwiki": "Palikir"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 8529,
+        "afwiki": 0
+      },
+      "pageviews": 8529
+    },
+    "wikidata:Q709": {
+      "qid": "Q709",
+      "sitelinks": 203,
+      "titles": {
+        "enwiki": "Marshall Islands",
+        "afwiki": "Marshalleilande"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 113107,
+        "afwiki": 0
+      },
+      "pageviews": 113107
+    },
+    "wikidata:Q12919": {
+      "qid": "Q12919",
+      "sitelinks": 116,
+      "titles": {
+        "enwiki": "Majuro",
+        "afwiki": "Majuro"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 17061,
+        "afwiki": 0
+      },
+      "pageviews": 17061
+    },
+    "wikidata:Q131233": {
+      "qid": "Q131233",
+      "sitelinks": 94,
+      "titles": {
+        "enwiki": "South Tarawa",
+        "afwiki": "Suid-Tarawa"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 5746,
+        "afwiki": 0
+      },
+      "pageviews": 5746
+    },
+    "wikidata:Q23430": {
+      "qid": "Q23430",
+      "sitelinks": 169,
+      "titles": {
+        "enwiki": "Ulaanbaatar",
+        "afwiki": "Ulaanbaatar"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 94726,
+        "afwiki": 0
+      },
+      "pageviews": 94726
+    },
+    "wikidata:Q38807": {
+      "qid": "Q38807",
+      "sitelinks": 126,
+      "titles": {
+        "enwiki": "Suva",
+        "afwiki": "Suva"
+      },
+      "pageviewsByWiki": {
+        "enwiki": 20404,
+        "afwiki": 0
+      },
+      "pageviews": 20404
+    }
+  }
+}

@@ -20,7 +20,7 @@ Saffilion is a cozy, mobile-first rarity-mining game made with love for Safia. A
 
 ## Rarity scoring
 
-Rarity is a curated, versioned estimate of how familiar an answer is in the context of its question. It is not live popularity data. Pebble, Copper, Quartz, Sapphire, Amethyst, and Stardust answers are worth 5, 12, 25, 45, 70, and 100 points. That makes a Stardust answer worth 20× a Pebble answer while preserving the 700-point perfect expedition. Every point equals 10 metres. Aliases inherit their canonical answer's score.
+Rarity is a versioned, question-specific estimate built from cached reference evidence, category-aware familiarity signals, relative answer-set rank and a small audited override list. It is not live player popularity data. Pebble, Copper, Quartz, Sapphire, Amethyst, and Stardust answers are worth 10, 15, 30, 60, 85, and 100 points. Every point equals 10 metres, so a seven-Stardust expedition remains 700 points and 7,000 metres. Aliases and confirmed spelling corrections inherit the canonical entity's exact score. See [RARITY_METHODOLOGY.md](./RARITY_METHODOLOGY.md).
 
 The Phase 3 database contains 462 playable prompts, 12,964 unique entities and 233,777 canonical question-answer memberships. Of those, 331 standard questions have at least 100 verified answers. One entity can belong to several matching prompts without duplicated maintenance. Complete finite sets are intentionally not padded with false entries. See [DATA_SOURCES.md](./DATA_SOURCES.md), `data/reports/question-generation.json`, and `data/reports/question-validation.json` for the research, coverage and curation trail.
 
@@ -60,11 +60,14 @@ The production bank is compiled from explicit entities, prompt predicates, prove
 npm run data:fetch      # refresh permitted upstream snapshots
 npm run data:build      # merge, deduplicate, generate questions and create offline data
 npm run data:generate-questions # rebuild only the generated Phase 3 bank
+npm run data:collect-familiarity # rebuild evidence from checked-in snapshots
+npm run data:rank-rarity         # generate question/entity rarity classifications
+npm run data:audit-rarity        # verify determinism and write the rarity audit
 npm run data:report     # regenerate the bank and both quality reports
 npm run data:validate   # write the coverage/integrity report
 ```
 
-Application builds consume only checked-in local snapshots and never require a live data request. Add or edit entities in `data/curated/entities.json`, launch prompt definitions in `data/curated/prompts.json`, generator templates in `scripts/generate-questions.mjs`, and tuned rarity in `data/overrides/rarity.json`. Keep stable IDs and source IDs, then run `npm run data:report`. A developer bank explorer is available at `/Saffilion/dev/bank-explorer.html` in local and deployed builds; it is intentionally not linked from the game.
+Application builds consume only checked-in local snapshots and never require a live data request. Add or edit entities in `data/curated/entities.json`, prompt definitions in `data/curated/prompts.json`, generator templates in `scripts/generate-questions.mjs`, rarity weights in `data/rarity/config.json`, and audited exceptions in `data/overrides/rarity-v4.json`. Keep stable IDs and source IDs, then run `npm run data:report`. A developer bank explorer is available at `/Saffilion/dev/bank-explorer.html` in local and deployed builds; it is intentionally not linked from the game.
 
 ## Add cats and cosmetics
 
