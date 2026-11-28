@@ -6,7 +6,13 @@ import './styles.css';
 
 const updateSW=registerSW({
   immediate:true,
-  onNeedRefresh(){window.dispatchEvent(new Event('saffilion-update-ready'));},
+  onNeedRefresh(){
+    (window as typeof window&{saffilionUpdateReady?:boolean}).saffilionUpdateReady=true;
+    window.dispatchEvent(new Event('saffilion-update-ready'));
+  },
 });
-window.addEventListener('saffilion-apply-update',()=>void updateSW(true));
+window.addEventListener('saffilion-apply-update',()=>{
+  (window as typeof window&{saffilionUpdateReady?:boolean}).saffilionUpdateReady=false;
+  void updateSW(true);
+});
 ReactDOM.createRoot(document.getElementById('root')!).render(<React.StrictMode><App /></React.StrictMode>);

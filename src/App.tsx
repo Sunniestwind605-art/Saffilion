@@ -246,7 +246,7 @@ function App() {
   const [journalOpen,setJournalOpen] = useState<string|null>(null);
   const [answerExploreId,setAnswerExploreId] = useState<string|null>(null);
   const [reportPreview,setReportPreview] = useState<MissingAnswerReport|null>(null);
-  const [updateReady,setUpdateReady] = useState(false);
+  const [updateReady,setUpdateReady] = useState(()=>Boolean((window as typeof window&{saffilionUpdateReady?:boolean}).saffilionUpdateReady));
   const fileInput=useRef<HTMLInputElement>(null);
   const inputRef=useRef<HTMLInputElement>(null);
   const recoverPendingOnMount=useRef(Boolean(save.active?.pendingResult));
