@@ -1,5 +1,6 @@
-import { DEPTH_PER_POINT, TIERS, type Answer, type Question, type SaveData } from './types';
+import { DEPTH_PER_POINT, TIERS, type Answer, type Expedition, type LifetimeStats, type Question, type SaveData } from './types';
 import { DAILY_SCHEDULE_VERSION, knownEntityIds } from '../data/knowledge';
+import { BIOMES, biomesThroughDepth } from './world';
 
 export function normalize(value: string) {
   return value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase()
@@ -102,13 +103,36 @@ export function validateQuestions(questions: Question[]) {
 }
 
 export function freshSave(): SaveData {
-  return { version: 1, selectedCat: 'pebble', expeditions: [], active: null, questionBag: [], recentQuestions: [], missingAnswers: [], dailyRecords: [], crystals: 0, unlocked: [], equipped: null, settings: { sound: true, haptics: true, reducedMotion: false, batterySaver: false } };
+  return { version: 2, selectedCat: 'pebble', expeditions: [], active: null, questionBag: [], recentQuestions: [], missingAnswers: [], dailyRecords: [], crystals: 0, unlocked: [], equipped: null, settings: { sound: true, haptics: true, reducedMotion: false, batterySaver: false }, lifetimeStats: emptyLifetimeStats() };
+}
+
+export function emptyLifetimeStats(): LifetimeStats { return { expeditions:0, highestScore:0, deepestExpedition:0, lifetimeDepth:0, correctAnswers:0, rareAnswers:0, discoveredBiomes:['roots'], achievements:[] }; }
+export function summarizeExpeditions(expeditions: Expedition[]): LifetimeStats {
+  const rounds=expeditions.flatMap(item=>item.rounds), deepest=Math.max(0,...expeditions.map(item=>item.depth));
+  const discovered=new Set(['roots',...expeditions.flatMap(item=>item.discoveredBiomes??biomesThroughDepth(item.depth))]);
+  const achievements:string[]=[];
+  if(expeditions.length)achievements.push('first-expedition');
+  if(deepest>=1000)achievements.push('deep-1000');
+  if(rounds.some(round=>round.tier==='Stardust'))achievements.push('stardust-find');
+  if(BIOMES.every(biome=>discovered.has(biome.id)))achievements.push('world-explorer');
+  return { expeditions:expeditions.length, highestScore:Math.max(0,...expeditions.map(item=>item.score)), deepestExpedition:deepest, lifetimeDepth:expeditions.reduce((sum,item)=>sum+item.depth,0), correctAnswers:rounds.filter(round=>round.points>0).length, rareAnswers:rounds.filter(round=>round.points>=TIERS.Amethyst).length, discoveredBiomes:[...discovered], achievements };
 }
 
 export function loadSave(): SaveData {
-  try { const value = JSON.parse(localStorage.getItem('saffilion-save-v1') || 'null'); const clean=freshSave(); return value?.version === 1 ? { ...clean, ...value, settings:{...clean.settings,...value.settings} } : clean; } catch { return freshSave(); }
+  try {
+    const value = JSON.parse(localStorage.getItem('saffilion-save-v1') || 'null'); const clean=freshSave();
+    if(value?.version!==1&&value?.version!==2)return clean;
+    const expeditions=Array.isArray(value.expeditions)?value.expeditions:[];
+    return { ...clean, ...value, version:2, expeditions, settings:{...clean.settings,...value.settings}, lifetimeStats:value.version===2&&value.lifetimeStats?{...clean.lifetimeStats,...value.lifetimeStats}:summarizeExpeditions(expeditions) };
+  } catch { return freshSave(); }
 }
-export function persist(save: SaveData) { localStorage.setItem('saffilion-save-v1', JSON.stringify(save)); }
+const HISTORY_DB='saffilion-history-v2',HISTORY_STORE='expeditions';
+function openHistory(){return new Promise<IDBDatabase>((resolve,reject)=>{if(!globalThis.indexedDB){reject(Error('IndexedDB unavailable'));return;}const request=indexedDB.open(HISTORY_DB,1);request.onupgradeneeded=()=>{if(!request.result.objectStoreNames.contains(HISTORY_STORE))request.result.createObjectStore(HISTORY_STORE,{keyPath:'id'});};request.onsuccess=()=>resolve(request.result);request.onerror=()=>reject(request.error);});}
+async function writeHistory(expeditions:Expedition[],replace=false){try{const db=await openHistory(),tx=db.transaction(HISTORY_STORE,'readwrite'),store=tx.objectStore(HISTORY_STORE);if(replace)store.clear();for(const expedition of expeditions)store.put(expedition);await new Promise<void>((resolve,reject)=>{tx.oncomplete=()=>resolve();tx.onerror=()=>reject(tx.error);});db.close();}catch{/* local cache remains available when IndexedDB is unavailable */}}
+export async function hydrateExpeditions(){try{const db=await openHistory(),tx=db.transaction(HISTORY_STORE,'readonly'),request=tx.objectStore(HISTORY_STORE).getAll();const records=await new Promise<Expedition[]>((resolve,reject)=>{request.onsuccess=()=>resolve(request.result as Expedition[]);request.onerror=()=>reject(request.error);});db.close();return records.sort((a,b)=>b.date.localeCompare(a.date));}catch{return [] as Expedition[];}}
+export async function replaceHistory(expeditions:Expedition[]){await writeHistory(expeditions,true);}
+export async function clearHistory(){try{const db=await openHistory(),tx=db.transaction(HISTORY_STORE,'readwrite');tx.objectStore(HISTORY_STORE).clear();await new Promise<void>((resolve,reject)=>{tx.oncomplete=()=>resolve();tx.onerror=()=>reject(tx.error);});db.close();}catch{/* nothing to clear */}}
+export function persist(save: SaveData) { const local={...save,expeditions:save.expeditions.slice(0,25)};localStorage.setItem('saffilion-save-v1',JSON.stringify(local));void writeHistory(save.expeditions); }
 
 export function shuffled<T>(items: T[]) {
   const copy = [...items]; for (let i = copy.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [copy[i], copy[j]] = [copy[j], copy[i]]; } return copy;

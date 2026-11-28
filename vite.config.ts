@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: 'autoUpdate',
+      registerType: 'prompt',
       includeAssets: ['icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'fonts/*.ttf', 'fonts/OFL.txt'],
       manifest: {
         name: 'Saffilion — Cozy Rarity Mining',

@@ -56,6 +56,40 @@ test('a correct answer visibly travels through depth instead of jumping', async 
   expect(movingCamera).toBeGreaterThan(startCamera);
 });
 
+test('refresh during digging preserves the accepted answer and resumes once', async ({ page }) => {
+  await page.addInitScript(() => { if(!localStorage.getItem('saffilion-save-v1'))localStorage.setItem('saffilion-save-v1', JSON.stringify({
+    version:1, selectedCat:'pebble', expeditions:[], questionBag:[], recentQuestions:[], missingAnswers:[], crystals:0, unlocked:[], settings:{sound:false,reducedMotion:false,batterySaver:false},
+    active:{questionIds:['geo-01','science-01','geo-02','geo-03','geo-04','geo-05','geo-06'],round:0,results:[],deadline:Date.now()+30000,category:'All',seed:'reload-dig'}
+  })); });
+  await page.goto('.');
+  await page.getByLabel('Your answer').fill('Comoros');
+  await page.getByRole('button', { name: 'Dig!' }).click();
+  await expect(page.locator('.mine-scene')).toHaveClass(/traveling/);
+  await page.waitForFunction(() => Boolean(JSON.parse(localStorage.getItem('saffilion-save-v1')!).active?.pendingResult));
+  await page.reload();
+  await expect(page.getByText('Question 2 / 7')).toBeVisible();
+  await expect(page.getByText('100 pts')).toBeVisible();
+  await expect(page.getByLabel('Your answer')).toBeEnabled();
+  const active=await page.evaluate(()=>JSON.parse(localStorage.getItem('saffilion-save-v1')!).active);
+  expect(active.results).toHaveLength(1);
+  expect(active.results[0]).toMatchObject({canonical:'Comoros',points:100});
+  expect(active.pendingResult).toBeUndefined();
+});
+
+test('refresh restores the exact absolute world camera at saved depth', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('saffilion-save-v1', JSON.stringify({
+    version:1, selectedCat:'pebble', expeditions:[], questionBag:[], recentQuestions:[], missingAnswers:[], crystals:0, unlocked:[], settings:{sound:false,reducedMotion:true,batterySaver:true},
+    active:{questionIds:['geo-01','science-01','geo-02','geo-03','geo-04','geo-05','geo-06'],round:1,results:[{questionId:'geo-01',prompt:'Country',answer:'Comoros',canonical:'Comoros',points:100,tier:'Stardust',timedOut:false}],deadline:Date.now()+30000,category:'All',seed:'absolute-camera'}
+  })));
+  await page.goto('.');
+  const canvas=page.locator('.mine-scene > canvas');
+  await expect(canvas).toHaveAttribute('data-world-depth','1000.00');
+  const before=await canvas.getAttribute('data-camera');
+  await page.reload();
+  await expect(canvas).toHaveAttribute('data-world-depth','1000.00');
+  expect(await canvas.getAttribute('data-camera')).toBe(before);
+});
+
 test('a rare answer reveals its full rarity, score, and depth weight', async ({ page }) => {
   await page.addInitScript(() => localStorage.setItem('saffilion-save-v1', JSON.stringify({
     version:1, selectedCat:'pebble', expeditions:[], questionBag:[], recentQuestions:[], missingAnswers:[], crystals:0, unlocked:[], settings:{sound:false,reducedMotion:false,batterySaver:false},

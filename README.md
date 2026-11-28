@@ -11,11 +11,11 @@ Saffilion is a cozy, mobile-first rarity-mining game made with love for Safia. A
 - A build-time template engine with quality filters, overlap detection, stable generated IDs, and a developer-only bank explorer
 - Stable entity IDs, context-aware aliases, six fixed rarity tiers, out-of-category detection, and post-submission typo correction
 - Responsive portrait-first play, safe-area support, dynamic viewport sizing, landscape layouts, 44px controls, and a keyboard-conscious scene
-- Staged rarity reveals, tier-scaled digging particles, five distinct depth biomes, and small underground discoveries
+- Staged rarity reveals, tier-scaled digging, and one deterministic excavated shaft spanning ten hand-authored biomes from Surface Roots to the Stardust Abyss
 - Touch-friendly controls, keyboard-aware scene compression, reduced motion, battery mode, optional sound, and optional haptics
 - Expedition results with rarity distribution, personal records, quick replay, and a thematic digging journal
 - A deterministic cosmetic shop using earned crystals only—no randomness, purchases, or gameplay advantages
-- Versioned local save data, resumable expeditions, immutable original Daily results, personal journal, export/import, local missing-answer reports, and reset confirmation
+- Versioned local save data, crash-safe in-progress rounds, unlimited IndexedDB expedition history, cumulative discoveries, immutable original Daily results, export/import, local missing-answer reports, and reset confirmation
 - Installable PWA with an offline precache and a GitHub Pages workflow
 
 ## Rarity scoring
@@ -50,7 +50,11 @@ npm run test:e2e
 
 ## Save data
 
-The `saffilion-save-v1` local-storage record contains the selected cat, active expedition deadline, finished rounds, journal, shuffle bag, crystals, unlocked/equipped cosmetics, settings, and locally suggested missing answers. The Journal can export and import validated JSON. New optional save fields are deep-merged into older version-1 saves, and published question changes never rewrite completed expedition scores.
+Save schema 2 keeps a compact recent cache and active expedition in the backwards-compatible `saffilion-save-v1` local-storage key, while the full uncapped expedition journal lives in IndexedDB. Lifetime depth, correct answers, rare finds, achievements, and discovered biomes are derived during version-1 migration without rescoring historical rounds. A submitted answer is persisted before its digging animation, so a refresh cannot lose or duplicate that result. The Journal can export and import validated JSON, and published question changes never rewrite completed expedition scores.
+
+## Underground world preview
+
+During local development, open `/Saffilion/?worldPreview=1` to inspect all ten biomes with deterministic terrain, exact world coordinates, cat and viewport selectors, and all six dig strengths. The renderer anchors walls, landmarks, particles, and the final 7,000-metre chamber to absolute depth, so the same save and seed reproduce the same shaft after a reload.
 
 ## Knowledge-data workflow
 

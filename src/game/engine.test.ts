@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { dailyQuestionIds, depthForPoints, digDurationForPoints, distance, equivalentAnswer, findAnswer, isKnownOutsideQuestion, loadSave, normalize, pickQuestions, rankFor, seedFrom, suggestAnswer, travelPixelsForPoints, validateQuestions, freshSave } from './engine';
+import { dailyQuestionIds, depthForPoints, digDurationForPoints, distance, equivalentAnswer, findAnswer, isKnownOutsideQuestion, loadSave, normalize, pickQuestions, rankFor, seedFrom, suggestAnswer, summarizeExpeditions, travelPixelsForPoints, validateQuestions, freshSave } from './engine';
 import { questions } from '../data/questions';
 import { DAILY_SCHEDULE_VERSION } from '../data/knowledge';
 import { TIERS } from './types';
@@ -119,5 +119,16 @@ describe('game rules', () => {
     Object.defineProperty(globalThis, 'localStorage', { configurable:true, value:{ getItem:()=>JSON.stringify(historical), setItem:()=>undefined } });
     expect(loadSave().expeditions[0]).toMatchObject({ score:123, depth:1230, rounds:[{ points:5, tier:'Pebble' }] });
     Object.defineProperty(globalThis, 'localStorage', { configurable:true, value:priorStorage });
+  });
+  it('migrates v1 saves and derives cumulative statistics without changing scores', () => {
+    const legacy={...freshSave(),version:1,lifetimeStats:undefined,expeditions:[{id:'old',date:'2026-01-01T00:00:00.000Z',cat:'pebble',score:185,depth:1850,rounds:[{questionId:'q',prompt:'p',answer:'a',points:85,tier:'Amethyst',timedOut:false}]}]};
+    const priorStorage=globalThis.localStorage;
+    Object.defineProperty(globalThis,'localStorage',{configurable:true,value:{getItem:()=>JSON.stringify(legacy),setItem:()=>undefined}});
+    expect(loadSave()).toMatchObject({version:2,lifetimeStats:{expeditions:1,highestScore:185,deepestExpedition:1850,lifetimeDepth:1850,correctAnswers:1,rareAnswers:1}});
+    Object.defineProperty(globalThis,'localStorage',{configurable:true,value:priorStorage});
+  });
+  it('summarises more than one hundred expeditions without a history cap', () => {
+    const expeditions=Array.from({length:175},(_,index)=>({id:`e-${index}`,date:new Date(index).toISOString(),cat:'pebble' as const,score:index,depth:index*10,rounds:[],discoveredBiomes:['roots']}));
+    expect(summarizeExpeditions(expeditions)).toMatchObject({expeditions:175,highestScore:174,deepestExpedition:1740,lifetimeDepth:152250});
   });
 });
