@@ -15,16 +15,16 @@ export interface Biome {
 }
 
 export const BIOMES: Biome[] = [
-  { id:'roots', name:'Surface Roots', start:0, end:150, sky:'#8ccfd0', rock:'#875948', rockDark:'#51383d', tunnel:'#49383d', accent:'#8fc66b', glow:'#ffe29a' },
-  { id:'wormwood', name:'Wormwood Burrow', start:150, end:300, sky:'#6f9c75', rock:'#77513f', rockDark:'#43343a', tunnel:'#3c3438', accent:'#b6cf71', glow:'#e8d88b' },
-  { id:'mine', name:'Forgotten Mine', start:300, end:650, sky:'#5b6671', rock:'#65524b', rockDark:'#34313a', tunnel:'#292a33', accent:'#c89a5d', glow:'#ffd276' },
-  { id:'copper', name:'Copper Caverns', start:650, end:1200, sky:'#835243', rock:'#77483d', rockDark:'#3e2b31', tunnel:'#30282d', accent:'#dc7b48', glow:'#ffb665' },
-  { id:'fossil', name:'Fossil Chambers', start:1200, end:2000, sky:'#8d755d', rock:'#75614f', rockDark:'#40373a', tunnel:'#373034', accent:'#d9bd84', glow:'#f2dca3' },
-  { id:'sapphire', name:'Sapphire Grotto', start:2000, end:2800, sky:'#385b79', rock:'#40536b', rockDark:'#252c40', tunnel:'#202c3d', accent:'#58bddd', glow:'#a9f3ef' },
-  { id:'mushroom', name:'Mushroom Hollow', start:2800, end:3800, sky:'#55436d', rock:'#4f405d', rockDark:'#2c2738', tunnel:'#282334', accent:'#e58ec7', glow:'#b7f3bf' },
-  { id:'amethyst', name:'Amethyst Kingdom', start:3800, end:4900, sky:'#4a3266', rock:'#513860', rockDark:'#281f37', tunnel:'#241d32', accent:'#b46ae0', glow:'#e7b7ff' },
-  { id:'golden', name:'Golden Sanctuary', start:4900, end:6200, sky:'#70572f', rock:'#67513c', rockDark:'#352d30', tunnel:'#2e2930', accent:'#edbd4e', glow:'#fff0a0' },
-  { id:'stardust', name:'Stardust Abyss', start:6200, end:7001, sky:'#26284d', rock:'#343253', rockDark:'#191a30', tunnel:'#15182b', accent:'#efb8e5', glow:'#fff5a9' },
+  { id:'roots', name:'Surface Roots', start:0, end:150, sky:'#5a3a7c', rock:'#8a5a45', rockDark:'#5e2f33', tunnel:'#2a1d33', accent:'#a8e070', glow:'#ffe27a' },
+  { id:'wormwood', name:'Wormwood Burrow', start:150, end:300, sky:'#4b3a78', rock:'#7a3f3a', rockDark:'#4a2a3a', tunnel:'#241a2e', accent:'#98c46a', glow:'#ffd56a' },
+  { id:'mine', name:'Forgotten Mine', start:300, end:650, sky:'#3d2d5a', rock:'#665064', rockDark:'#2a1d33', tunnel:'#16111f', accent:'#d8a060', glow:'#ffe69a' },
+  { id:'copper', name:'Copper Caverns', start:650, end:1200, sky:'#5a3347', rock:'#8d4f42', rockDark:'#4a2a2a', tunnel:'#271923', accent:'#e08a4f', glow:'#ffc477' },
+  { id:'fossil', name:'Fossil Chambers', start:1200, end:2000, sky:'#6b5264', rock:'#8a6b58', rockDark:'#4e3a42', tunnel:'#29202b', accent:'#e3c394', glow:'#fff3d6' },
+  { id:'sapphire', name:'Sapphire Grotto', start:2000, end:2800, sky:'#2b3556', rock:'#3d4e72', rockDark:'#1f2742', tunnel:'#151a2f', accent:'#5fd0c8', glow:'#c4fbf4' },
+  { id:'mushroom', name:'Mushroom Hollow', start:2800, end:3800, sky:'#4a2e63', rock:'#5a3a7c', rockDark:'#2a1d45', tunnel:'#1b1426', accent:'#ef8fa8', glow:'#d8ef92' },
+  { id:'amethyst', name:'Amethyst Kingdom', start:3800, end:4900, sky:'#3b2a63', rock:'#4b3a78', rockDark:'#2a1d45', tunnel:'#1b1426', accent:'#a366d6', glow:'#d6a8ff' },
+  { id:'golden', name:'Golden Sanctuary', start:4900, end:6200, sky:'#5e4435', rock:'#7a5b42', rockDark:'#3a2b2e', tunnel:'#211824', accent:'#f6c453', glow:'#ffe69a' },
+  { id:'stardust', name:'Stardust Abyss', start:6200, end:7001, sky:'#1f1b4a', rock:'#2f2a6a', rockDark:'#161338', tunnel:'#100c21', accent:'#ef8fa8', glow:'#fff2a6' },
 ];
 
 export const worldYForDepth = (metres: number) => Math.max(0, Math.min(FINAL_DEPTH, metres)) * PIXELS_PER_METRE;
@@ -57,7 +57,7 @@ const blendBiome=(depth:number)=>{
 
 const px=(ctx:CanvasRenderingContext2D,color:string,x:number,y:number,w=4,h=4)=>{ctx.fillStyle=color;ctx.fillRect(Math.round(x),Math.round(y),Math.round(w),Math.round(h));};
 const crystal=(ctx:CanvasRenderingContext2D,x:number,y:number,color:string,scale=1)=>{
-  px(ctx,'#201d2b',x-3*scale,y+5*scale,18*scale,5*scale);px(ctx,color,x,y,6*scale,14*scale);px(ctx,color,x+7*scale,y+4*scale,6*scale,10*scale);px(ctx,'#ffffff88',x+2*scale,y+2*scale,2*scale,7*scale);
+  px(ctx,'#17111f',x-3*scale,y+4*scale,19*scale,7*scale);px(ctx,'#17111f',x-1*scale,y-2*scale,9*scale,18*scale);px(ctx,'#17111f',x+6*scale,y+2*scale,9*scale,14*scale);px(ctx,color,x+1*scale,y,6*scale,14*scale);px(ctx,color,x+8*scale,y+4*scale,5*scale,10*scale);px(ctx,'#ffffffaa',x+2*scale,y+2*scale,2*scale,7*scale);
 };
 const mushroom=(ctx:CanvasRenderingContext2D,x:number,y:number,cap:string,scale=1)=>{
   px(ctx,'#2d2534',x+5*scale,y+8*scale,6*scale,15*scale);px(ctx,'#f3d3b0',x+7*scale,y+9*scale,3*scale,12*scale);px(ctx,'#2d2534',x,y+3*scale,18*scale,8*scale);px(ctx,cap,x+2*scale,y+1*scale,14*scale,7*scale);px(ctx,'#fff1bd',x+5*scale,y+3*scale,3*scale,3*scale);
@@ -129,11 +129,19 @@ export function drawMineWorld(ctx:CanvasRenderingContext2D, options:WorldRenderO
   const biome=blendBiome(animatedDepth),biomeIndex=biomeIndexForDepth(animatedDepth);
   ctx.clearRect(0,0,w,h);px(ctx,biome.rock,0,0,w,h);
 
-  // Distant formations move slowly, providing parallax behind the excavated shaft.
+  // Broad, stepped colour bands echo the title artwork and keep every biome unmistakable.
   px(ctx,biome.sky,0,0,w,h);
+  const bandHeight=44,firstBand=Math.floor((cameraY*.2)/bandHeight)-2;
+  for(let row=0;row<Math.ceil(h/bandHeight)+5;row++){
+    const chunk=firstBand+row,y=chunk*bandHeight-cameraY*.2+h*.58;
+    const bandColor=chunk%3===0?mixColor(biome.rock,biome.accent,.16):chunk%3===1?biome.rock:mixColor(biome.rock,biome.rockDark,.22);
+    px(ctx,bandColor,0,y,w,bandHeight+1);
+    px(ctx,chunk%2===0?biome.rockDark:mixColor(biome.accent,biome.rock,.45),0,y,w,4);
+  }
+  // Distant formations move slowly, providing parallax behind the excavated shaft.
   for(let i=0;i<9;i++){
     const x=(i*97+random(seed,i)*55)%Math.max(1,w), y=((i*83-cameraY*.18)%(h+120)+h+120)%(h+120)-60;
-    px(ctx,biome.rockDark,x-30,y,55,80);px(ctx,biome.rock,x-23,y+9,40,64);
+    px(ctx,'#17111f',x-32,y-2,59,84);px(ctx,biome.rockDark,x-29,y,55,80);px(ctx,mixColor(biome.rock,biome.accent,.12),x-22,y+8,40,64);
   }
 
   const shaftWidth=Math.min(w*.7,Math.max(150,w*.48)),centre=w/2,left=centre-shaftWidth/2,right=centre+shaftWidth/2;
@@ -143,11 +151,17 @@ export function drawMineWorld(ctx:CanvasRenderingContext2D, options:WorldRenderO
   for(let row=0;row<Math.ceil(h/edgeStep)+5;row++){
     const chunk=firstChunk+row, world=chunk*edgeStep, y=world-cameraY+h*.58;
     const jagLeft=(random(seed,chunk*3)-.5)*18,jagRight=(random(seed,chunk*3+1)-.5)*18;
-    px(ctx,biome.rock,0,y,left+jagLeft,edgeStep+2);px(ctx,biome.rock,right+jagRight,y,w-right-jagRight,edgeStep+2);
+    const layer=chunk%4===0?mixColor(biome.rock,biome.accent,.18):biome.rock;
+    px(ctx,layer,0,y,left+jagLeft,edgeStep+2);px(ctx,layer,right+jagRight,y,w-right-jagRight,edgeStep+2);
     px(ctx,biome.rockDark,left+jagLeft-5,y,7,edgeStep+2);px(ctx,biome.rockDark,right+jagRight,y,7,edgeStep+2);
+    if(chunk%4===0){px(ctx,biome.accent,0,y,left+jagLeft-6,3);px(ctx,biome.accent,right+jagRight+7,y,w-right-jagRight-7,3);}
     for(let side=0;side<2;side++){
       const start=side?right+12:left-42,rx=start+random(seed,chunk*7+side)*28;
       px(ctx,random(seed,chunk*11+side)>.72?biome.accent:biome.rockDark,rx,y+8+random(seed,chunk*13+side)*12,5+random(seed,chunk)*8,4);
+    }
+    if(random(seed,chunk*29)>.82){
+      const gemX=random(seed,chunk*31)>.5?left-30:right+13;
+      crystal(ctx,gemX,y+7,random(seed,chunk*37)>.58?biome.glow:biome.accent,random(seed,chunk*41)>.72?1.25:.75);
     }
   }
 
