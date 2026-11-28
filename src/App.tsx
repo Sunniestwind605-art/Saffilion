@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { categories, questions } from './data/questions';
-import { depthForPoints, digDurationForPoints, findAnswer, freshSave, loadSave, persist, pickQuestions, rankFor, suggestAnswer, travelPixelsForPoints } from './game/engine';
+import { depthForPoints, digDurationForPoints, findAnswer, freshSave, isKnownOutsideQuestion, loadSave, persist, pickQuestions, rankFor, suggestAnswer, travelPixelsForPoints } from './game/engine';
 import { TIERS, type ActiveGame, type Answer, type CatId, type Expedition, type RoundResult, type SaveData, type Tier } from './game/types';
 
 const cats: { id: CatId; name: string; mood: string; color: string; accent: string }[] = [
@@ -306,7 +306,7 @@ function App() {
 
   const expire=useCallback(()=>{ if(!question||locked)return; setLastFind(null); nextRound({questionId:question.id,prompt:question.prompt,answer:answer.trim(),points:0,timedOut:true});setNotice('Time’s up — let’s see what waits below.'); },[question,locked,nextRound,answer]);
 
-  const submit=(e?:React.FormEvent)=>{ e?.preventDefault(); if(!question||locked||Date.now()>=game!.deadline)return; const raw=answer.trim(); if(!raw){setLastFind(null);setNotice('Type an answer first, little miner!');return;} const match=findAnswer(question,raw); if(match){beep('good');setLastFind(match);setNotice('');nextRound({questionId:question.id,prompt:question.prompt,answer:raw,canonical:match.canonical,points:match.points,tier:match.tier,timedOut:false});return;} setLastFind(null);const maybe=suggestAnswer(question,raw);setSuggestion(maybe?.canonical);setNotice(maybe?`That isn’t an exact match. Did you mean ${maybe.canonical}?`:'That answer isn’t in our answer book yet. Try another!');beep('bad'); };
+  const submit=(e?:React.FormEvent)=>{ e?.preventDefault(); if(!question||locked||Date.now()>=game!.deadline)return; const raw=answer.trim(); if(!raw){setLastFind(null);setNotice('Type an answer first, little miner!');return;} const match=findAnswer(question,raw); if(match){beep('good');setLastFind(match);setNotice('');nextRound({questionId:question.id,prompt:question.prompt,answer:raw,canonical:match.canonical,points:match.points,tier:match.tier,timedOut:false});return;} setLastFind(null);const maybe=suggestAnswer(question,raw);setSuggestion(maybe?.canonical);setNotice(maybe?`That isn’t an exact match. Did you mean ${maybe.canonical}?`:isKnownOutsideQuestion(question,raw)?'That is a real answer, but it does not fit this question. Try another!':'That answer isn’t in our answer book yet. Try another!');beep('bad'); };
 
   const recordMissing=()=>{ if(!question||!answer.trim())return; setSave(s=>({...s,missingAnswers:[...s.missingAnswers,{questionId:question.id,answer:answer.trim()}]}));setNotice('Saved locally for future review. You can keep trying!'); };
   const updateSettings=(patch:Partial<SaveData['settings']>)=>setSave(s=>({...s,settings:{...s.settings,...patch}}));

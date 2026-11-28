@@ -9,7 +9,11 @@
     "typecheck": "tsc -b",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "validate:data": "vitest run src/data/questions.test.ts"
+    "data:fetch": "node scripts/fetch-data.mjs",
+    "data:build": "node scripts/expand-snapshots.mjs",
+    "data:validate": "node scripts/validate-bank.mjs",
+    "validate:data": "node scripts/validate-bank.mjs && vitest run src/data/questions.test.ts",
+    "validate:questions": "node scripts/validate-bank.mjs"
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",

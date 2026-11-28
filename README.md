@@ -6,8 +6,8 @@ Saffilion is a cozy, mobile-first rarity-mining game made with love for Safia. A
 
 - Five selectable 48×48 canvas pixel cats with individual idle, happy, digging, and incorrect-answer reactions
 - Seven-question expeditions with reliable 30-second deadlines
-- 100+ offline questions across geography, nature, science, food, music, film, games, history, sports, books, everyday life, and South Africa
-- Local canonical answers, aliases, six fixed rarity tiers, and post-submission typo correction
+- 102 offline prompts backed by 12,000+ shared entities across geography, nature, science, food, music, film, games, history, sports, books, everyday life, and South Africa
+- Stable entity IDs, context-aware aliases, six fixed rarity tiers, out-of-category detection, and post-submission typo correction
 - Responsive portrait-first play, safe-area support, dynamic viewport sizing, landscape layouts, 44px controls, and a keyboard-conscious scene
 - Staged rarity reveals, tier-scaled digging particles, five distinct depth biomes, and small underground discoveries
 - Touch-friendly controls, keyboard-aware scene compression, reduced motion, battery mode, optional sound, and optional haptics
@@ -20,7 +20,7 @@ Saffilion is a cozy, mobile-first rarity-mining game made with love for Safia. A
 
 Rarity is a curated, versioned estimate of how familiar an answer is in the context of its question. It is not live popularity data. Pebble, Copper, Quartz, Sapphire, Amethyst, and Stardust answers are worth 5, 12, 25, 45, 70, and 100 points. That makes a Stardust answer worth 20× a Pebble answer while preserving the 700-point perfect expedition. Every point equals 10 metres. Aliases inherit their canonical answer's score.
 
-The database currently contains 102 questions and 2,223 canonical answers. Open-ended prompts received additions across the rarity curve. Complete finite sets are intentionally not padded with false entries. See [DATA_SOURCES.md](./DATA_SOURCES.md) for the research and curation trail.
+The Phase 2 database contains 102 prompts, 12,964 unique entities and 12,800 canonical prompt memberships. One entity can belong to several matching prompts without duplicated maintenance. Complete finite sets are intentionally not padded with false entries. See [DATA_SOURCES.md](./DATA_SOURCES.md) and `data/reports/question-validation.json` for the research, coverage and curation trail.
 
 ## Run locally
 
@@ -36,6 +36,7 @@ The production base path is `/Saffilion/` for GitHub Pages.
 ```bash
 npm run typecheck
 npm test
+npm run validate:questions
 npm run build
 npx playwright install chromium
 npm run test:e2e
@@ -43,15 +44,23 @@ npm run test:e2e
 
 ## Offline support
 
-`vite-plugin-pwa` generates a versioned Workbox service worker. The production build precaches the HTML, JavaScript, CSS, question database, and icon. Offline support begins only after one successful production load. iOS users install from Safari's **Share → Add to Home Screen**; Android installation prompts depend on the browser. Save data remains local to that browser/app storage and platform storage limits still apply.
+`vite-plugin-pwa` generates a versioned Workbox service worker. The production build precaches the HTML, JavaScript, CSS, entity registry, versioned knowledge shards, and icons. South African data is divided into sub-200 KiB shards, and the Workbox asset ceiling is explicitly sized for the measured application bundle. Offline support begins only after one successful production load. iOS users install from Safari's **Share → Add to Home Screen**; Android installation prompts depend on the browser. Save data remains local to that browser/app storage and platform storage limits still apply.
 
 ## Save data
 
 The `saffilion-save-v1` local-storage record contains the selected cat, active expedition deadline, finished rounds, journal, shuffle bag, crystals, unlocked/equipped cosmetics, settings, and locally suggested missing answers. The Journal can export and import validated JSON. New optional save fields are deep-merged into older version-1 saves, and published question changes never rewrite completed expedition scores.
 
-## Add questions
+## Knowledge-data workflow
 
-Questions live in `src/data/questions.ts`. `make()` accepts six semicolon-separated rarity groups and pipe-separated answers. Add aliases after `~`, for example `South Africa~RSA`. Keep IDs unique, use only verified answers, and run `npm run validate:data`. Limited finite sets may have fewer answers; open-ended topics should normally have at least 15.
+The production bank is compiled from explicit entities, prompt predicates, provenance and prompt-specific rarity overrides. The old semicolon/pipe positional format has been retired.
+
+```bash
+npm run data:fetch      # refresh permitted upstream snapshots
+npm run data:build      # merge, deduplicate and create offline shards
+npm run data:validate   # write the coverage/integrity report
+```
+
+Application builds consume only checked-in local snapshots and never require a live data request. Add or edit entities in `data/curated/entities.json`, prompt definitions in `data/curated/prompts.json`, and tuned rarity in `data/overrides/rarity.json`. Keep stable IDs and source IDs, then run `npm run validate:questions`.
 
 ## Add cats and cosmetics
 
@@ -63,11 +72,12 @@ Push `main`, then in the repository open **Settings → Pages** and set **Source
 
 ## Data and licences
 
-Game code, writing, and artwork are original and released under the repository licence. The answer book contains general factual knowledge curated for this game; it does not copy Krillion data or depend on Wikipedia or any runtime service. Country, language, astronomical, biological, and sporting names are factual terms and are not copyrightable datasets. Future imports from external datasets must document source URL, version, and licence here before use.
+Game code, writing, and artwork are original and released under the repository licence. The answer book does not copy Krillion data and never depends on a runtime data service. Its open-data snapshots are GeoNames (CC BY 4.0), Wikidata (CC0), and PubChem public-domain factual data. Full attribution, transformations and limitations are documented in [DATA_SOURCES.md](./DATA_SOURCES.md).
 
 ## Known limitations
 
 - Rarity is necessarily subjective and should be reviewed as players record missing answers.
+- Seventeen broad launch prompts remain below the 100-answer Phase 2 target; the validator lists each one instead of padding it.
 - Browser storage can be cleared by the operating system; exports are the portable backup.
 - iOS does not expose the same install prompt or storage lifecycle as Android.
 - Physical-device testing is still required before claiming hardware certification; automated mobile browser emulation is included.

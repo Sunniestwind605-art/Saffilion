@@ -1,0 +1,1477 @@
+[
+  {
+    "id": "geo-01",
+    "text": "Name a country in Africa.",
+    "category": "Geography",
+    "difficulty": "medium",
+    "mode": "specialist",
+    "coverage": "finite-set",
+    "target": null,
+    "where": {
+      "all": [
+        {
+          "op": "type",
+          "value": "country"
+        },
+        {
+          "op": "eq",
+          "property": "sovereign",
+          "value": true
+        },
+        {
+          "op": "includes",
+          "property": "continents",
+          "value": "Africa"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-02",
+    "text": "Name a country in South America.",
+    "category": "Geography",
+    "difficulty": "easy",
+    "mode": "specialist",
+    "coverage": "finite-set",
+    "target": null,
+    "where": {
+      "all": [
+        {
+          "op": "type",
+          "value": "country"
+        },
+        {
+          "op": "eq",
+          "property": "sovereign",
+          "value": true
+        },
+        {
+          "op": "includes",
+          "property": "continents",
+          "value": "South America"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-03",
+    "text": "Name a country whose name starts with B.",
+    "category": "Geography",
+    "difficulty": "medium",
+    "mode": "specialist",
+    "coverage": "finite-set",
+    "target": null,
+    "where": {
+      "all": [
+        {
+          "op": "type",
+          "value": "country"
+        },
+        {
+          "op": "eq",
+          "property": "sovereign",
+          "value": true
+        },
+        {
+          "op": "startsWith",
+          "property": "name",
+          "value": "B"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-04",
+    "text": "Name a European capital city.",
+    "category": "Geography",
+    "difficulty": "medium",
+    "mode": "specialist",
+    "coverage": "finite-set",
+    "target": null,
+    "where": {
+      "all": [
+        {
+          "op": "type",
+          "value": "capital"
+        },
+        {
+          "op": "includes",
+          "property": "continents",
+          "value": "Europe"
+        }
+      ]
+    }
+  },
+  {
+    "id": "geo-05",
+    "text": "Name an island country.",
+    "category": "Geography",
+    "difficulty": "medium",
+    "mode": "specialist",
+    "coverage": "finite-set",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "geo-05"
+    }
+  },
+  {
+    "id": "geo-06",
+    "text": "Name a country with a Mediterranean coastline.",
+    "category": "Geography",
+    "difficulty": "medium",
+    "mode": "specialist",
+    "coverage": "finite-set",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "geo-06"
+    }
+  },
+  {
+    "id": "geo-07",
+    "text": "Name a landlocked country.",
+    "category": "Geography",
+    "difficulty": "medium",
+    "mode": "specialist",
+    "coverage": "finite-set",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "geo-07"
+    }
+  },
+  {
+    "id": "geo-08",
+    "text": "Name a country that uses the euro.",
+    "category": "Geography",
+    "difficulty": "medium",
+    "mode": "specialist",
+    "coverage": "finite-set",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "geo-08"
+    }
+  },
+  {
+    "id": "geo-09",
+    "text": "Name a major ocean or sea.",
+    "category": "Geography",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "geo-09"
+    }
+  },
+  {
+    "id": "geo-10",
+    "text": "Name a famous desert.",
+    "category": "Geography",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "geo-10"
+    }
+  },
+  {
+    "id": "nature-01",
+    "text": "Name an animal that lives in the ocean.",
+    "category": "Animals & Nature",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "broad",
+    "target": 100,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "nature-01"
+    }
+  },
+  {
+    "id": "nature-02",
+    "text": "Name a bird that cannot fly.",
+    "category": "Animals & Nature",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "nature-02"
+    }
+  },
+  {
+    "id": "nature-03",
+    "text": "Name a mammal that lays eggs.",
+    "category": "Animals & Nature",
+    "difficulty": "hard",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "nature-03"
+    }
+  },
+  {
+    "id": "nature-04",
+    "text": "Name a type of big cat.",
+    "category": "Animals & Nature",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "nature-04"
+    }
+  },
+  {
+    "id": "nature-05",
+    "text": "Name a tree that produces edible fruit.",
+    "category": "Animals & Nature",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "broad",
+    "target": 100,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "nature-05"
+    }
+  },
+  {
+    "id": "nature-06",
+    "text": "Name a pollinating animal.",
+    "category": "Animals & Nature",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "nature-06"
+    }
+  },
+  {
+    "id": "nature-07",
+    "text": "Name an animal with a shell.",
+    "category": "Animals & Nature",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "nature-07"
+    }
+  },
+  {
+    "id": "nature-08",
+    "text": "Name a nocturnal animal.",
+    "category": "Animals & Nature",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "nature-08"
+    }
+  },
+  {
+    "id": "nature-09",
+    "text": "Name a species of bear.",
+    "category": "Animals & Nature",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "nature-09"
+    }
+  },
+  {
+    "id": "nature-10",
+    "text": "Name a flower commonly grown in gardens.",
+    "category": "Animals & Nature",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "broad",
+    "target": 100,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "nature-10"
+    }
+  },
+  {
+    "id": "science-01",
+    "text": "Name a planet in our solar system.",
+    "category": "Science & Space",
+    "difficulty": "easy",
+    "mode": "specialist",
+    "coverage": "finite-set",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "science-01"
+    }
+  },
+  {
+    "id": "science-02",
+    "text": "Name a moon in our solar system.",
+    "category": "Science & Space",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "broad",
+    "target": 100,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "science-02"
+    }
+  },
+  {
+    "id": "science-03",
+    "text": "Name a chemical element.",
+    "category": "Science & Space",
+    "difficulty": "medium",
+    "mode": "specialist",
+    "coverage": "finite-set",
+    "target": 100,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "science-03"
+    }
+  },
+  {
+    "id": "science-04",
+    "text": "Name a renewable energy source.",
+    "category": "Science & Space",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "science-04"
+    }
+  },
+  {
+    "id": "science-05",
+    "text": "Name a type of cloud.",
+    "category": "Science & Space",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "science-05"
+    }
+  },
+  {
+    "id": "science-06",
+    "text": "Name a unit used to measure length.",
+    "category": "Science & Space",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "science-06"
+    }
+  },
+  {
+    "id": "science-07",
+    "text": "Name a bone in the human body.",
+    "category": "Science & Space",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "broad",
+    "target": 100,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "science-07"
+    }
+  },
+  {
+    "id": "science-08",
+    "text": "Name a branch of science.",
+    "category": "Science & Space",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "science-08"
+    }
+  },
+  {
+    "id": "science-09",
+    "text": "Name a layer of Earth.",
+    "category": "Science & Space",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "science-09"
+    }
+  },
+  {
+    "id": "science-10",
+    "text": "Name a simple machine.",
+    "category": "Science & Space",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "science-10"
+    }
+  },
+  {
+    "id": "food-01",
+    "text": "Name a fruit that grows on a tree.",
+    "category": "Food & Drink",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "broad",
+    "target": 100,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "food-01"
+    }
+  },
+  {
+    "id": "food-02",
+    "text": "Name a type of cheese.",
+    "category": "Food & Drink",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "broad",
+    "target": 100,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "food-02"
+    }
+  },
+  {
+    "id": "food-03",
+    "text": "Name a herb used in cooking.",
+    "category": "Food & Drink",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "broad",
+    "target": 100,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "food-03"
+    }
+  },
+  {
+    "id": "food-04",
+    "text": "Name a pasta shape.",
+    "category": "Food & Drink",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "broad",
+    "target": 100,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "food-04"
+    }
+  },
+  {
+    "id": "food-05",
+    "text": "Name a hot drink.",
+    "category": "Food & Drink",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "food-05"
+    }
+  },
+  {
+    "id": "food-06",
+    "text": "Name a vegetable that grows underground.",
+    "category": "Food & Drink",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "food-06"
+    }
+  },
+  {
+    "id": "food-07",
+    "text": "Name a common baking ingredient.",
+    "category": "Food & Drink",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "food-07"
+    }
+  },
+  {
+    "id": "food-08",
+    "text": "Name a dish made with rice.",
+    "category": "Food & Drink",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "food-08"
+    }
+  },
+  {
+    "id": "music-01",
+    "text": "Name a musical instrument.",
+    "category": "Music",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "broad",
+    "target": 100,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "music-01"
+    }
+  },
+  {
+    "id": "music-02",
+    "text": "Name a brass instrument.",
+    "category": "Music",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "music-02"
+    }
+  },
+  {
+    "id": "music-03",
+    "text": "Name a percussion instrument.",
+    "category": "Music",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "broad",
+    "target": 100,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "music-03"
+    }
+  },
+  {
+    "id": "music-04",
+    "text": "Name a type of musical ensemble.",
+    "category": "Music",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "music-04"
+    }
+  },
+  {
+    "id": "music-05",
+    "text": "Name a musical tempo marking.",
+    "category": "Music",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "music-05"
+    }
+  },
+  {
+    "id": "music-06",
+    "text": "Name a string instrument played with a bow.",
+    "category": "Music",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "music-06"
+    }
+  },
+  {
+    "id": "music-07",
+    "text": "Name a style of music.",
+    "category": "Music",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "broad",
+    "target": 100,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "music-07"
+    }
+  },
+  {
+    "id": "music-08",
+    "text": "Name a part of a song structure.",
+    "category": "Music",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "music-08"
+    }
+  },
+  {
+    "id": "screen-01",
+    "text": "Name a film genre.",
+    "category": "Film & TV",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "screen-01"
+    }
+  },
+  {
+    "id": "screen-02",
+    "text": "Name a job found on a film set.",
+    "category": "Film & TV",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "screen-02"
+    }
+  },
+  {
+    "id": "screen-03",
+    "text": "Name a type of television programme.",
+    "category": "Film & TV",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "screen-03"
+    }
+  },
+  {
+    "id": "screen-04",
+    "text": "Name an animation technique.",
+    "category": "Film & TV",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "screen-04"
+    }
+  },
+  {
+    "id": "screen-05",
+    "text": "Name a character from The Wizard of Oz.",
+    "category": "Film & TV",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "screen-05"
+    }
+  },
+  {
+    "id": "screen-06",
+    "text": "Name a fictional detective.",
+    "category": "Film & TV",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "broad",
+    "target": 100,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "screen-06"
+    }
+  },
+  {
+    "id": "screen-07",
+    "text": "Name a movie award.",
+    "category": "Film & TV",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "screen-07"
+    }
+  },
+  {
+    "id": "screen-08",
+    "text": "Name something shown in film credits.",
+    "category": "Film & TV",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "screen-08"
+    }
+  },
+  {
+    "id": "games-01",
+    "text": "Name a video game genre.",
+    "category": "Video Games",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "games-01"
+    }
+  },
+  {
+    "id": "games-02",
+    "text": "Name a chess piece.",
+    "category": "Video Games",
+    "difficulty": "easy",
+    "mode": "specialist",
+    "coverage": "finite-set",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "games-02"
+    }
+  },
+  {
+    "id": "games-03",
+    "text": "Name something commonly collected in a video game.",
+    "category": "Video Games",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "games-03"
+    }
+  },
+  {
+    "id": "games-04",
+    "text": "Name a classic board game.",
+    "category": "Video Games",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "broad",
+    "target": 100,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "games-04"
+    }
+  },
+  {
+    "id": "games-05",
+    "text": "Name a playing card rank.",
+    "category": "Video Games",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "games-05"
+    }
+  },
+  {
+    "id": "games-06",
+    "text": "Name a tabletop role-playing die.",
+    "category": "Video Games",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "games-06"
+    }
+  },
+  {
+    "id": "games-07",
+    "text": "Name a common video game control.",
+    "category": "Video Games",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "games-07"
+    }
+  },
+  {
+    "id": "games-08",
+    "text": "Name a type of puzzle.",
+    "category": "Video Games",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "games-08"
+    }
+  },
+  {
+    "id": "history-01",
+    "text": "Name an ancient civilisation.",
+    "category": "History",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "history-01"
+    }
+  },
+  {
+    "id": "history-02",
+    "text": "Name a historical writing material.",
+    "category": "History",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "history-02"
+    }
+  },
+  {
+    "id": "history-03",
+    "text": "Name an invention that changed transport.",
+    "category": "History",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "history-03"
+    }
+  },
+  {
+    "id": "history-04",
+    "text": "Name a famous explorer.",
+    "category": "History",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "broad",
+    "target": 100,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "history-04"
+    }
+  },
+  {
+    "id": "history-05",
+    "text": "Name a kind of historical fortification.",
+    "category": "History",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "history-05"
+    }
+  },
+  {
+    "id": "history-06",
+    "text": "Name a job people did in medieval towns.",
+    "category": "History",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "history-06"
+    }
+  },
+  {
+    "id": "history-07",
+    "text": "Name a famous ancient structure.",
+    "category": "History",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "history-07"
+    }
+  },
+  {
+    "id": "history-08",
+    "text": "Name a source historians use.",
+    "category": "History",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "history-08"
+    }
+  },
+  {
+    "id": "sport-01",
+    "text": "Name a sport played with a ball.",
+    "category": "Sports",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "broad",
+    "target": 100,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "sport-01"
+    }
+  },
+  {
+    "id": "sport-02",
+    "text": "Name an Olympic swimming stroke.",
+    "category": "Sports",
+    "difficulty": "easy",
+    "mode": "specialist",
+    "coverage": "finite-set",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "sport-02"
+    }
+  },
+  {
+    "id": "sport-03",
+    "text": "Name a track and field event.",
+    "category": "Sports",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "sport-03"
+    }
+  },
+  {
+    "id": "sport-04",
+    "text": "Name a winter sport.",
+    "category": "Sports",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "sport-04"
+    }
+  },
+  {
+    "id": "sport-05",
+    "text": "Name a piece of sports protective equipment.",
+    "category": "Sports",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "sport-05"
+    }
+  },
+  {
+    "id": "sport-06",
+    "text": "Name a racket sport.",
+    "category": "Sports",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "sport-06"
+    }
+  },
+  {
+    "id": "sport-07",
+    "text": "Name a position in football or soccer.",
+    "category": "Sports",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "sport-07"
+    }
+  },
+  {
+    "id": "sport-08",
+    "text": "Name a martial art.",
+    "category": "Sports",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "broad",
+    "target": 100,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "sport-08"
+    }
+  },
+  {
+    "id": "words-01",
+    "text": "Name a punctuation mark.",
+    "category": "Words & Books",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "words-01"
+    }
+  },
+  {
+    "id": "words-02",
+    "text": "Name a genre of fiction.",
+    "category": "Words & Books",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "words-02"
+    }
+  },
+  {
+    "id": "words-03",
+    "text": "Name a part of a book.",
+    "category": "Words & Books",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "words-03"
+    }
+  },
+  {
+    "id": "words-04",
+    "text": "Name an official language of South Africa.",
+    "category": "Words & Books",
+    "difficulty": "medium",
+    "mode": "specialist",
+    "coverage": "finite-set",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "words-04"
+    }
+  },
+  {
+    "id": "words-05",
+    "text": "Name a writing system.",
+    "category": "Words & Books",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "words-05"
+    }
+  },
+  {
+    "id": "words-06",
+    "text": "Name a type of poem.",
+    "category": "Words & Books",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "words-06"
+    }
+  },
+  {
+    "id": "words-07",
+    "text": "Name a literary device.",
+    "category": "Words & Books",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "words-07"
+    }
+  },
+  {
+    "id": "words-08",
+    "text": "Name a famous fictional animal.",
+    "category": "Words & Books",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "words-08"
+    }
+  },
+  {
+    "id": "everyday-01",
+    "text": "Name something found in a kitchen.",
+    "category": "Everyday Life",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "everyday-01"
+    }
+  },
+  {
+    "id": "everyday-02",
+    "text": "Name something you might carry in a backpack.",
+    "category": "Everyday Life",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "everyday-02"
+    }
+  },
+  {
+    "id": "everyday-03",
+    "text": "Name a tool used for gardening.",
+    "category": "Everyday Life",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "everyday-03"
+    }
+  },
+  {
+    "id": "everyday-04",
+    "text": "Name a type of footwear.",
+    "category": "Everyday Life",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "everyday-04"
+    }
+  },
+  {
+    "id": "everyday-05",
+    "text": "Name a source of light.",
+    "category": "Everyday Life",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "everyday-05"
+    }
+  },
+  {
+    "id": "everyday-06",
+    "text": "Name a common item of clothing.",
+    "category": "Everyday Life",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "everyday-06"
+    }
+  },
+  {
+    "id": "everyday-07",
+    "text": "Name something used to tell time.",
+    "category": "Everyday Life",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "everyday-07"
+    }
+  },
+  {
+    "id": "everyday-08",
+    "text": "Name a room commonly found in a home.",
+    "category": "Everyday Life",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "everyday-08"
+    }
+  },
+  {
+    "id": "sa-01",
+    "text": "Name a province of South Africa.",
+    "category": "South Africa",
+    "difficulty": "easy",
+    "mode": "specialist",
+    "coverage": "finite-set",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "sa-01"
+    }
+  },
+  {
+    "id": "sa-02",
+    "text": "Name a South African city or major town.",
+    "category": "South Africa",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "broad",
+    "target": 100,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "sa-02"
+    }
+  },
+  {
+    "id": "sa-03",
+    "text": "Name an animal found in Kruger National Park.",
+    "category": "South Africa",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "sa-03"
+    }
+  },
+  {
+    "id": "sa-04",
+    "text": "Name a South African food or dish.",
+    "category": "South Africa",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "sa-04"
+    }
+  },
+  {
+    "id": "sa-05",
+    "text": "Name a landmark in South Africa.",
+    "category": "South Africa",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "sa-05"
+    }
+  },
+  {
+    "id": "sa-06",
+    "text": "Name a South African national symbol.",
+    "category": "South Africa",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "sa-06"
+    }
+  },
+  {
+    "id": "sa-07",
+    "text": "Name a river in southern Africa.",
+    "category": "South Africa",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "sa-07"
+    }
+  },
+  {
+    "id": "sa-08",
+    "text": "Name a mountain or mountain range in southern Africa.",
+    "category": "South Africa",
+    "difficulty": "medium",
+    "mode": "standard",
+    "coverage": "curated",
+    "target": null,
+    "where": {
+      "op": "includes",
+      "property": "promptIds",
+      "value": "sa-08"
+    }
+  }
+]

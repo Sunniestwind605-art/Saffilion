@@ -1,0 +1,13 @@
+{
+  "measuredAt": "2026-11-27T23:48:23+02:00",
+  "runtime": "Node 24 with Vite SSR on the development machine",
+  "promptId": "sa-02",
+  "answerCount": 10491,
+  "exactIterations": 1000,
+  "exactTotalMs": 63.33,
+  "exactAverageMs": 0.0633,
+  "fuzzyIterations": 50,
+  "fuzzyTotalMs": 898.93,
+  "fuzzyAverageMs": 17.98,
+  "note": "This is a repeatable local software benchmark, not a physical-phone result."
+}

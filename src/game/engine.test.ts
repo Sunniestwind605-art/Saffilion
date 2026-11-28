@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { depthForPoints, digDurationForPoints, distance, equivalentAnswer, findAnswer, normalize, pickQuestions, rankFor, suggestAnswer, travelPixelsForPoints, validateQuestions, freshSave } from './engine';
+import { depthForPoints, digDurationForPoints, distance, equivalentAnswer, findAnswer, isKnownOutsideQuestion, normalize, pickQuestions, rankFor, suggestAnswer, travelPixelsForPoints, validateQuestions, freshSave } from './engine';
 import { questions } from '../data/questions';
 
 describe('answer engine', () => {
@@ -20,6 +20,19 @@ describe('answer engine', () => {
     expect(suggestAnswer(planets, 'Jupitr')?.canonical).toBe('Jupiter');
     expect(suggestAnswer(planets, 'ju')).toBeUndefined();
     expect(suggestAnswer(planets, 'unrelated')).toBeUndefined();
+  });
+  it('distinguishes known out-of-category entities from unknown text', () => {
+    const elements = questions.find(q => q.id === 'science-03')!;
+    expect(findAnswer(elements, 'South Africa')).toBeUndefined();
+    expect(suggestAnswer(elements, 'South Africa')).toBeUndefined();
+    expect(isKnownOutsideQuestion(elements, 'South Africa')).toBe(true);
+    expect(isKnownOutsideQuestion(elements, 'flibbertigibbet')).toBe(false);
+  });
+  it('keeps exact matching fast with a ten-thousand-answer pool', () => {
+    const places = questions.find(q => q.id === 'sa-02')!;
+    const started = performance.now();
+    for (let index = 0; index < 250; index++) expect(findAnswer(places, 'Johannesburg')?.canonical).toBe('Johannesburg');
+    expect(performance.now() - started).toBeLessThan(250);
   });
 });
 

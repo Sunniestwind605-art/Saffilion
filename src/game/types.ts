@@ -6,8 +6,9 @@ export const TIERS = {
 export type Tier = keyof typeof TIERS;
 export type CatId = 'pebble' | 'mochi' | 'midnight' | 'nova' | 'marmalade';
 export type Difficulty = 'easy' | 'medium' | 'challenging';
-export interface Answer { canonical: string; aliases: string[]; tier: Tier; points: number }
-export interface Question { id: string; category: string; difficulty: Difficulty; prompt: string; answers: Answer[] }
+export type RaritySource = 'curated' | 'provisional';
+export interface Answer { entityId: string; canonical: string; aliases: string[]; tier: Tier; points: number; raritySource: RaritySource }
+export interface Question { id: string; category: string; difficulty: Difficulty; prompt: string; mode: 'standard' | 'specialist'; coverage: 'broad' | 'finite-set' | 'curated'; answers: Answer[] }
 export interface RoundResult { questionId: string; prompt: string; answer: string; canonical?: string; points: number; tier?: Tier; timedOut: boolean }
 export interface Expedition { id: string; date: string; cat: CatId; score: number; depth: number; rounds: RoundResult[] }
 export interface ActiveGame { questionIds: string[]; round: number; results: RoundResult[]; deadline: number; category: string }

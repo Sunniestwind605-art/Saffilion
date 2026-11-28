@@ -2,6 +2,7 @@ node_modules/
 dist/
 playwright-report/
 test-results/
+data/sources/geonames/ZA.zip
 *.tsbuildinfo
 vite.config.js
 vite.config.d.ts

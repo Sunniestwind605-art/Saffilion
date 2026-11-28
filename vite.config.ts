@@ -30,6 +30,10 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,json,ttf,txt}'],
+        // The entity registry is compiled into the main application chunk. Keep the
+        // explicit ceiling comfortably above that measured asset while the public
+        // knowledge shards remain below 250 KiB each.
+        maximumFileSizeToCacheInBytes: 8 * 1024 * 1024,
         navigateFallback: 'index.html',
         cleanupOutdatedCaches: true
       }

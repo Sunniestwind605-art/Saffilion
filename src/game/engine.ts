@@ -1,4 +1,5 @@
 import { TIERS, type Answer, type Question, type SaveData } from './types';
+import { knownEntityIds } from '../data/knowledge';
 
 export function normalize(value: string) {
   return value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase()
@@ -20,7 +21,28 @@ export function distance(a: string, b: string) {
 
 export function findAnswer(question: Question, raw: string): Answer | undefined {
   const needle = normalize(raw);
-  return question.answers.find(a => [a.canonical, ...a.aliases].some(v => equivalentAnswer(normalize(v), needle)));
+  const index = answerIndex(question);
+  return index.get(needle) ?? index.get(singular(needle));
+}
+
+const answerIndexes = new WeakMap<Question, Map<string, Answer>>();
+function answerIndex(question: Question) {
+  let index = answerIndexes.get(question);
+  if (!index) {
+    index = new Map();
+    for (const answer of question.answers) for (const name of [answer.canonical, ...answer.aliases]) {
+      const normalized = normalize(name);
+      index.set(normalized, answer);
+      index.set(singular(normalized), answer);
+    }
+    answerIndexes.set(question, index);
+  }
+  return index;
+}
+
+export function isKnownOutsideQuestion(question: Question, raw: string) {
+  const known = knownEntityIds(raw);
+  return known.size > 0 && !question.answers.some(answer => known.has(answer.entityId));
 }
 
 function singular(value: string) {
@@ -49,9 +71,13 @@ export function digDurationForPoints(points: number, reducedMotion = false) {
 export function suggestAnswer(question: Question, raw: string): Answer | undefined {
   const needle = normalize(raw);
   if (needle.length < 3) return undefined;
-  const ranked = question.answers.map(a => ({ a, d: Math.min(...[a.canonical, ...a.aliases].map(v => distance(needle, v))) })).sort((a, b) => a.d - b.d);
-  const best = ranked[0];
   const limit = needle.length <= 4 ? 1 : needle.length <= 8 ? 2 : 3;
+  const candidates = question.answers.filter(answer => [answer.canonical, ...answer.aliases].some(value => {
+    const name = normalize(value);
+    return name[0] === needle[0] && Math.abs(name.length - needle.length) <= limit;
+  }));
+  const ranked = candidates.map(a => ({ a, d: Math.min(...[a.canonical, ...a.aliases].map(v => distance(needle, v))) })).sort((a, b) => a.d - b.d);
+  const best = ranked[0];
   return best && best.d <= limit && (!ranked[1] || ranked[1].d > best.d) ? best.a : undefined;
 }
 

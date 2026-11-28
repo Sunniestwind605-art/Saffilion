@@ -1,0 +1,168 @@
+{
+  "generatedAt": "2026-11-27T21:49:29.349Z",
+  "entities": 12964,
+  "prompts": 102,
+  "canonicalAnswerRecords": 12800,
+  "aliasRecords": 190,
+  "min": 4,
+  "median": 21,
+  "average": 125.49,
+  "max": 10491,
+  "broadQuestionsAtLeast100": 1,
+  "questionsAtLeast100": 2,
+  "questionsAtLeast500": 1,
+  "questionsAtLeast1000": 1,
+  "broadBelowTarget": [
+    {
+      "id": "nature-01",
+      "count": 34,
+      "target": 100
+    },
+    {
+      "id": "nature-05",
+      "count": 21,
+      "target": 100
+    },
+    {
+      "id": "nature-10",
+      "count": 21,
+      "target": 100
+    },
+    {
+      "id": "science-02",
+      "count": 27,
+      "target": 100
+    },
+    {
+      "id": "science-07",
+      "count": 21,
+      "target": 100
+    },
+    {
+      "id": "food-01",
+      "count": 27,
+      "target": 100
+    },
+    {
+      "id": "food-02",
+      "count": 21,
+      "target": 100
+    },
+    {
+      "id": "food-03",
+      "count": 21,
+      "target": 100
+    },
+    {
+      "id": "food-04",
+      "count": 22,
+      "target": 100
+    },
+    {
+      "id": "music-01",
+      "count": 27,
+      "target": 100
+    },
+    {
+      "id": "music-03",
+      "count": 21,
+      "target": 100
+    },
+    {
+      "id": "music-07",
+      "count": 21,
+      "target": 100
+    },
+    {
+      "id": "screen-06",
+      "count": 21,
+      "target": 100
+    },
+    {
+      "id": "games-04",
+      "count": 21,
+      "target": 100
+    },
+    {
+      "id": "history-04",
+      "count": 21,
+      "target": 100
+    },
+    {
+      "id": "sport-01",
+      "count": 21,
+      "target": 100
+    },
+    {
+      "id": "sport-08",
+      "count": 25,
+      "target": 100
+    }
+  ],
+  "finiteSets": [
+    {
+      "id": "geo-01",
+      "count": 54
+    },
+    {
+      "id": "geo-02",
+      "count": 12
+    },
+    {
+      "id": "geo-03",
+      "count": 17
+    },
+    {
+      "id": "geo-04",
+      "count": 48
+    },
+    {
+      "id": "geo-05",
+      "count": 27
+    },
+    {
+      "id": "geo-06",
+      "count": 22
+    },
+    {
+      "id": "geo-07",
+      "count": 27
+    },
+    {
+      "id": "geo-08",
+      "count": 25
+    },
+    {
+      "id": "science-01",
+      "count": 8
+    },
+    {
+      "id": "science-03",
+      "count": 118
+    },
+    {
+      "id": "games-02",
+      "count": 6
+    },
+    {
+      "id": "sport-02",
+      "count": 4
+    },
+    {
+      "id": "words-04",
+      "count": 12
+    },
+    {
+      "id": "sa-01",
+      "count": 9
+    }
+  ],
+  "duplicateEntityIds": 0,
+  "conflictingAliases": 0,
+  "invalidPredicates": 0,
+  "missingSourceMetadata": 0,
+  "missingRarityAssignments": 0,
+  "serializedEntityBytes": 4962175,
+  "offlineShardBytes": 2663441,
+  "errors": []
+}

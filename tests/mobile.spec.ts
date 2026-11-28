@@ -64,7 +64,7 @@ test('a rare answer reveals its full rarity, score, and depth weight', async ({ 
   await page.goto('.');
   await page.getByLabel('Your answer').fill('Comoros');
   await page.getByRole('button', { name: 'Dig!' }).click();
-  await expect(page.getByRole('img', { name: /Safia/ })).toHaveClass(/happy/, { timeout: 1000 });
+  await expect(page.getByRole('img', { name: /Safia/ })).toHaveClass(/happy|dig-stardust/, { timeout: 1000 });
   const reveal = page.locator('.rarity-reveal');
   await expect(reveal).toContainText('Stardust');
   await expect(reveal).toContainText('100 points');
@@ -186,6 +186,13 @@ test('production PWA completes a seven-round expedition offline', async ({ page,
   })));
   await context.setOffline(true);
   await page.reload();
+  const offlineBank = await page.evaluate(async () => {
+    const manifest = await (await fetch('data/v2/manifest.json')).json();
+    const sizes = await Promise.all(manifest.shards.map(async (shard: {url:string}) => (await fetch(shard.url)).text().then(value => value.length)));
+    return { count: manifest.shards.length, allLoaded: sizes.every((size: number) => size > 100) };
+  });
+  expect(offlineBank.count).toBeGreaterThan(10);
+  expect(offlineBank.allLoaded).toBe(true);
   for (const [index, answer] of ['Jupitr','South Africa','Brazil','Brazil','London','Japan','Spain'].entries()) {
     await page.getByLabel('Your answer').fill(answer);
     await page.getByRole('button', { name: 'Dig!' }).click();
